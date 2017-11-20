@@ -1,0 +1,27 @@
+h1 My Dashboard
+form(action="", autocomplete="on")
+    | RLog Entry Type*
+    br
+    select(required="")
+        option(value="default", selected="", disabled="", hidden="") Select
+        option(value="LogWeight") Weight
+        option(value="LogExercise") Exercise
+        option(value="LogFood") Food
+    br
+    |     Entry Details* 
+    br
+    textarea(name="LogDetails", required="", rows="5", cols="50")
+    br
+    |     Date and Time*
+    br
+    input(type="datetime-local", name="LogDateTime")
+    br
+    |     Picture Upload
+    br
+    input(type="file", name="LogImage", accept="image/*")
+    br
+    br
+    input(type="submit", value="Add Entry")
+h4 My Progress
+h2 My Log
+h2 My Image Gallery

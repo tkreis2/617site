@@ -1,0 +1,27 @@
+extends layout
+
+block content
+  h1 Contact Us
+  form(method="POST" autocomplete="on")
+    input(type="hidden", name="_csrf", value=_csrf)
+    | Full Name*
+    br
+    input(type="text", name="fullname", required="")
+    br
+    |   Email Address*
+    br
+    input(type="email", name="emailaddr", required="")
+    br
+    |   Reason for Contact*
+    br
+    select(required="", name="reason")
+      option(value="default", selected="", disabled="", hidden="") Select
+      option(value="TechnicalIssues") Technical Issues
+      option(value="Questions") Questions About HealthWe
+      option(value="Feedback") Feedback
+    br
+    |   Details* (Note: For technical issues, please include the name of your HealthWe Group)
+    br
+    textarea(name="details", required="", rows="5", cols="50")
+    br
+    input(type="submit", value="Submit")

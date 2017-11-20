@@ -1,0 +1,37 @@
+h3 Already a Member? Log In Here
+form(action="", autocomplete="on")
+    | Email Address*
+    br
+    input(type="email", name="emailaddr", required="")
+    br
+    |         Password*
+    br
+    input(type="password", name="password", required="")
+    input(type="submit", value="Log In")
+br
+h3 New to HealthWe? Make an Account Now!
+form(action="")
+    | Full Name*
+    br
+    input(type="text", name="fullname", required="")
+    br
+    |         Email Address*
+    br
+    input(type="email", name="emailaddr", required="")
+    br
+    |         Join a Group or Start a New Group?*
+    br
+    select(required="")
+        option(value="default", selected="", disabled="", hidden="") Select
+        option(value="JoinGroup") Join a Group
+        option(value="StartGroup") Start a Group
+    br
+    |         Group Name*
+    br
+    input(type="text", name="groupname", required="")
+    br
+    |         Password*
+    br
+    input(type="password", name="password", required="")
+    br
+    input(type="submit", value="Create My Account")
