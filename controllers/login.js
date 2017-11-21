@@ -4,6 +4,7 @@ const crypto = bluebird.promisifyAll(require('crypto'));
 const passport = require('passport');
 var mongoose = require('mongoose'),
 user = require('../models/User');
+var isNew = false;
 
 /**
  * GET /login
@@ -69,10 +70,13 @@ exports.postLogin = (req, res, next) => {
 exports.getSignup = (req, res) => {
   if (req.user) {
     return res.redirect('/');
-  }
-  res.render('login', {
-    title: 'Sign Up for HealthWe'
+  }else{
+    isNew = true
+    res.render('login', {
+      title: 'Sign Up for HealthWe',
+      isNew: isNew
   });
+  }
 };
   /**
    * POST /signup
