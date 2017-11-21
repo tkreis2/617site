@@ -42,7 +42,7 @@ const contactController = require('./controllers/contact');
 const loginController = require('./controllers/login');
 const individdashController = require('./controllers/individdash');
 const groupdashController = require('./controllers/groupdash');
-const userController = require('./controllers/user');
+// const userController = require('./controllers/user');
 const apiController = require('./controllers/api');
 
 /**
@@ -165,24 +165,27 @@ app.get('/logout', loginController.logout);
 app.get('/signup', loginController.getSignup);
 app.post('/signup', loginController.postSignup);
 // app.get('/logout', userController.logout);
-app.get('/forgot', userController.getForgot);
-app.post('/forgot', userController.postForgot);
-app.get('/reset/:token', userController.getReset);
-app.post('/reset/:token', userController.postReset);
+// app.get('/forgot', userController.getForgot);
+// app.post('/forgot', userController.postForgot);
+// app.get('/reset/:token', userController.getReset);
+// app.post('/reset/:token', userController.postReset);
 // app.get('/signup', userController.getSignup);
 // app.post('/signup', userController.postSignup);
 app.get('/contact', contactController.getContact);
 app.post('/contact', contactController.postContact);
-app.get('/account', passportConfig.isAuthenticated, userController.getAccount);
-app.post('/account/profile', passportConfig.isAuthenticated, userController.postUpdateProfile);
-app.post('/account/password', passportConfig.isAuthenticated, userController.postUpdatePassword);
-app.post('/account/delete', passportConfig.isAuthenticated, userController.postDeleteAccount);
-app.get('/account/unlink/:provider', passportConfig.isAuthenticated, userController.getOauthUnlink);
+// app.get('/account', passportConfig.isAuthenticated, userController.getAccount);
+// app.post('/account/profile', passportConfig.isAuthenticated, userController.postUpdateProfile);
+// app.post('/account/password', passportConfig.isAuthenticated, userController.postUpdatePassword);
+// app.post('/account/delete', passportConfig.isAuthenticated, loginController.postDeleteAccount);
+app.get('/delete', loginController.postDeleteAccount);
+app.post('/delete', passportConfig.isAuthenticated, loginController.postDeleteAccount);
+// app.get('/account/unlink/:provider', passportConfig.isAuthenticated, userController.getOauthUnlink);
 app.get('/about', aboutController.getAbout);
 app.get('/howitworks', howitworksController.gethowitworks);
 app.get('/getstarted', getstartedController.getgetstarted);
 app.get('/successstories', successstoriesController.getsuccessstories);
 app.get('/help', helpController.gethelp);
+app.get('/account', individdashController.index);
 
 
 

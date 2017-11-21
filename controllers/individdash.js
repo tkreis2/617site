@@ -1,10 +1,10 @@
 /**
  * GET /
- * Home page.
+ * Individ Dash page.
  */
 exports.index = (req, res) => {
-  res.render('home', {
-    title: 'Home'
+  res.render('individdash', {
+    title: 'My Dashboard - HealthWe'
   });
 };
 

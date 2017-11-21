@@ -121,9 +121,47 @@ exports.getSignup = (req, res) => {
         /*res.json(entry);*/     
         // token = user.generatejwt();
         // sendJSONresponse(res, 200, {"token": token});
-        res.redirect('/');
+        req.logIn(user, (err) => {
+          if (err) { return next(err); }
+          req.flash('success', { msg: 'Success! You are logged in.' });
+          res.redirect('/account');
       });
     });
-
+   });
   };
+
+  /**
+ * POST /account/delete
+ * Delete user account.
+ */
+exports.postDeleteAccount = (req, res, next) => {
+  user.remove({ _id: req.user.id }, (err) => {
+    if (err) { return next(err); }
+    req.logout();
+    req.flash('info', { msg: 'Your account has been deleted.' });    
+    res.redirect('/');  
+  });
+};
   
+/**
+ * GET /reset/:token
+ * Reset Password page.
+ */
+exports.getReset = (req, res, next) => {
+  if (req.isAuthenticated()) {
+    return res.redirect('/');
+  }
+  User
+    .findOne({ passwordResetToken: req.params.token })
+    .where('passwordResetExpires').gt(Date.now())
+    .exec((err, user) => {
+      if (err) { return next(err); }
+      if (!user) {
+        req.flash('errors', { msg: 'Password reset token is invalid or has expired.' });
+        return res.redirect('/forgot');
+      }
+      res.render('account/reset', {
+        title: 'Password Reset'
+      });
+    });
+};
