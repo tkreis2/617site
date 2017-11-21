@@ -186,6 +186,10 @@ app.get('/getstarted', getstartedController.getgetstarted);
 app.get('/successstories', successstoriesController.getsuccessstories);
 app.get('/help', helpController.gethelp);
 app.get('/account', individdashController.index);
+app.get('/forgot', loginController.getForgot);
+app.post('/forgot', loginController.postForgot);
+app.get('/reset/:token', loginController.getReset);
+app.post('/reset/:token', loginController.postReset);
 
 
 

@@ -13,6 +13,8 @@ const userSchema = Schema({
   individGoalType: String,
   individGoalValue: Number,
   individGoalProgress: Number,
+  passwordResetToken: String,
+  passwordResetExpires: Date,
 
   facebook: String,
   twitter: String,
