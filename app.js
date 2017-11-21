@@ -142,7 +142,6 @@ app.use((req, res, next) => {
   // After successful login, redirect back to the intended page
   if (!req.user &&
       req.path !== '/login' &&
-      req.path !== '/signup' &&
       !req.path.match(/^\/auth/) &&
       !req.path.match(/\./)) {
     req.session.returnTo = req.path;
@@ -162,8 +161,9 @@ app.get('/', homeController.index);
 // app.post('/login', userController.postLogin);
 app.get('/login', loginController.getlogin);
 app.post('/login', loginController.postLogin);
-app.get('/login', loginController.logout);
-app.post('/login', loginController.postSignup);
+app.get('/logout', loginController.logout);
+app.get('/signup', loginController.getSignup);
+app.post('/signup', loginController.postSignup);
 // app.get('/logout', userController.logout);
 app.get('/forgot', userController.getForgot);
 app.post('/forgot', userController.postForgot);

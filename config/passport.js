@@ -26,12 +26,13 @@ passport.deserializeUser((id, done) => {
 /**
  * Sign in using Email and Password.
  */
+
 passport.use('local', new LocalStrategy({ 
   usernameField: 'mememailaddr',
   passwordField: 'mempassword'
 
 }, (mememailaddr, mempassword, done) => {
-  User.findOne({ email: mememailaddr.toLowerCase() }, (err, user) => {
+    User.findOne({ email: mememailaddr.toLowerCase() }, (err, user) => {    
     if (err) { return done(err); }
     if (!user) {
       return done(null, false, { msg: `Email ${mememailaddr} not found.` });
@@ -45,6 +46,26 @@ passport.use('local', new LocalStrategy({
     });
   });
 }));
+
+// passport.use('local', new LocalStrategy({ 
+//   usernameField: 'mememailaddr',
+//   passwordField: 'mempassword'
+
+// }, (username, password, done) => {
+//     User.findOne({ email: username.toLowerCase() }, (err, user) => {    
+//     if (err) { return done(err); }
+//     if (!user) {
+//       return done(null, false, { msg: `Email ${mememailaddr} not found.` });
+//     }
+//     user.comparePassword(password, (err, isMatch) => {
+//       if (err) { return done(err); }
+//       if (isMatch) {
+//         return done(null, user);
+//       }
+//       return done(null, false, { msg: 'Invalid email or password.' });
+//     });
+//   });
+// }));
 
 /**
  * OAuth Strategy Overview

@@ -55,20 +55,25 @@ exports.postLogin = (req, res, next) => {
    * GET /logout
    * Log out.
    */
-  exports.logout = (req, res) => {
-    req.session.destroy(function(err){
-      if(err){
-        console.log(err);
-      }else{
-        console.log(session.email);
-        req.end();
-        res.redirect('/');
-      }
-    })
-
+  exports.logout = (req, res, next) => {
+    req.session.destroy();
+    res.redirect('/');
   };
 
  
+
+  /**
+ * GET /login
+ * Login/signup page.*/
+ 
+exports.getSignup = (req, res) => {
+  if (req.user) {
+    return res.redirect('/');
+  }
+  res.render('login', {
+    title: 'Sign Up for HealthWe'
+  });
+};
   /**
    * POST /signup
    * Create a new local account.
