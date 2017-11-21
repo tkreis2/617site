@@ -11,8 +11,7 @@ html {
   -webkit-text-size-adjust: 100%; }
 
 body {
-  margin: 0; 
-  font-size: 16px;}
+  margin: 0; }
 
 article,
 aside,
@@ -63,12 +62,7 @@ dfn {
 
 h1 {
   font-size: 2em;
-  margin: 0.67em 0; 
-  text-align: center;}
-
-h2{
-  text-align: center;
-}
+  margin: 0.67em 0; }
 
 mark {
   background: #ff0;
@@ -188,37 +182,9 @@ td,
 th {
   padding: 0; }
 
-
-.shadeblock{
-  background-color:#f0f0f0;
-  padding: 10%;
-}
-
-.smallheading{
-  font-size: 22px;
-  font-weight: bold;
-}
-
-.ctabutton{
-  padding: 10px 15px;
-  color: #ffffff;
-  background-color: #8fc0a9;
-  font-size: 20px;
-  box-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
-}
-
-.ctabutton:hover{
-  padding: 10px 15px;
-  color: #ffffff;
-  background-color: #68b0ab;
-  font-size: 20px;
-  box-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
-  text-decoration: none;
-}
-
 /*! Source: https://github.com/h5bp/html5-boilerplate/blob/master/src/css/main.css */
 @media print {
-  *,F
+  *,
   *:before,
   *:after {
     background: transparent !important;
@@ -1089,10 +1055,10 @@ html {
   -webkit-tap-highlight-color: transparent; }
 
 body {
-  font-family: "Open Sans", Arial, sans-serif;
-  font-size: 16px;
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-size: 14px;
   line-height: 1.42857;
-  color: #696d7d;
+  color: #333333;
   background-color: #fff; }
 
 input,
@@ -1173,7 +1139,7 @@ hr {
 
 h1, h2, h3, h4, h5, h6,
 .h1, .h2, .h3, .h4, .h5, .h6 {
-  font-family: "Open Sans", Arial, sans-serif;
+  font-family: "HelveticaNeue-CondensedBold", "Helvetica Neue", Arial, sans-serif;
   font-weight: 500;
   line-height: 1.1;
   color: inherit; }
@@ -3585,9 +3551,7 @@ tbody.collapse.in {
     .nav > li > a {
       position: relative;
       display: block;
-      padding: 10px 15px; 
-      font-size: 16px;
-      font-weight: bold;}
+      padding: 10px 15px; }
       .nav > li > a:hover, .nav > li > a:focus {
         text-decoration: none;
         background-color: #eeeeee; }
@@ -3694,9 +3658,7 @@ tbody.collapse.in {
   position: relative;
   min-height: 50px;
   margin-bottom: 20px;
-  border: 1px solid transparent; 
-  font-size: 16px;
-  font-weight: bold;}
+  border: 1px solid transparent; }
   .navbar:before, .navbar:after {
     content: " ";
     display: table; }
@@ -3823,9 +3785,7 @@ tbody.collapse.in {
   background-color: transparent;
   background-image: none;
   border: 1px solid transparent;
-  border-radius: 4px; 
-  font-size: 16px;
-  font-weight: bold;}
+  border-radius: 4px; }
   .navbar-toggle:focus {
     outline: 0; }
   .navbar-toggle .icon-bar {
@@ -3840,15 +3800,11 @@ tbody.collapse.in {
       display: none; } }
 
 .navbar-nav {
-  margin: 7.5px -15px; 
-  font-size: 16px;
-  font-weight: bold;}
+  margin: 7.5px -15px; }
   .navbar-nav > li > a {
-    padding-top: 50px;
+    padding-top: 10px;
     padding-bottom: 10px;
-    line-height: 20px; 
-    font-size: 16px;
-    font-weight: bold;}
+    line-height: 20px; }
   @media (max-width: 767px) {
     .navbar-nav .open .dropdown-menu {
       position: static;
@@ -3870,14 +3826,10 @@ tbody.collapse.in {
       float: left;
       margin: 0; }
       .navbar-nav > li {
-        float: left; 
-        font-size: 16px;
-        font-weight: bold; }
+        float: left; }
         .navbar-nav > li > a {
-          padding-top: 65px;
-          padding-bottom: 5px; 
-          font-size: 16px;
-          font-weight: bold; }
+          padding-top: 15px;
+          padding-bottom: 15px; } }
 
 .navbar-form {
   margin-left: -15px;
@@ -3985,27 +3937,21 @@ tbody.collapse.in {
 
 .navbar-default {
   background-color: rgba(255, 255, 255, 0.9);
-  border-color: rgba(238, 238, 238, 0.9); 
-  font-size: 14px;
-  font-weight: bold;}
+  border-color: rgba(238, 238, 238, 0.9); }
   .navbar-default .navbar-brand {
     color: #252525; }
     .navbar-default .navbar-brand:hover, .navbar-default .navbar-brand:focus {
-      color: #8fc0a9;     
+      color: #4da5f4;
       background-color: transparent; }
   .navbar-default .navbar-text {
     color: #fafafa; }
   .navbar-default .navbar-nav > li > a {
-    color: #252525; 
-    font-size: 14px;
-    font-weight: bold;}
+    color: #252525; }
     .navbar-default .navbar-nav > li > a:hover, .navbar-default .navbar-nav > li > a:focus {
-      color: #8fc0a9;     
-      font-size: 14px;
-      font-weight: bold;      
+      color: #4da5f4;
       background-color: transparent; }
   .navbar-default .navbar-nav > .active > a, .navbar-default .navbar-nav > .active > a:hover, .navbar-default .navbar-nav > .active > a:focus {
-    color: #8fc0a9;  
+    color: #4da5f4;
     background-color: transparent; }
   .navbar-default .navbar-nav > .disabled > a, .navbar-default .navbar-nav > .disabled > a:hover, .navbar-default .navbar-nav > .disabled > a:focus {
     color: #ccc;
@@ -4021,7 +3967,7 @@ tbody.collapse.in {
     border-color: rgba(238, 238, 238, 0.9); }
   .navbar-default .navbar-nav > .open > a, .navbar-default .navbar-nav > .open > a:hover, .navbar-default .navbar-nav > .open > a:focus {
     background-color: transparent;
-    color: #8fc0a9; }
+    color: #4da5f4; }
   @media (max-width: 767px) {
     .navbar-default .navbar-nav .open .dropdown-menu > li > a {
       color: #252525; }
@@ -8951,8 +8897,9 @@ button.close {
   border: 0;
   box-shadow: 0 0 3px rgba(0, 0, 0, 0.2); }
   .navbar-default .navbar-nav > li > a {
-    font-size: 14px;
-    font-weight: bold;
+    font-size: 12px;
+    font-weight: 500;
+    text-transform: uppercase;
     transition: all 0.2s linear; }
 
 html {
