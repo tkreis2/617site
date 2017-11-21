@@ -83,30 +83,22 @@ exports.getlogin = (req, res) => {
 
 
     var newUser = new user({fullname: req.body.fullname, email: req.body.emailaddr, joinstart: req.body.joinstart, groupID: req.body.groupname, password: req.body.password});
-    newUser.save(function(err, user){
-      if(err)
-         res.send(err);
-      /*res.json(entry);*/     
-      res.redirect('/');
+    user.findOne({ email: req.body.emailaddr }, (err, existingUser) => {
+      if (err) { return next(err); }
+      if (existingUser) {
+        req.flash('errors', { msg: 'Account with that email address already exists.' });
+        return res.redirect('/login');
+      }
+      newUser.save(function(err, user){
+        if(err)
+           res.send(err);
+        /*res.json(entry);*/     
+        res.redirect('/');
+      });
     });
 
 
+
   
-    // User.findOne({ email: req.body.email }, (err, existingUser) => {
-    //   if (err) { return next(err); }
-    //   if (existingUser) {
-    //     req.flash('errors', { msg: 'Account with that email address already exists.' });
-    //     return res.redirect('/login');
-    //   }
-    //   user.save((err) => {
-    //     if (err) { return next(err); }
-    //     req.logIn(user, (err) => {
-    //       if (err) {
-    //         return next(err);
-    //       }
-    //       res.redirect('/');
-    //     });
-    //   });
-    // });
   };
   
