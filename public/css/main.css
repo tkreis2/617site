@@ -9190,3 +9190,7 @@ textarea {
 .shadeblock {
   background-color: #f0f0f0;
   padding: 10%; }
+
+.smallheading {
+  font-size: 22px;
+  font-weight: bold; }
