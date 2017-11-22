@@ -9186,3 +9186,7 @@ textarea {
 
 .fa {
   margin-right: 6px; }
+
+.shadeblock {
+  background-color: #f0f0f0;
+  padding: 10%; }
