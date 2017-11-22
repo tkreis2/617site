@@ -99,6 +99,7 @@ app.use(sass({
 app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
+app.use(express.static(path.join(__dirname, 'public'), { maxAge: 31557600000 })); /** */
 app.use(expressValidator());
 app.use(session({
   resave: true,
@@ -113,7 +114,7 @@ app.use(session({
 // app.use(passport.initialize());
 // app.use(passport.session());
 app.use(flash());
-app.use(express.static(path.join(__dirname, 'public'), { maxAge: 31557600000 })); /** */
+// app.use(express.static(path.join(__dirname, 'public'), { maxAge: 31557600000 })); /** */
 app.use((req,res,next) => {
   //formidable outputs to req.fields and req.files / req.file so we can get dirty here
     if(Object.keys(req.body).length == 0 && req.fields){
@@ -151,7 +152,7 @@ app.use((req, res, next) => {
   }
   next();
 });
-/*app.use(express.static(path.join(__dirname, 'public'), { maxAge: 31557600000 }));*/
+// app.use(express.static(path.join(__dirname, 'public'), { maxAge: 31557600000 }));
 
 /**
  * Primary app routes.

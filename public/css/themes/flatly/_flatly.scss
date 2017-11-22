@@ -3,7 +3,7 @@
 // -----------------------------------------------------
 @import "../../lib/bootstrap-social";
 // $web-font-path: "https://fonts.googleapis.com/css?family=Lato:400,700,400italic" !default;
-$web-font-path: "'https://fonts.googleapis.com/css?family=Open+Sans'" !default;
+$web-font-path: "https://fonts.googleapis.com/css?family=Open+Sans" !default;
 
 @import url($web-font-path);
 
@@ -138,11 +138,14 @@ table,
 
 .form-control,
 input {
-  border-width: 2px;
+  // border-width: 2px;
+  box-sizing: border-box;
+  border: 3px solid #ccc;  
   @include box-shadow(none);
 
   &:focus {
     @include box-shadow(none);
+    border: 3px solid #555;    
   }
 }
 
@@ -228,6 +231,9 @@ input {
   .open > a:hover,
   .open > a:focus {
     border-color: transparent;
+  
+  a{
+    padding-top: 60px;
   }
 }
 
@@ -344,4 +350,11 @@ a.list-group-item {
 
 .popover {
   color: $text-color;
+}
+
+.shadeblock{
+  background-color:#f0f0f0;
+  padding: 10%;
+}
+
 }

@@ -5,7 +5,7 @@
  * Licensed under MIT (https://github.com/twbs/blob/master/LICENSE)
  */
 /*! normalize.css v3.0.3 | MIT License | github.com/necolas/normalize.css */
-@import url("'https://fonts.googleapis.com/css?family=Open+Sans'");
+@import url("https://fonts.googleapis.com/css?family=Open+Sans");
 html {
   font-family: sans-serif;
   -ms-text-size-adjust: 100%;
@@ -3185,12 +3185,12 @@ tbody.collapse.in {
     clear: both;
     font-weight: normal;
     line-height: 1.42857;
-    color: #696d7d;
+    color: #7b8a8b;
     white-space: nowrap; }
 
 .dropdown-menu > li > a:hover, .dropdown-menu > li > a:focus {
   text-decoration: none;
-  color: #696d7d;
+  color: #fff;
   background-color: #f0f0f0; }
 
 .dropdown-menu > .active > a, .dropdown-menu > .active > a:hover, .dropdown-menu > .active > a:focus {
@@ -3947,7 +3947,6 @@ tbody.collapse.in {
   .navbar-default .navbar-text {
     color: #696d7d; }
   .navbar-default .navbar-nav > li > a {
-    padding-top: 60px;
     color: #696d7d; }
     .navbar-default .navbar-nav > li > a:hover, .navbar-default .navbar-nav > li > a:focus {
       color: #18BC9C;
@@ -9005,13 +9004,15 @@ table-bordered > tfoot > tr > td,
 
 .form-control,
 input {
-  border-width: 2px;
+  box-sizing: border-box;
+  border: 3px solid #ccc;
   -webkit-box-shadow: none;
   box-shadow: none; }
   .form-control:focus,
   input:focus {
     -webkit-box-shadow: none;
-    box-shadow: none; }
+    box-shadow: none;
+    border: 3px solid #555; }
 
 .has-warning .help-block,
 .has-warning .control-label,
@@ -9073,76 +9074,82 @@ input {
 .has-success .input-group-addon {
   border-color: #18BC9C; }
 
-.nav .open > a {
-  padding-top: 60px; }
-
+.nav .open > a,
 .nav .open > a:hover,
 .nav .open > a:focus {
   border-color: transparent; }
+  .nav .open > a a,
+  .nav .open > a:hover a,
+  .nav .open > a:focus a {
+    padding-top: 60px; }
 
-.pager a,
-.pager a:hover {
+.nav .pager a,
+.nav .pager a:hover {
   color: #fff; }
 
-.pager .disabled > a,
-.pager .disabled > a:hover,
-.pager .disabled > a:focus,
-.pager .disabled > span {
+.nav .pager .disabled > a,
+.nav .pager .disabled > a:hover,
+.nav .pager .disabled > a:focus,
+.nav .pager .disabled > span {
   background-color: #3be6c4; }
 
-.close {
+.nav .close {
   color: #fff;
   text-decoration: none;
   opacity: 0.4; }
-  .close:hover, .close:focus {
+  .nav .close:hover, .nav .close:focus {
     color: #fff;
     opacity: 1; }
 
-.alert .alert-link {
+.nav .alert .alert-link {
   color: #fff;
   text-decoration: underline; }
 
-.progress {
+.nav .progress {
   height: 10px;
   -webkit-box-shadow: none;
   box-shadow: none; }
-  .progress .progress-bar {
+  .nav .progress .progress-bar {
     font-size: 10px;
     line-height: 10px; }
 
-.well {
+.nav .well {
   -webkit-box-shadow: none;
   box-shadow: none; }
 
-a.list-group-item.active, a.list-group-item.active:hover, a.list-group-item.active:focus {
+.nav a.list-group-item.active, .nav a.list-group-item.active:hover, .nav a.list-group-item.active:focus {
   border-color: #ecf0f1; }
 
-a.list-group-item-success.active {
+.nav a.list-group-item-success.active {
   background-color: #18BC9C; }
 
-a.list-group-item-success.active:hover, a.list-group-item-success.active:focus {
+.nav a.list-group-item-success.active:hover, .nav a.list-group-item-success.active:focus {
   background-color: #15a589; }
 
-a.list-group-item-warning.active {
+.nav a.list-group-item-warning.active {
   background-color: #F39C12; }
 
-a.list-group-item-warning.active:hover, a.list-group-item-warning.active:focus {
+.nav a.list-group-item-warning.active:hover, .nav a.list-group-item-warning.active:focus {
   background-color: #e08e0b; }
 
-a.list-group-item-danger.active {
+.nav a.list-group-item-danger.active {
   background-color: #E74C3C; }
 
-a.list-group-item-danger.active:hover, a.list-group-item-danger.active:focus {
+.nav a.list-group-item-danger.active:hover, .nav a.list-group-item-danger.active:focus {
   background-color: #e43725; }
 
-.panel-default .close {
+.nav .panel-default .close {
   color: #696d7d; }
 
-.modal .close {
+.nav .modal .close {
   color: #696d7d; }
 
-.popover {
+.nav .popover {
   color: #696d7d; }
+
+.nav .shadeblock {
+  background-color: #f0f0f0;
+  padding: 10%; }
 
 html {
   position: relative;
