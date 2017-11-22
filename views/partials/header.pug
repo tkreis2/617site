@@ -23,13 +23,23 @@
         li(class=(title === 'Contact') ? 'active' : undefined)
           a(href='/contact') Contact
         //- ul.nav.navbar-nav.navbar-right     
-        ul.nav.navbar-nav.accountlinks           
+        ul.nav.navbar-nav          
             if !user
-              li(class=(title === 'Login') ? 'active' : undefined)
-                a(href='/login') Login
-              li or
-              li(class=(title === 'Create Account') ? 'active' : undefined)
-                a(href='/signup') Sign Up
+              li.dropdown(class=(title === 'Accounts') ? 'active' : undefined)
+                a.dropdown-toggle(href='#', data-toggle='dropdown') Accounts
+                  i.caret
+                ul.dropdown-menu
+                  li(class=(title === 'Login') ? 'active' : undefined)
+                    a(href='/login') Login
+                  li.divider
+                  li(class=(title === 'Create Account') ? 'active' : undefined)
+                    a(href='/signup') Sign Up
+
+
+              //- li(class=(title === 'Login') ? 'active' : undefined)
+              //-   a(href='/login') Login
+              //- li(class=(title === 'Create Account') ? 'active' : undefined)
+              //-   a(href='/signup') Sign Up
             else
               li.dropdown(class=(title === 'Account Management') ? 'active' : undefined)
                 a.dropdown-toggle(href='#', data-toggle='dropdown')

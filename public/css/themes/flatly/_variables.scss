@@ -15,7 +15,8 @@ $gray:                   #95a5a6 !default; // #555
 $gray-light:             #b4bcc2 !default;   // #999
 $gray-lighter:           #ecf0f1 !default; // #eee
 
-$brand-primary:         #2C3E50 !default;
+// $brand-primary:         #2C3E50 !default;
+$brand-primary:         #f0f0f0 !default;
 $brand-success:         #18BC9C !default;
 $brand-info:            #3498DB !default;
 $brand-warning:         #F39C12 !default;
@@ -29,7 +30,8 @@ $brand-danger:          #E74C3C !default;
 //** Background color for `<body>`.
 $body-bg:               #fff !default;
 //** Global text color on `<body>`.
-$text-color:            $brand-primary !default;
+// $text-color:            $brand-primary !default;
+$text-color:            #696d7d !default;
 
 //** Global textual link color.
 $link-color:            $brand-success !default;
@@ -49,7 +51,7 @@ $font-family-serif:       Georgia, "Times New Roman", Times, serif !default;
 $font-family-monospace:   Menlo, Monaco, Consolas, "Courier New", monospace !default;
 $font-family-base:        $font-family-sans-serif !default;
 
-$font-size-base:          15px !default;
+$font-size-base:          18px !default;
 $font-size-large:         ceil(($font-size-base * 1.25)) !default; // ~18px
 $font-size-small:         ceil(($font-size-base * 0.85)) !default; // ~12px
 
@@ -360,6 +362,7 @@ $container-lg:                 $container-large-desktop !default;
 // Basics of a navbar
 $navbar-height:                    60px !default;
 $navbar-margin-bottom:             $line-height-computed !default;
+// $navbar-margin-bottom:             40px !default;
 $navbar-border-radius:             $border-radius-base !default;
 $navbar-padding-horizontal:        floor(($grid-gutter-width / 2)) !default;
 $navbar-padding-vertical:          (($navbar-height - $line-height-computed) / 2) !default;

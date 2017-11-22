@@ -1,0 +1,26 @@
+  .shadeblock{
+    background-color:#f0f0f0;
+    padding: 10%;
+  }
+  
+  .smallheading{
+    font-size: 22px;
+   font-weight: bold;
+  }
+  
+  .ctabutton{
+    padding: 10px 15px;
+    color: #ffffff;
+    background-color: #8fc0a9;
+    font-size: 20px;
+    box-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
+  }
+  
+  .ctabutton:hover{
+    padding: 10px 15px;
+    color: #ffffff;
+    background-color: #68b0ab;
+    font-size: 20px;
+    box-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
+    text-decoration: none;
+  }

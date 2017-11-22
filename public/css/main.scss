@@ -1,9 +1,9 @@
-@import "themes/default/variables";
+@import "themes/flatly/variables";
 
 @import "lib/bootstrap/bootstrap";
 @import "lib/font-awesome/font-awesome";
 
-@import "themes/default/default";
+@import "themes/flatly/flatly";
 
 // Scaffolding
 // -------------------------
@@ -50,7 +50,7 @@ textarea {
 // -------------------------
 
 .alert {
-  margin-top: 20px;
+  margin-top: 60px;
 }
 
 // Thumbnails
