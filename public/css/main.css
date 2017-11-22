@@ -3112,8 +3112,7 @@ input[type="button"].btn-block {
     opacity: 1; }
 
 .collapse {
-  display: none;
-  padding-top: 45px; }
+  display: none; }
   .collapse.in {
     display: block; }
 
