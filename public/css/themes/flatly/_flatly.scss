@@ -14,6 +14,10 @@ $web-font-path: "https://fonts.googleapis.com/css?family=Open+Sans" !default;
 
   &-default {
 
+    a{
+      padding-top: 40px;
+    }
+
     .badge {
       background-color: #fff;
       color: $navbar-default-bg;
@@ -227,9 +231,6 @@ input {
 // Navs =======================================================================
 
 .nav {
-  a{
-    padding-top: 60px;
-  }
   .open > a,
   .open > a:hover,
   .open > a:focus {
@@ -355,6 +356,10 @@ a.list-group-item {
 .shadeblock{
   background-color:#f0f0f0;
   padding: 10%;
+}
+
+.extrapadding{
+  padding-top: 30px;
 }
 
 }

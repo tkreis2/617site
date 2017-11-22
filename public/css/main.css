@@ -3190,11 +3190,11 @@ tbody.collapse.in {
 
 .dropdown-menu > li > a:hover, .dropdown-menu > li > a:focus {
   text-decoration: none;
-  color: #fff;
+  color: #7b8a8b;
   background-color: #f0f0f0; }
 
 .dropdown-menu > .active > a, .dropdown-menu > .active > a:hover, .dropdown-menu > .active > a:focus {
-  color: #fff;
+  color: #7b8a8b;
   text-decoration: none;
   outline: 0;
   background-color: #f0f0f0; }
@@ -8877,6 +8877,8 @@ button.close {
 
 .navbar {
   border-width: 0; }
+  .navbar-default a {
+    padding-top: 40px; }
   .navbar-default .badge {
     background-color: #fff;
     color: #f0f0f0; }
@@ -9074,9 +9076,6 @@ input {
 .has-success .input-group-addon {
   border-color: #18BC9C; }
 
-.nav a {
-  padding-top: 60px; }
-
 .nav .open > a,
 .nav .open > a:hover,
 .nav .open > a:focus {
@@ -9149,6 +9148,9 @@ input {
 .nav .shadeblock {
   background-color: #f0f0f0;
   padding: 10%; }
+
+.nav .extrapadding {
+  padding-top: 30px; }
 
 html {
   position: relative;
