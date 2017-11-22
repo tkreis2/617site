@@ -227,14 +227,14 @@ input {
 // Navs =======================================================================
 
 .nav {
+  a{
+    padding-top: 60px;
+  }
   .open > a,
   .open > a:hover,
   .open > a:focus {
     border-color: transparent;
   
-  a{
-    padding-top: 60px;
-  }
 }
 
 .pager {

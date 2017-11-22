@@ -3112,7 +3112,8 @@ input[type="button"].btn-block {
     opacity: 1; }
 
 .collapse {
-  display: none; }
+  display: none;
+  padding-top: 45px; }
   .collapse.in {
     display: block; }
 
@@ -9074,14 +9075,13 @@ input {
 .has-success .input-group-addon {
   border-color: #18BC9C; }
 
+.nav a {
+  padding-top: 60px; }
+
 .nav .open > a,
 .nav .open > a:hover,
 .nav .open > a:focus {
   border-color: transparent; }
-  .nav .open > a a,
-  .nav .open > a:hover a,
-  .nav .open > a:focus a {
-    padding-top: 60px; }
 
 .nav .pager a,
 .nav .pager a:hover {
