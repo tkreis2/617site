@@ -9200,3 +9200,15 @@ textarea {
 .shading {
   background-color: #f0f0f0;
   width: 100%; }
+
+.text-align-left {
+  text-align: left; }
+
+.increasedmargin {
+  margin-left: 15%; }
+
+.width80 {
+  width: 80%; }
+
+.aligncenter {
+  align-content: center; }

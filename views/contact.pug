@@ -1,27 +1,33 @@
 extends layout
 
 block content
-  h1 Contact Us
-  form(method="POST" autocomplete="on")
-    input(type="hidden", name="_csrf", value=_csrf)
-    | Full Name*
-    br
-    input(type="text", name="fullname", required="")
-    br
-    |   Email Address*
-    br
-    input(type="email", name="emailaddr", required="")
-    br
-    |   Reason for Contact*
-    br
-    select(required="", name="reason")
-      option(value="default", selected="", disabled="", hidden="") Select
-      option(value="TechnicalIssues") Technical Issues
-      option(value="Questions") Questions About HealthWe
-      option(value="Feedback") Feedback
-    br
-    |   Details* (Note: For technical issues, please include the name of your HealthWe Group)
-    br
-    textarea(name="details", required="", rows="5", cols="50")
-    br
-    input(type="submit", class="btn", value="Submit")
+  .container
+    h1.text-center Contact Us
+    form(method="POST" autocomplete="on").increasedmargin
+      input(type="hidden", name="_csrf", value=_csrf)
+      b|   Full Name*
+      br
+      input(type="text", name="fullname", required="").width80
+      br
+      br
+      b|   Email Address*
+      br
+      input(type="email", name="emailaddr", required="").width80
+      br
+      br
+      b|   Reason for Contact*
+      br
+      select(required="", name="reason").width80
+        option(value="default", selected="", disabled="", hidden="") Select
+        option(value="TechnicalIssues") Technical Issues
+        option(value="Questions") Questions About HealthWe
+        option(value="Feedback") Feedback
+      br
+      br
+      b|   Details* (Note: For technical issues, please include the name of your HealthWe Group)
+      br
+      textarea(name="details", required="", rows="5", cols="75")
+      br
+      br
+      br
+      input(type="submit", class="btn", class= "aligncenter", value="Submit")
