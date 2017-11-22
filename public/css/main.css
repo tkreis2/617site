@@ -9165,7 +9165,8 @@ footer {
   bottom: 0;
   width: 100%;
   height: 45px;
-  line-height: 45px; }
+  line-height: 45px;
+  background-color: #f0f0f0; }
   footer p, footer ul {
     margin-bottom: 0; }
 
@@ -9195,3 +9196,7 @@ textarea {
 .smallheading {
   font-size: 22px;
   font-weight: bold; }
+
+.shading {
+  background-color: #f0f0f0;
+  width: 100%; }
