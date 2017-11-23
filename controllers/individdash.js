@@ -18,9 +18,33 @@ exports.index = (req, res) => {
   userlog.find({email: thisuser.email, groupID: thisuser.groupID}, function(err, userLogs){
     res.render('individdash', {
       userLogs: userLogs,  
+      thisuser: thisuser,
     });
   }).sort({"logentry.logDate": -1});
 
+};
+
+
+exports.postresetGoal = (req, res) => {
+  var thisuser = req.user;
+
+  user.findOneAndUpdate({email:thisuser.email, groupID: thisuser.groupID},{individGoal: req.body.goalupdate, completions: thisuser.completions +1}, {new: true}, function (err, user){
+    if(err)
+      res.send(err);
+    req.flash('success', { msg: 'Goal Reset.' });
+    res.redirect('/account');        
+  })
+};
+
+exports.postresetCompletions = (req, res) => {
+  var thisuser = req.user;
+
+  user.findOneAndUpdate({email:thisuser.email, groupID: thisuser.groupID},{completions: 0}, {new: true}, function (err, user){
+    if(err)
+      res.send(err);
+    req.flash('success', { msg: 'Completions Reset.' });
+    res.redirect('/account');        
+  })
 };
 
 exports.postlogentry = (req, res) => {

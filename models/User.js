@@ -10,6 +10,8 @@ const userSchema = Schema({
   password: String,
   joinstart: String,
   groupID: String,
+  individGoal: Number,
+  completions: { type: Number, default: 0},
   // individGoalType: String,
   // individGoalValue: Number,
   // individGoalProgress: Number,
@@ -49,6 +51,11 @@ userSchema.pre('save', function (next) {
     });
   });
 });
+
+// userSchema.methods.resetGoal = function resetGoal(){
+//     this.individGoal = 0;
+//   this.completions = this.completions +1;
+// }
 
 // userSchema.methods.setPassword = function(password){
 //   this.salt = crypto.randomBytes(16).toString('hex');

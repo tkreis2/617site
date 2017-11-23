@@ -104,7 +104,7 @@ exports.getSignup = (req, res) => {
     // });
 
 
-    var newUser = new user({fullname: req.body.fullname, email: req.body.emailaddr, joinstart: req.body.joinstart, groupID: req.body.groupname, password: req.body.password});
+    var newUser = new user({fullname: req.body.fullname, email: req.body.emailaddr, joinstart: req.body.joinstart, groupID: req.body.groupname, individGoal: req.body.goalvalue, password: req.body.password, completions: 0});
     
     // newUser.setPassword(req.body.password);
 

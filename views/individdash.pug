@@ -27,10 +27,10 @@ block content
                 |     Current Progress*
                 br
                 input(type="number", name="LogProgress", required="")
-                br
-                |     Goal*
-                br
-                input(type="number", name="LogGoal", required="")
+                //- br
+                //- |     Goal*
+                //- br
+                //- input(type="number", name="LogGoal", required="")
                 br        
                 |     Picture Upload
                 br
@@ -41,9 +41,26 @@ block content
     div.float-right-dash.border
         h3.text-center My Account
         br
-        p Group: #{userLogs.groupID}
-        p Weekly Goal: #{userLogs.individGoalValue}
-        p Progress: #{userLogs.individGoalProgress}
+        p Group:    #{thisuser.groupID}
+        p Goal:     #{thisuser.individGoal}
+        p Completions: #{thisuser.completions}
+        form(method="POST", action="/resetgoal", autocomplete="on")
+            input(type="hidden", name="_csrf", value=_csrf)  
+            | I Did It! My New Goal is
+            br
+            input(type="number", name="goalupdate", required="")  
+            br
+            br
+            input(type="submit", class="btn", value="Set New Goal")   
+        br      
+        form(method="POST", action="/resetcompletions", autocomplete="on")
+            input(type="hidden", name="_csrf", value=_csrf)  
+            | Reset Completions
+            br
+            br
+            input(type="submit", class="btn", value="Reset")                  
+
+        //- a.btn(href='/resetgoal') Reset Your Goal
     br
     br
     div.cleared

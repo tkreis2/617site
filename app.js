@@ -194,6 +194,10 @@ app.get('/forgot', loginController.getForgot);
 app.post('/forgot', loginController.postForgot);
 app.get('/reset/:token', loginController.getReset);
 app.post('/reset/:token', loginController.postReset);
+app.get('/resetgoal', individdashController.postresetGoal);
+app.post('/resetgoal', individdashController.postresetGoal);
+app.get('/resetcompletions', individdashController.postresetCompletions);
+app.post('/resetcompletions', individdashController.postresetCompletions);
 
 
 

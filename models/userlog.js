@@ -1,25 +1,26 @@
 var mongoose = require('mongoose');
+var user = require('../models/User');
 var Schema = mongoose.Schema;
 
 var userlogSchema = Schema({
     email: String, 
     groupID: String,
-    individGoalType: String,
-    individGoalValue: Number,
+    // individGoalType: String,
+    // individGoalValue: Number,
     // individGoalProgress: Number,
 
     logentry: {
         logDate: String,
         logType: String,
         logDetails: String,
-        individGoalProgress: Number,
+        individGoalProgress: {type: Number, default: 0},
         individGoalRemaining: Number,
         picture: String
     }
 });
 
-userlogSchema.methods.calcProg = function calcProg(individGoalValue, individGoalProgress){
-    this.logentry.individGoalRemaining = this.individGoalValue - this.logentry.individGoalProgress;
+userlogSchema.methods.calcProg = function calcProg(individGoal, individGoalProgress){
+    this.logentry.individGoalRemaining = user.individGoal - this.logentry.individGoalProgress;
 }
 
 userlogSchema.pre('save', function (next) {
