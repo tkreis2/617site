@@ -18,7 +18,14 @@ exports.index = (req, res) => {
     res.render('individdash', {
       userLogs: userLogs
     });
-  });
+  }).sort({"logentry.logDate": -1});
+
+
+  // userlog.find(function(err, userLogs){
+  //   res.render('individdash', {
+  //     userLogs: userLogs
+  //   });
+  // });
 
 };
 
