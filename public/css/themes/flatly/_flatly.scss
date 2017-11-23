@@ -11,6 +11,7 @@ $web-font-path: "https://fonts.googleapis.com/css?family=Open+Sans" !default;
 
 .navbar {
   border-width: 0;
+  margin-bottom: 15%;
 
   &-default {
 
@@ -98,6 +99,9 @@ $web-font-path: "https://fonts.googleapis.com/css?family=Open+Sans" !default;
 table,
 .table {
 
+  max-height: 10%;
+
+
   a:not(.btn) {
     text-decoration: underline;
   }
@@ -119,6 +123,9 @@ table,
     }
   }
 
+  tbody{
+    overflow-y: scroll;
+  }
   > thead > tr > th,
   > tbody > tr > th,
   > tfoot > tr > th,
@@ -283,10 +290,13 @@ input {
   height: 20px;
   @include box-shadow(none);
   .progress-bar {
-    font-size: 10px;
+    font-size: 16px;
     line-height: 10px;
     background-color: #8fc0a9;
+    color: #696d7d;
+    content: attr(data-label);
   }
+
 }
 
 // Containers =================================================================

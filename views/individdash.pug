@@ -1,49 +1,60 @@
 extends layout
 
 block content
-    h1.textcenter My Dashboard
-    form(method="POST", autocomplete="on")
-        input(type="hidden", name="_csrf", value=_csrf)
-        |    Date*
+    h1.text-center My Dashboard
+    div.float-left-dash
+        h3.text-center New Log Entry
         br
-        input(type="date", name="LogDateTime", required="")
+        div.float-left-dash
+            form(method="POST", autocomplete="on")
+                input(type="hidden", name="_csrf", value=_csrf)
+                |    Date*
+                br
+                input(type="date", name="LogDateTime", required="")
+                br
+                | Log Entry Type*
+                br
+                select(required="", name="logtype")
+                    option(value="default", selected="", disabled="", hidden="") Select
+                    option(value="Weight") Weight
+                    option(value="Exercise") Exercise
+                    option(value="Food") Food
+                br
+                |     Entry Details* 
+                br
+                textarea(name="LogDetails", required="", rows="3", cols="35")
+                br
+                |     Current Progress*
+                br
+                input(type="number", name="LogProgress", required="")
+                br
+                |     Goal*
+                br
+                input(type="number", name="LogGoal", required="")
+                br        
+                |     Picture Upload
+                br
+                input(type="file", name="LogImage", accept="image/*")
+                br
+                br
+                input(type="submit", class="btn", value="Add Entry")
+    div.float-right-dash.border
+        h3.text-center My Account
         br
-        | Log Entry Type*
-        br
-        select(required="", name="logtype")
-            option(value="default", selected="", disabled="", hidden="") Select
-            option(value="Weight") Weight
-            option(value="Exercise") Exercise
-            option(value="Food") Food
-        br
-        |     Entry Details* 
-        br
-        textarea(name="LogDetails", required="", rows="3", cols="35")
-        br
-        |     Current Progress*
-        br
-        input(type="number", name="LogProgress", required="")
-        br
-        |     Goal*
-        br
-        input(type="number", name="LogGoal", required="")
-        br        
-        |     Picture Upload
-        br
-        input(type="file", name="LogImage", accept="image/*")
-        br
-        br
-        input(type="submit", class="btn", value="Add Entry")
+        p Group: #{userLogs.groupID}
+        p Weekly Goal: #{userLogs.individGoalValue}
+        p Progress: #{userLogs.individGoalProgress}
     br
     br
+    div.cleared
     h2.text-center My Progress
     br
     div.progress
-        .progress-bar(role="progressbar", style="width: 25%;", aria-valuenow="#{userLog.logentry.individGoalProgress}", aria-valuemin="0", aria-valuemax= "#{userLog.individGoalValue}", aria-data-label="#{userLog.logentry.individGoalProgress} / #{userLog.individGoalValue}")    
+        .progress-bar(role="progressbar", style="width: 25%;", aria-valuenow="#{userLog.logentry.individGoalProgress}", aria-valuemin="0", aria-valuemax= "#{userLogs.individGoalValue}")   
     h2.text-center My Log
     br
     br
-    table.table
+    table.datatable.table.table-striped.table-bordered
         thead.table-bordered
             tr
                 th Date
@@ -69,6 +80,25 @@ block content
                     td  #{userLog.logentry.individGoalRemaining}
 
     h2.text-center My Image Gallery
+        .container.width80
+            .col-sm-12
+                .bs-example
+                    #myCarousel.carousel.slide
+                        // Carousel indicators
+                        ol.carousel-indicators
+                            li.active(data-target="#myCarousel", data-slide-to="0")
+                            li(data-target="#myCarousel", data-slide-to="1")
+                            li(data-target="#myCarousel", data-slide-to="2")
+                        // Carousel items
+                        .carousel-inner
+                            .active.item Slide 1
+                            .item Slide 2
+                            .item Slide 3
+                        // Carousel nav
+                        a.carousel-control.left-flat(href="#myCarousel", data-slide="prev") ‹
+                        a.carousel-control.right-flat(href="#myCarousel", data-slide="next") ›
+    
+
 
     br
     br

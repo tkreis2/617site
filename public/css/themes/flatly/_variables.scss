@@ -361,7 +361,7 @@ $container-lg:                 $container-large-desktop !default;
 
 // Basics of a navbar
 $navbar-height:                    60px !default;
-$navbar-margin-bottom:             $line-height-computed !default;
+$navbar-margin-bottom:             ($navbar-height /2) !default;
 // $navbar-margin-bottom:             40px !default;
 $navbar-border-radius:             $border-radius-base !default;
 $navbar-padding-horizontal:        floor(($grid-gutter-width / 2)) !default;
@@ -654,7 +654,7 @@ $alert-danger-border:         $state-danger-border !default;
 //** Background color of the whole progress component
 $progress-bg:                 $brand-primary !default;
 //** Progress bar text color
-$progress-bar-color:          #7b8a8b !default;
+$progress-bar-color:          #696d7d !default;
 //** Variable for setting rounded corners on progress bar.
 $progress-border-radius:      $border-radius-base !default;
 

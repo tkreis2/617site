@@ -14,6 +14,7 @@ html {
 }
 
 body {
+  margin-top: 5%;
   padding-top: 60px;
   margin-bottom: 75px;
 }
@@ -103,3 +104,27 @@ textarea {
 .aligncenter{
   align-content: center;
 }
+
+.float-left-dash{
+  float: left;
+  width: 45%;
+  position: relative;
+}
+
+.border{
+  border-left-width: 4px;
+  border-left-style: solid;
+  border-left-color: #696d7d;
+  padding-left: 2%;
+}
+
+.float-right-dash{
+  float: right;
+  width: 45%;
+  position: relative;
+}
+
+.cleared{
+  clear: both;
+}
+
