@@ -31,8 +31,9 @@ exports.postlogentry = (req, res) => {
     return res.redirect('/account');
   }
 
-  var newUserLog = new userlog({email: thisuser.email, groupID: thisuser.groupID, logentry :{logDate: req.body.LogDateTime, logType: req.body.logtype, logDetails: req.body.LogDetails, individGoalProgress: req.body.LogProgress, picture: req.body.LogImage}});
+  var newUserLog = new userlog({email: thisuser.email, groupID: thisuser.groupID, individGoalValue: req.body.LogGoal, logentry :{logDate: req.body.LogDateTime, logType: req.body.logtype, logDetails: req.body.LogDetails, individGoalProgress: req.body.LogProgress, picture: req.body.LogImage}});
 
+  newUserLog.calcProg(req.body.LogGoal, req.body.LogProgress);
   newUserLog.markModified('logentry');
   newUserLog.save(function(err, userlog){
     if(err)

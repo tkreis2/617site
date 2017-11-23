@@ -12,9 +12,9 @@ block content
         br
         select(required="", name="logtype")
             option(value="default", selected="", disabled="", hidden="") Select
-            option(value="LogWeight") Weight
-            option(value="LogExercise") Exercise
-            option(value="LogFood") Food
+            option(value="Weight") Weight
+            option(value="Exercise") Exercise
+            option(value="Food") Food
         br
         |     Entry Details* 
         br
@@ -24,6 +24,10 @@ block content
         br
         input(type="number", name="LogProgress", required="")
         br
+        |     Goal*
+        br
+        input(type="number", name="LogGoal", required="")
+        br        
         |     Picture Upload
         br
         input(type="file", name="LogImage", accept="image/*")
@@ -60,7 +64,7 @@ block content
                     td      
                     td  #{userLog.logentry.individGoalProgress}
                     td      
-                    td  #{userLog.individGoalRemaining}
+                    td  #{userLog.logentry.individGoalRemaining}
 
     h2 My Image Gallery
 

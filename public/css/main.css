@@ -8988,7 +8988,8 @@ table > tfoot > tr > td,
 .table > thead > tr > td,
 .table > tbody > tr > td,
 .table > tfoot > tr > td {
-  border: none; }
+  border: none;
+  text-align: center; }
 
 table-bordered > thead > tr > th,
 table-bordered > tbody > tr > th,
