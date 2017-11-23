@@ -652,14 +652,14 @@ $alert-danger-border:         $state-danger-border !default;
 //##
 
 //** Background color of the whole progress component
-$progress-bg:                 $gray-lighter !default;
+$progress-bg:                 $brand-primary !default;
 //** Progress bar text color
-$progress-bar-color:          #fff !default;
+$progress-bar-color:          #7b8a8b !default;
 //** Variable for setting rounded corners on progress bar.
 $progress-border-radius:      $border-radius-base !default;
 
 //** Default progress bar color
-$progress-bar-bg:             $brand-primary !default;
+$progress-bar-bg:             #8fc0a9 !default;
 //** Success progress bar color
 $progress-bar-success-bg:     $brand-success !default;
 //** Warning progress bar color

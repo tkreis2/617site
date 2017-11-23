@@ -1,7 +1,7 @@
 extends layout
 
 block content
-    h1 My Dashboard
+    h1.textcenter My Dashboard
     form(method="POST", autocomplete="on")
         input(type="hidden", name="_csrf", value=_csrf)
         |    Date*
@@ -18,7 +18,7 @@ block content
         br
         |     Entry Details* 
         br
-        textarea(name="LogDetails", required="", rows="5", cols="50")
+        textarea(name="LogDetails", required="", rows="3", cols="35")
         br
         |     Current Progress*
         br
@@ -36,9 +36,11 @@ block content
         input(type="submit", class="btn", value="Add Entry")
     br
     br
-    h4 My Progress
+    h2.text-center My Progress
     br
-    h2 My Log
+    div.progress
+        .progress-bar(role="progressbar", style="width: 25%;", aria-valuenow="#{userLog.logentry.individGoalProgress}", aria-valuemin="0", aria-valuemax= "#{userLog.individGoalValue}", aria-data-label="#{userLog.logentry.individGoalProgress} / #{userLog.individGoalValue}")    
+    h2.text-center My Log
     br
     br
     table.table
@@ -66,7 +68,9 @@ block content
                     td      
                     td  #{userLog.logentry.individGoalRemaining}
 
-    h2 My Image Gallery
+    h2.text-center My Image Gallery
 
-
-    a.btn(href='/delete') Delete Account
+    br
+    br
+    br
+    a.btn.text-center(href='/delete') Delete Account
