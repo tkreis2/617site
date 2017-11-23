@@ -10,9 +10,9 @@ const userSchema = Schema({
   password: String,
   joinstart: String,
   groupID: String,
-  individGoalType: String,
-  individGoalValue: Number,
-  individGoalProgress: Number,
+  // individGoalType: String,
+  // individGoalValue: Number,
+  // individGoalProgress: Number,
   passwordResetToken: String,
   passwordResetExpires: Date,
 

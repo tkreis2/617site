@@ -1,11 +1,16 @@
 extends layout
+
 block content
-    a.ctabutton(href='/delete') Delete Account
     h1 My Dashboard
     form(method="POST", autocomplete="on")
-        | RLog Entry Type*
+        input(type="hidden", name="_csrf", value=_csrf)
+        |    Date*
         br
-        select(required="")
+        input(type="date", name="LogDateTime", required="")
+        br
+        | Log Entry Type*
+        br
+        select(required="", name="logtype")
             option(value="default", selected="", disabled="", hidden="") Select
             option(value="LogWeight") Weight
             option(value="LogExercise") Exercise
@@ -15,16 +20,45 @@ block content
         br
         textarea(name="LogDetails", required="", rows="5", cols="50")
         br
-        |     Date and Time*
+        |     Current Progress*
         br
-        input(type="datetime-local", name="LogDateTime")
+        input(type="number", name="LogProgress", required="")
         br
         |     Picture Upload
         br
         input(type="file", name="LogImage", accept="image/*")
         br
         br
-        input(type="submit", value="Add Entry")
+        input(type="submit", class="btn", value="Add Entry")
+    br
+    br
     h4 My Progress
+    br
     h2 My Log
+    br
+    br
+    table
+        thead
+            tr
+                th Date
+                th
+                th Log Entry Type
+                th
+                th Details
+                th
+                th Current Progress
+                th
+                th Remaining
+        tbody   
+            //- each mongo_result, i in results
+            //-     tr
+            //-         td = mongo_result.logDate
+            //-         td = mongo_result.logType
+            //-         td = mongo_result.logDetails
+            //-         td = mongo_result.individGoalProgress
+            //-         td = mongo_result.individGoalRemaining
+
     h2 My Image Gallery
+
+
+    a.btn(href='/delete') Delete Account

@@ -2,8 +2,8 @@ const bluebird = require('bluebird');
 const crypto = bluebird.promisifyAll(require('crypto'));
 const nodemailer = require('nodemailer');
 const passport = require('passport');
-var mongoose = require('mongoose'),
-user = require('../models/User');
+var mongoose = require('mongoose');
+var user = require('../models/User');
 var isNew = false;
 
 /**

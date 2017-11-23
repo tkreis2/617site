@@ -115,15 +115,16 @@ app.use(session({
 // app.use(passport.session());
 app.use(flash());
 // app.use(express.static(path.join(__dirname, 'public'), { maxAge: 31557600000 })); /** */
-app.use((req,res,next) => {
+
+// app.use((req,res,next) => {
   //formidable outputs to req.fields and req.files / req.file so we can get dirty here
-    if(Object.keys(req.body).length == 0 && req.fields){
-      //Object.assign(req.body,req.fields);
-      req.body = req.fields;
-     }
+    // if(Object.keys(req.body).length == 0 && req.fields){
+      // Object.assign(req.body,req.fields);
+    //   req.body = req.fields;
+    //  }
      //tada req.body is here (and so would be our csrf token)
-    next();
-  });
+  //   next();
+  // });
 app.use((req, res, next) => {
   if (req.path === '/api/upload') {
     next();
@@ -187,6 +188,7 @@ app.get('/getstarted', getstartedController.getgetstarted);
 app.get('/successstories', successstoriesController.getsuccessstories);
 app.get('/help', helpController.gethelp);
 app.get('/account', individdashController.index);
+app.post('/account', individdashController.postlogentry);
 app.get('/forgot', loginController.getForgot);
 app.post('/forgot', loginController.postForgot);
 app.get('/reset/:token', loginController.getReset);
