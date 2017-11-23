@@ -28,6 +28,8 @@ userlogSchema.pre('save', function (next) {
     next ();
 });
 
+
+
 var userlog = mongoose.model('userlog', userlogSchema);
 
 module.exports= userlog;

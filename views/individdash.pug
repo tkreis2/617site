@@ -37,8 +37,8 @@ block content
     h2 My Log
     br
     br
-    table
-        thead
+    table.table
+        thead.table-bordered
             tr
                 th Date
                 th
@@ -50,13 +50,17 @@ block content
                 th
                 th Remaining
         tbody   
-            //- each mongo_result, i in results
-            //-     tr
-            //-         td = mongo_result.logDate
-            //-         td = mongo_result.logType
-            //-         td = mongo_result.logDetails
-            //-         td = mongo_result.individGoalProgress
-            //-         td = mongo_result.individGoalRemaining
+            each userLog in userLogs
+                tr
+                    td  #{userLog.logentry.logDate}
+                    td      
+                    td  #{userLog.logentry.logType}
+                    td      
+                    td  #{userLog.logentry.logDetails}
+                    td      
+                    td  #{userLog.logentry.individGoalProgress}
+                    td      
+                    td  #{userLog.individGoalRemaining}
 
     h2 My Image Gallery
 

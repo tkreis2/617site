@@ -12,20 +12,24 @@ var mongoresults = [];
  * Individ Dash page.
  */
 exports.index = (req, res) => {
-  res.render('individdash', {
-    title: 'My Dashboard - HealthWe'
+  var thisuser = req.user;
+
+  userlog.find(function(err, userLogs){
+    res.render('individdash', {
+      userLogs: userLogs
+    });
   });
+
 };
 
 exports.postlogentry = (req, res) => {
+  var thisuser = req.user;
   const errors = req.validationErrors();
 
   if (errors) {
     req.flash('errors', errors);
     return res.redirect('/account');
   }
-
-  var thisuser = req.user;
 
   var newUserLog = new userlog({email: thisuser.email, groupID: thisuser.groupID, logentry :{logDate: req.body.LogDateTime, logType: req.body.logtype, logDetails: req.body.LogDetails, individGoalProgress: req.body.LogProgress, picture: req.body.LogImage}});
 
@@ -39,3 +43,6 @@ exports.postlogentry = (req, res) => {
   });
 
 };
+
+
+
