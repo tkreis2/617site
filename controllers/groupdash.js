@@ -5,6 +5,7 @@ const passport = require('passport');
 var mongoose = require('mongoose');
 var user = require('../models/User');
 var forum = require('../models/forum');
+var userLog = require('../models/userlog');
 
 
 /**
@@ -18,13 +19,16 @@ exports.index = (req, res, next) => {
   
     forum.find({groupID: thisuser.groupID}, function(err, forums){
       user.find({groupID: thisuser.groupID}, function(err, users){
-        res.render('groupdash', {
-          thisuser: thisuser,
-          forums: forums,
-          users: users
+        userLog.find({groupID: thisuser.groupID}, function(err, userLogs){
+          res.render('groupdash', {
+            thisuser: thisuser,
+            forums: forums,
+            users: users,
+            userLogs: userLogs
+        });
         });
       });
-      }); 
+      }).sort({"createdAt": -1}); 
   };
 
 

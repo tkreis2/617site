@@ -9237,5 +9237,9 @@ textarea {
   width: 45%;
   position: relative; }
 
+.float-right {
+  float: right;
+  position: relative; }
+
 .cleared {
   clear: both; }

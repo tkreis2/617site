@@ -2,13 +2,24 @@ extends layout
 
 block content
     h1.text-center #{thisuser.groupID} Dashboard
-    div.float-right-dash.border
-        h3.text-center Our Members
-        br
-        each user in users
-            li #{user.email}
-
-        //- a.btn(href='/resetgoal') Reset Your Goal
+    hr
+    br
+    table.datatable.table.table-striped.table-bordered
+        thead
+            th Group Member
+            th
+            th Current Goal
+            th
+            th Completions
+        tbody
+            each user in users
+                tr
+                    td #{user.email}
+                    td 
+                    td #{user.individGoal}
+                    td
+                    td #{user.completions}
+    
     br
     br
     div.cleared
@@ -17,67 +28,79 @@ block content
     div.progress
         .progress-bar(role="progressbar", style="width: 25%;", aria-valuenow="", aria-valuemin="0", aria-valuemax= "")   
 
-    
+    br
+    br
     h2.text-center #{thisuser.groupID} Forum   
-    h5
+    br
+    hr
+    div.float-left-dash
+        h3 Have Something to Share? 
+        br
+        h3 Post Here!
+    div.float-right-dash
         form(method="POST", action="/postforum", autocomplete="on")
             input(type="hidden", name="_csrf", value=_csrf)  
-            | Message to Group:
+            b| Message to Group:
             br
-            textarea(name="forumpost", required="", rows="3", cols="35")            
-            br
-            input(type="submit", class="btn", value="Post")
-
-        table.datatable.table.table-striped.table-bordered
-            thead
-                th Posted On
-                th
-                th Group Member
-                th
-                th Message
-            tbody   
-                each forum in forums
-                    //- -var displaydate = new Date (forum.createdAt);
-                    //- -var d = displaydate.getDate();
-                    //- -var m = displaydate.getMonth()+1;
-                    //- -var y = displaydate.getFullYear();
-                    //- -var min = displaydate.getMinutes();
-                    //- -function formathours (i){
-                    //-     -if i == 0
-                    //-         -i = 12
-                    //-     -if i > 12
-                    //-         -i= i -12
-                    //-     -return i
-                    //- -}
-                    //- -var h = formathours(displaydate.getHours());
-                    //- -var prettydate = m + ' ' + d + ' ' + y + ' ' + h + ':' + min;
-                    tr
-                        td  #{forum.createdAt}                  
-                        td      
-                        td  #{forum.email}
-                        td      
-                        td  #{forum.message}
+            textarea(name="forumpost", required="", rows="4", cols="50")    
+            br        
+            input(type="submit", class="btn float-right", value="Post")
+    br
+    br
+    br
+    div.cleared
+    table.datatable.table.table-striped.table-bordered
+        thead
+            th Posted On
+            th
+            th Group Member
+            th
+            th Message
+        tbody   
+            each forum in forums
+                //- -var displaydate = new Date (forum.createdAt);
+                //- -var d = displaydate.getDate();
+                //- -var m = displaydate.getMonth()+1;
+                //- -var y = displaydate.getFullYear();
+                //- -var min = displaydate.getMinutes();
+                //- -function formathours (i){
+                //-     -if i == 0
+                //-         -i = 12
+                //-     -if i > 12
+                //-         -i= i -12
+                //-     -return i
+                //- -}
+                //- -var h = formathours(displaydate.getHours());
+                //- -var prettydate = m + ' ' + d + ' ' + y + ' ' + h + ':' + min;
+                tr
+                    td  #{forum.createdAt}                  
+                    td      
+                    td  #{forum.email}
+                    td      
+                    td  #{forum.message}
 
     br
     br
 
 
-    h2.text-center Group Image Gallery
-        .container.width80
-            .col-sm-12
-                .bs-example
-                    #myCarousel.carousel.slide
-                        // Carousel indicators
-                        ol.carousel-indicators
-                            li.active(data-target="#myCarousel", data-slide-to="0")
-                            li(data-target="#myCarousel", data-slide-to="1")
-                            li(data-target="#myCarousel", data-slide-to="2")
-                        // Carousel items
-                        .carousel-inner
-                            .active.item Slide 1
-                            .item Slide 2
-                            .item Slide 3
-                        // Carousel nav
-                        a.carousel-control.left-flat(href="#myCarousel", data-slide="prev") ‹
-                        a.carousel-control.right-flat(href="#myCarousel", data-slide="next") ›
+    h2.text-center Image Gallery
+    br
+    br
+    .container.width80
+        .col-sm-12
+            .bs-example
+                #myCarousel.carousel.slide
+                    // Carousel indicators
+                    ol.carousel-indicators
+                        li.active(data-target="#myCarousel", data-slide-to="0")
+                        li(data-target="#myCarousel", data-slide-to="1")
+                        li(data-target="#myCarousel", data-slide-to="2")
+                    // Carousel items
+                    .carousel-inner
+                        .active.item Slide 1
+                        .item Slide 2
+                        .item Slide 3
+                    // Carousel nav
+                    a.carousel-control.left-flat(href="#myCarousel", data-slide="prev") ‹
+                    a.carousel-control.right-flat(href="#myCarousel", data-slide="next") ›
     

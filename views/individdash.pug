@@ -41,7 +41,8 @@ block content
     div.float-right-dash.border
         h3.text-center My Account
         br
-        p Group:    #{thisuser.groupID}
+        p Group:   
+            a(href='/groupdash') #{thisuser.groupID}
         p Goal:     #{thisuser.individGoal}
         p Completions: #{thisuser.completions}
         form(method="POST", action="/resetgoal", autocomplete="on")
