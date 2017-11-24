@@ -21,7 +21,6 @@ const sass = require('node-sass-middleware');
 const multer = require('multer');
 var fs = require('fs');
 
-
 const upload = multer({ dest: path.join(__dirname, 'uploads') });
 
 /**
@@ -42,6 +41,7 @@ const contactController = require('./controllers/contact');
 const loginController = require('./controllers/login');
 const individdashController = require('./controllers/individdash');
 const groupdashController = require('./controllers/groupdash');
+const forumController = require('./controllers/forum');
 // const userController = require('./controllers/user');
 const apiController = require('./controllers/api');
 
@@ -198,9 +198,9 @@ app.get('/resetgoal', individdashController.postresetGoal);
 app.post('/resetgoal', individdashController.postresetGoal);
 app.get('/resetcompletions', individdashController.postresetCompletions);
 app.post('/resetcompletions', individdashController.postresetCompletions);
-
-
-
+// app.get('/forum', groupdashController.getforum);
+app.post('/postforum', groupdashController.postforum);
+app.get('/groupdash', groupdashController.index);
 
 
 

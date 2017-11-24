@@ -1,5 +1,5 @@
 doctype html
-html
+html(ng-app="forum")
   head
     meta(charset='utf-8')
     meta(http-equiv='X-UA-Compatible', content='IE=edge')
@@ -11,7 +11,7 @@ html
     link(rel='stylesheet' href='https://cdn.datatables.net/1.10.16/css/dataTables.bootstrap.min.css')    
     link(rel='stylesheet', href='/css/main.css')     
 
-  body
+  body(ng-controller='forumController')
     include partials/header
 
     .container
@@ -24,6 +24,8 @@ html
 
     script(src='/js/lib/jquery-3.1.1.min.js')
     script(src='/js/lib/bootstrap.min.js')
+    script(src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.6/angular.min.js")
+    script(src="/javascripts/controller.js")
     script(src='https://cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js')
     script(src='https://cdn.datatables.net/1.10.16/js/dataTables.bootstrap.min.js')
     script(src='/js/main.js')
