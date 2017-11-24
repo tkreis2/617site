@@ -182,7 +182,7 @@ app.post('/contact', contactController.postContact);
 // app.post('/account/delete', passportConfig.isAuthenticated, loginController.postDeleteAccount);
 app.get('/delete', loginController.postDeleteAccount);
 app.post('/delete', passportConfig.isAuthenticated, loginController.postDeleteAccount);
-// app.get('/account/unlink/:provider', passportConfig.isAuthenticated, userController.getOauthUnlink);
+app.get('/account/unlink/:provider', passportConfig.isAuthenticated, loginController.getOauthUnlink);
 app.get('/about', aboutController.getAbout);
 app.get('/howitworks', howitworksController.gethowitworks);
 app.get('/getstarted', getstartedController.getgetstarted);
@@ -252,7 +252,7 @@ app.get('/auth/github', passport.authenticate('github'));
 app.get('/auth/github/callback', passport.authenticate('github', { failureRedirect: '/login' }), (req, res) => {
   res.redirect(req.session.returnTo || '/');
 });
-app.get('/auth/google', passport.authenticate('google', { scope: 'profile email' }));
+app.get('/auth/google', passport.authenticate('google', { scope: ['profile', 'email'] }));
 app.get('/auth/google/callback', passport.authenticate('google', { failureRedirect: '/login' }), (req, res) => {
   res.redirect(req.session.returnTo || '/');
 });

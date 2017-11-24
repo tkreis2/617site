@@ -59,7 +59,11 @@ block content
             | Reset Completions
             br
             br
-            input(type="submit", class="btn", value="Reset")                  
+            input(type="submit", class="btn", value="Reset") 
+        if user.facebook
+          p: a.text-danger(href='/account/unlink/facebook') Unlink your Facebook account
+        else
+          p: a(href='/auth/facebook') Link your Facebook account
 
         //- a.btn(href='/resetgoal') Reset Your Goal
     br
