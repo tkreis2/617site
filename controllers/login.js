@@ -47,7 +47,7 @@ exports.postLogin = (req, res, next) => {
         if (err) { return next(err); }
         req.flash('success', { msg: 'Success! You are logged in.' });
         // res.redirect(req.session.returnTo || '/');
-        return res.redirect('/about');        
+        return res.redirect('/account');        
       });
     })(req, res, next);
   };
@@ -104,7 +104,9 @@ exports.getSignup = (req, res) => {
     // });
 
 
-    var newUser = new user({fullname: req.body.fullname, email: req.body.emailaddr, joinstart: req.body.joinstart, groupID: req.body.groupname, individGoal: req.body.goalvalue, password: req.body.password, completions: 0, individGoalType: req.body.goaltype, individGoalDesc: req.body.goaldesc});
+    var newUser = new user({fullname: req.body.fullname, email: req.body.emailaddr, joinstart: req.body.joinstart, groupID: req.body.groupname, 
+      individGoal: req.body.goalvalue, password: req.body.password, completions: 0, individGoalType: req.body.goaltype, individGoalDesc: req.body.goaldesc, totalGoalValue: req.body.goalvalue,
+    totalGoalProgress: 0});
     
     // newUser.setPassword(req.body.password);
 

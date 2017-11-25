@@ -15,10 +15,13 @@ var mongoresults = [];
 exports.index = (req, res) => {
   var thisuser = req.user;
 
+  // var latestlog = userlog.findOne({email: thisuser.email, groupID: thisuser.groupID,}, function(err, userlog){
+  // }).sort({"logentry:logDate": -1});
   userlog.find({email: thisuser.email, groupID: thisuser.groupID}, function(err, userLogs){
     res.render('individdash', {
       userLogs: userLogs,  
       thisuser: thisuser,
+      // latestlog: latestlog,
     });
   }).sort({"logentry.logDate": -1});
 
@@ -28,7 +31,7 @@ exports.index = (req, res) => {
 exports.postresetGoal = (req, res) => {
   var thisuser = req.user;
 
-  user.findOneAndUpdate({email:thisuser.email, groupID: thisuser.groupID},{individGoal: req.body.goalupdate, totalGoalValue: thisuser.totalGoalValue + req.body.goalupdate, completions: thisuser.completions +1}, {new: true}, function (err, user){
+  user.findOneAndUpdate({email:thisuser.email, groupID: thisuser.groupID},{individGoal: req.body.goalupdate, '$inc': {totalGoalValue: thisuser.totalGoalValue + req.body.goalupdate}, completions: thisuser.completions +1}, {new: true}, function (err, user){
     // userlog.findOneAndUpdate({email: thisuser.email, groupID: thisuser.groupID}, {individGoalProgress: 0}, {new: true}, function(err, userlog){
       if(err)
         res.send(err);
@@ -78,11 +81,19 @@ exports.postlogentry = (req, res) => {
     return res.redirect('/account');
   }
 
-  var newUserLog = new userlog({email: thisuser.email, groupID: thisuser.groupID, individGoalValue: req.body.LogGoal, logentry :{logDate: req.body.LogDateTime, logType: req.body.logtype, logDetails: req.body.LogDetails, individGoalProgress: req.body.LogProgress, picture: req.body.LogImage}});
+  var newUserLog = new userlog({email: thisuser.email, groupID: thisuser.groupID, individGoalValue: req.body.LogGoal, 
+    logentry :{logDate: req.body.LogDateTime, logType: req.body.logtype, logDetails: req.body.LogDetails, individGoalProgress: req.body.LogProgress, picture: req.body.LogImage}});
 
-  newUserLog.calcProg(req.body.LogGoal, req.body.LogProgress);
+  newUserLog.calcProg(thisuser);
 
+  thisuser.markModified('totalGoalProgress');
+  thisuser.save(function(err, user){
+    if(err)
+      res.send(err);
+
+  });
   newUserLog.markModified('logentry');
+
   newUserLog.save(function(err, userlog){
     if(err)
       res.send(err);
@@ -97,7 +108,8 @@ exports.postlogentry = (req, res) => {
 exports.postnewgroup = (req, res) => {
   var thisuser = req.user;
 
-  user.findOneAndUpdate({email:thisuser.email, groupID: thisuser.groupID},{individGoal: req.body.goalvalue, completions: 0, groupID: req.body.groupname, joinstart: req.body.joinstart}, {new: true}, function (err, user){
+  user.findOneAndUpdate({email:thisuser.email, groupID: thisuser.groupID},{individGoal: req.body.goalvalue, completions: 0, groupID: req.body.groupname, 
+    joinstart: req.body.joinstart}, {new: true}, function (err, user){
     if(err)
       res.send(err);
     req.flash('success', { msg: 'Group Information Updated.' });

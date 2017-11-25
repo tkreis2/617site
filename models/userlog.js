@@ -20,9 +20,9 @@ var userlogSchema = Schema({
     }
 });
 
-userlogSchema.methods.calcProg = function calcProg(individGoal, individGoalProgress){
-    user.totalGoalProgress = user.totalGoalProgress + this.logentry.individGoalProgress;
-    this.logentry.individGoalRemaining = user.individGoal - this.logentry.individGoalProgress;
+userlogSchema.methods.calcProg = function calcProg(thisuser){
+    thisuser.totalGoalProgress = thisuser.totalGoalProgress + this.logentry.individGoalProgress;
+    this.logentry.individGoalRemaining = thisuser.individGoal - this.logentry.individGoalProgress;
 }
 
 userlogSchema.pre('save', function (next) {

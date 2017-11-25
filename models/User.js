@@ -12,8 +12,8 @@ const userSchema = Schema({
   groupID: String,
   individGoal: Number,
   completions: { type: Number, default: 0},
-  totalGoalValue: Number,
-  totalGoalProgress: Number,
+  totalGoalValue: {type: Number, default: 0},
+  totalGoalProgress: {type: Number, default: 0},
   individGoalType: String,
   individGoalDesc: String,
   // individGoalType: String,
@@ -55,11 +55,6 @@ userSchema.pre('save', function (next) {
     });
   });
 });
-
-// userSchema.methods.resetGoal = function resetGoal(){
-//     this.individGoal = 0;
-//   this.completions = this.completions +1;
-// }
 
 // userSchema.methods.setPassword = function(password){
 //   this.salt = crypto.randomBytes(16).toString('hex');

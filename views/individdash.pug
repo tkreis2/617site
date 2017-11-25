@@ -36,8 +36,14 @@ block content
                 br
                 input(type="file", name="LogImage", accept="image/*")
                 br
-                br
                 input(type="submit", class="btn", value="Add Entry")
+            br
+            form(method="POST", action="/resetgoal", autocomplete="on")
+                input(type="hidden", name="_csrf", value=_csrf)  
+                | I Did It! My New Goal is
+                input(type="number", name="goalupdate", required="")  
+                input(type="submit", class="btn", value="Set New Goal") 
+                br
     div.float-right-dash.border
         h3.text-center My Account
         br
@@ -47,23 +53,17 @@ block content
             a(href='/newgroup') Join or Start a New Group 
         p 
             a(href='/delete') Leave Group &amp; Delete Account
-        h4 Goal:     #{thisuser.individGoal}
-        h4 Completions: #{thisuser.completions}
-        form(method="POST", action="/resetgoal", autocomplete="on")
-            input(type="hidden", name="_csrf", value=_csrf)  
-            | I Did It! My New Goal is
-            br
-            input(type="number", name="goalupdate", required="")  
-            br
-            br
-            input(type="submit", class="btn", value="Set New Goal")   
-        br      
+        br
+        h4 Goal Completions: #{thisuser.completions}
         form(method="POST", action="/resetcompletions", autocomplete="on")
-            input(type="hidden", name="_csrf", value=_csrf)  
-            | Reset Completions
-            br
-            br
-            input(type="submit", class="btn", value="Reset") 
+            input(type="hidden", name="_csrf", value=_csrf)   
+            input(type="submit", class="btn", value="Reset Completions")         
+        br
+        h4 Goal Totals: #{thisuser.totalGoalValue}
+        //- ul
+        //-     li This Round: #{latestlog.individGoalProgress}
+        h4 Total Progress: #{thisuser.totalGoalProgress}  
+        br      
         br
         p
             b Linked Accounts
@@ -100,9 +100,9 @@ block content
                 th
                 th Details
                 th
-                th Current Progress
+                th This Round's Progress
                 th
-                th Remaining
+                th Remaining in This Round
         tbody   
             each userLog in userLogs
                 tr

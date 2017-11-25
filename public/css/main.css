@@ -9263,6 +9263,13 @@ textarea {
   float: right;
   position: relative; }
 
+.float-left {
+  float: left;
+  position: relative; }
+
+.inline-block {
+  display: inline-block; }
+
 .cleared {
   clear: both; }
 
