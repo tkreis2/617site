@@ -7,7 +7,7 @@ block content
         h1.text-center Already a Member? Log In 
     div.float-left-dash
         if isNew
-            form(method="POST")
+            form(method="POST" id="signupform")
                 input(type="hidden", name="_csrf", value=_csrf)    
                 | Full Name*
                 br
