@@ -11,30 +11,37 @@ block content
                 input(type="hidden", name="_csrf", value=_csrf)    
                 | Full Name*
                 br
-                input(type="text", name="fullname", required="")
+                input(type="text", class="inputwidth", name="fullname", required="")
+                br
                 br
                 | Email Address*
                 br
-                input(type="email", name="emailaddr", required="")
+                input(type="email", class="inputwidth", name="emailaddr", required="")
+                br
+                br
+                | Password*
+                br
+                input(type="password", class="inputwidth", name="password", required="")                
+                br
                 br
                 | Join a Group or Start a New Group?*
                 br
-                select(required="" name="joinstart")
+                select(required="" class= "inputwidth" name="joinstart")
                     option(value="default", selected="", disabled="", hidden="") Select
                     option(value="JoinGroup") Join a Group
                     option(value="StartGroup") Start a Group
                 br
+                br
                 | Group Name*
                 br
-                input(type="text", name="groupname", required="")
+                input(type="text", class="inputwidth", name="groupname", required="")
+                br
                 br
                 | Your Personal Weekly Goal*
                 br
-                input(type="number", name="goalvalue", required="")
+                input(type="number", class="inputwidth", name="goalvalue", required="")
                 br            
-                | Password*
                 br
-                input(type="password", name="password", required="")
                 br
                 input(type="submit", class= "btn", value="Create My Account")
         else
@@ -55,7 +62,16 @@ block content
                 input(type="submit", class="btn", value="Log In")
     div.float-right-dash
         if isNew
-            p 
+            .shadeblock
+                h4 
+                 i "HealthWe has helped me become more fit, and it's so easy to use! I wish I'd found it sooner."
+                h5
+                 i -Lauren G., HealthWe Member Since January 2017
+            .shadeblock
+                h4 
+                    i "My brother and I have lost 50 pounds with HealthWe. It's great that we can see each other's goals so we can work together to achieve them."
+                h5
+                    i -Jim L., HealthWe Member Since January 2017
         else
             h3 Or Log In with Another Account
             br
