@@ -60,15 +60,21 @@ block content
             br
             br
             input(type="submit", class="btn", value="Reset") 
+        br
+        p
+            b Linked Accounts
         if user.google
           p: a.text-danger(href='/account/unlink/google') Unlink your Google account
         else
-          p: a(href='/auth/google') Link your Google account
-        br            
+          p: a(href='/auth/google') Link your Google account           
         if user.facebook
           p: a.text-danger(href='/account/unlink/facebook') Unlink your Facebook account
         else
           p: a(href='/auth/facebook') Link your Facebook account
+        if user.github
+          p: a.text-danger(href='/account/unlink/github') Unlink your Github account
+        else
+          p: a(href='/auth/github') Link your Github account          
 
         //- a.btn(href='/resetgoal') Reset Your Goal
     br
