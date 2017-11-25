@@ -1,9 +1,12 @@
 extends layout
+
 block content
-    br
     if isNew
-        div.float-dash-left
-            h3 New to HealthWe? Make an Account Now!
+        h1.text-center New to HealthWe? Make an Account Now!
+    else
+        h1.text-center Already a Member? Log In 
+    div.float-left-dash
+        if isNew
             form(method="POST")
                 input(type="hidden", name="_csrf", value=_csrf)    
                 | Full Name*
@@ -34,36 +37,35 @@ block content
                 input(type="password", name="password", required="")
                 br
                 input(type="submit", class= "btn", value="Create My Account")
-    else
-        div.float-dash-left
-            h3 Already a Member? Log In Here
+        else
+            h3 With Your HealthWe Account
             form(method="POST" autocomplete="on")
                 input(type="hidden", name="_csrf", value=_csrf)    
                 | Email Address*
                 br
-                input(type="email", name="mememailaddr", required="")
+                input(type="email", class="inputwidth", name="mememailaddr", required="")
                 br
                 |         Password*
                 br
-                input(type="password", name="mempassword", required="")
+                input(type="password", class="inputwidth", name="mempassword", required="")
+                br
                 br
                 a(href='/forgot') Forgot Your Password?
                 br
                 input(type="submit", class="btn", value="Log In")
-        br
-        br
-        div.float-dash-right
-            a.btn(href='/auth/facebook') Sign in with Facebook
+    div.float-right-dash
+        if isNew
+            p 
+        else
+            h3 Or Log In with Another Account
             br
+            a.btn.btn-block.btn-facebook.btn-social.text-center(href='/auth/facebook') Facebook
             br
-            a.btn(href='/auth/twitter') Sign in with Twitter
+            a.btn.btn-block.btn-google.btn-social(href='/auth/google') Google
+            br      
+            a.btn.btn-block.btn-twitter.btn-social(href='/auth/twitter') Twitter   
             br
+            a.btn.btn-block.btn-github.btn-social(href='/auth/github') GitHub  
             br
-            a.btn(href='/auth/google') Sign in with Google
-            br
-            br
-            a.btn(href='/auth/github') Sign in with GitHub
-            br
-            br
-            a.btn(href='/auth/linkedin') Sign in with LinkedIn      
+            a.btn.btn-block.btn-linkedin.btn-social(href='/auth/linkedin') LinkedIn
 
