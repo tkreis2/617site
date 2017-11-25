@@ -31,7 +31,7 @@ exports.index = (req, res) => {
 exports.postresetGoal = (req, res) => {
   var thisuser = req.user;
 
-  user.findOneAndUpdate({email:thisuser.email, groupID: thisuser.groupID},{individGoal: req.body.goalupdate, '$inc': {totalGoalValue: thisuser.totalGoalValue + req.body.goalupdate}, completions: thisuser.completions +1}, {new: true}, function (err, user){
+  user.findOneAndUpdate({email:thisuser.email, groupID: thisuser.groupID},{individGoal: req.body.goalupdate, '$inc': {totalGoalValue: req.body.goalupdate}, completions: thisuser.completions +1}, {new: true}, function (err, user){
     // userlog.findOneAndUpdate({email: thisuser.email, groupID: thisuser.groupID}, {individGoalProgress: 0}, {new: true}, function(err, userlog){
       if(err)
         res.send(err);
