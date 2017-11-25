@@ -91,5 +91,19 @@ exports.postlogentry = (req, res) => {
 
 };
 
+/**Change user's group */
+exports.postnewgroup = (req, res) => {
+  var thisuser = req.user;
 
+  user.findOneAndUpdate({email:thisuser.email, groupID: thisuser.groupID},{individGoal: req.body.goalvalue, completions: 0, groupID: req.body.groupname, joinstart: req.body.joinstart}, {new: true}, function (err, user){
+    if(err)
+      res.send(err);
+    req.flash('success', { msg: 'Group Information Updated.' });
+    res.redirect('/account');        
+  })
+};
 
+/**Change user's group */
+exports.getnewgroup = (req, res) => {
+  res.render('newgroup');
+};

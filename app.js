@@ -201,6 +201,8 @@ app.post('/resetcompletions', individdashController.postresetCompletions);
 // app.get('/forum', groupdashController.getforum);
 app.post('/postforum', groupdashController.postforum);
 app.get('/groupdash', groupdashController.index);
+app.post('/newgroup', individdashController.postnewgroup);
+app.get('/newgroup', individdashController.getnewgroup);
 
 
 

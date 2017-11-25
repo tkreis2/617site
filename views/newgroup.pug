@@ -1,0 +1,25 @@
+extends layout
+
+block content
+    form(method="POST")
+        input(type="hidden", name="_csrf", value=_csrf)    
+        | Join a Group or Start a New Group?*
+        br
+        select(required="" class= "inputwidth" name="joinstart")
+            option(value="default", selected="", disabled="", hidden="") Select
+            option(value="JoinGroup") Join a Group
+            option(value="StartGroup") Start a Group
+        br
+        br
+        | Group Name*
+        br
+        input(type="text", class="inputwidth", name="groupname", required="")
+        br
+        br
+        | Your Personal Weekly Goal*
+        br
+        input(type="number", class="inputwidth", name="goalvalue", required="")
+        br            
+        br
+        br
+        input(type="submit", class= "btn", value="Go to New Group")

@@ -41,10 +41,14 @@ block content
     div.float-right-dash.border
         h3.text-center My Account
         br
-        p Group:   
+        h4 Group:   
             a(href='/groupdash') #{thisuser.groupID}
-        p Goal:     #{thisuser.individGoal}
-        p Completions: #{thisuser.completions}
+        p
+            a(href='/newgroup') Join or Start a New Group 
+        p 
+            a(href='/delete') Leave Group &amp; Delete Account
+        h4 Goal:     #{thisuser.individGoal}
+        h4 Completions: #{thisuser.completions}
         form(method="POST", action="/resetgoal", autocomplete="on")
             input(type="hidden", name="_csrf", value=_csrf)  
             | I Did It! My New Goal is
