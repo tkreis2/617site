@@ -37,7 +37,19 @@ block content
                 input(type="text", class="inputwidth", name="groupname", required="")
                 br
                 br
-                | Your Personal Weekly Goal*
+                | What Type of Goal Are You Setting?*
+                select(required="" class= "inputwidth" name="goaltype")
+                    option(value="default", selected="", disabled="", hidden="") Select
+                    option(value="diet") Diet
+                    option(value="exercise") Exercise 
+                    option(value="weight") Weight   
+                br
+                br
+                | Each Week I Want to*...
+                input(type="text", class="inputwidth", name="goaldesc", required="") 
+                br
+                br                                      
+                | Weekly Goal, Quantified*
                 br
                 input(type="number", class="inputwidth", name="goalvalue", required="")
                 br            

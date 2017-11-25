@@ -28,11 +28,13 @@ exports.index = (req, res) => {
 exports.postresetGoal = (req, res) => {
   var thisuser = req.user;
 
-  user.findOneAndUpdate({email:thisuser.email, groupID: thisuser.groupID},{individGoal: req.body.goalupdate, completions: thisuser.completions +1}, {new: true}, function (err, user){
-    if(err)
-      res.send(err);
-    req.flash('success', { msg: 'Goal Reset.' });
-    res.redirect('/account');        
+  user.findOneAndUpdate({email:thisuser.email, groupID: thisuser.groupID},{individGoal: req.body.goalupdate, totalGoalValue: thisuser.totalGoalValue + req.body.goalupdate, completions: thisuser.completions +1}, {new: true}, function (err, user){
+    // userlog.findOneAndUpdate({email: thisuser.email, groupID: thisuser.groupID}, {individGoalProgress: 0}, {new: true}, function(err, userlog){
+      if(err)
+        res.send(err);
+      req.flash('success', { msg: 'Goal Reset.' });
+      res.redirect('/account');  
+    // })      
   })
 };
 
@@ -102,6 +104,7 @@ exports.postnewgroup = (req, res) => {
     res.redirect('/account');        
   })
 };
+
 
 /**Change user's group */
 exports.getnewgroup = (req, res) => {

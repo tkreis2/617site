@@ -104,7 +104,7 @@ exports.getSignup = (req, res) => {
     // });
 
 
-    var newUser = new user({fullname: req.body.fullname, email: req.body.emailaddr, joinstart: req.body.joinstart, groupID: req.body.groupname, individGoal: req.body.goalvalue, password: req.body.password, completions: 0});
+    var newUser = new user({fullname: req.body.fullname, email: req.body.emailaddr, joinstart: req.body.joinstart, groupID: req.body.groupname, individGoal: req.body.goalvalue, password: req.body.password, completions: 0, individGoalType: req.body.goaltype, individGoalDesc: req.body.goaldesc});
     
     // newUser.setPassword(req.body.password);
 
@@ -112,32 +112,32 @@ exports.getSignup = (req, res) => {
       if(err) {return next(err);}
       if(existingGroup){
         isNew = true;
-        req.flash('errors', {msg: 'Group with that name already exists. You must either join the group or select a different group name.'});
-        return res.redirect('/signup');
+        if(req.body.joinstart === 'StartGroup'){
+          req.flash('errors', {msg: 'Group with that name already exists. You must either join the group or select a different group name.'});
+          return res.redirect('/signup');
+        }
       }
-      else{
-        user.findOne({ email: req.body.emailaddr }, (err, existingUser) => {
+    user.findOne({ email: req.body.emailaddr }, (err, existingUser) => {
+      if (err) { return next(err); }
+      if (existingUser) {
+        req.flash('errors', { msg: 'Account with that email address already exists.' });
+        return res.redirect('/login');
+      }
+      newUser.save(function(err, user){
+        // var token;
+        if(err)
+            res.send(err);
+        /*res.json(entry);*/     
+        // token = user.generatejwt();
+        // sendJSONresponse(res, 200, {"token": token});
+        req.logIn(user, (err) => {
           if (err) { return next(err); }
-          if (existingUser) {
-            req.flash('errors', { msg: 'Account with that email address already exists.' });
-            return res.redirect('/login');
-          }
-          newUser.save(function(err, user){
-            // var token;
-            if(err)
-               res.send(err);
-            /*res.json(entry);*/     
-            // token = user.generatejwt();
-            // sendJSONresponse(res, 200, {"token": token});
-            req.logIn(user, (err) => {
-              if (err) { return next(err); }
-              req.flash('success', { msg: 'Success! You are logged in.' });
-              res.redirect('/account');
-          });
+          req.flash('success', { msg: 'Success! You are logged in.' });
+          res.redirect('/account');
         });
-       });
-      }
+      });
     });
+  });
 
   //   user.findOne({ email: req.body.emailaddr }, (err, existingUser) => {
   //     if (err) { return next(err); }

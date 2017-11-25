@@ -8,6 +8,7 @@ var userlogSchema = Schema({
     // individGoalType: String,
     // individGoalValue: Number,
     // individGoalProgress: Number,
+    // totalGoalProgress: Number,
 
     logentry: {
         logDate: String,
@@ -20,6 +21,7 @@ var userlogSchema = Schema({
 });
 
 userlogSchema.methods.calcProg = function calcProg(individGoal, individGoalProgress){
+    user.totalGoalProgress = user.totalGoalProgress + this.logentry.individGoalProgress;
     this.logentry.individGoalRemaining = user.individGoal - this.logentry.individGoalProgress;
 }
 
