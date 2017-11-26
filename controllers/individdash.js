@@ -2,12 +2,13 @@ const bluebird = require('bluebird');
 const crypto = bluebird.promisifyAll(require('crypto'));
 const nodemailer = require('nodemailer');
 const passport = require('passport');
-var mongoose = require('mongoose');
+var mongoose = require('mongoose').set('debug', true);
 var userlog = require('../models/userlog');
 var user = require('../models/User');
 var multer = require('multer');
 var mongoresults = [];
 var reset = false;
+
 
 /**
  * GET /
@@ -85,7 +86,7 @@ exports.postlogentry = (req, res) => {
   newUserLog.markModified('logentry');
   newUserLog.save(function(err, userlog){
     if(err)
-      res.send(err);
+      return res.send(err);
     req.flash('success', { msg: 'Success! Entry Added.' });
     res.redirect('/account');        
     // res.json(userlog);
@@ -94,24 +95,44 @@ exports.postlogentry = (req, res) => {
 
 /**Get Edit an Entry Page*/
 exports.geteditentry = (req, res) => {
-  var thisuser = req.user;
+  // var thisuser = req.user;
   res.render('editentry');
+
+  // userlog.find({email: thisuser.email, groupID: thisuser.groupID}, function(err, userLogs){
+  //   res.render('editentry', {
+  //     userLogs: userLogs,  
+  //     thisuser: thisuser,
+  //   });
+  // });
 };
 
 /**Post edit entry */
 exports.posteditentry = (req, res) => {
   var thisuser = req.user;
-  var entryid = req.body.ObjectId || req.query.ObjectId;
 
-  userlog.findOneAndUpdate({ObjectId: entryid},{
-    logentry :{logDate: req.body.LogDateTime, logType: req.body.logtype, logDetails: req.body.LogDetails, 
-      individGoalProgress: req.body.LogProgress, picture: req.body.LogImage}}, {new: true}, function (err, user){
-      if(err)
-        res.send(err);
-      req.flash('success', { msg: 'Entry Updated.' });
-      res.redirect('/account');       
+  userlog.findOneAndUpdate({email: thisuser.email, groupID: thisuser.groupID},{logentry :{logDate: req.body.editedLogDateTime, logType: req.body.editedlogtype, 
+    logDetails: req.body.editedLogDetails, individGoalProgress: req.body.editedLogProgress, picture: req.body.editedLogImage}}, {new: true}, function (err, userlog){
+    if(err)
+      res.send(err);
+    req.flash('success', { msg: 'Entry Updated.' });
+    res.redirect('/account');        
   })
+  // userlog.findByIdAndUpdate(userlog.id, function(err, userlog){
+  //   logentry.logDate= req.body.editedLogDateTime,
+  //   logentry.logType= req.body.editedlogtype, 
+  //   logentry.logDetails= req.body.editedLogDetails, 
+  //   logentry.individGoalProgress=req.body.editedLogProgress,
+  //   logentry.picture= req.body.editedLogImage;
+
+  //   userlog.save(function(err, updatedlog){
+  //     if (err) return res.send(err);
+  //     req.flash('success', { msg: 'Success! Entry Added.' });
+  //     res.redirect('/account');  
+  //   });
+  // });
+
 };
+
 
 /**Delete entry */
 exports.postdeleteentry = (req, res) => {
@@ -125,9 +146,6 @@ exports.postdeleteentry = (req, res) => {
     res.redirect('/account');       
   })
 };
-
-
-
 
 
 /**Change user's group */

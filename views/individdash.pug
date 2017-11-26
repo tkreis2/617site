@@ -93,6 +93,8 @@ block content
     table.datatable.table.table-striped.table-bordered
         thead.table-bordered
             tr
+                th Log #
+                th
                 th Date
                 th
                 th Log Entry Type
@@ -106,7 +108,10 @@ block content
                 th Edit Entry
         tbody   
             each userLog in userLogs
+                -var entryID = userLog.id
                 tr
+                    td  #{entryID}
+                    td
                     td  #{userLog.logentry.logDate}
                     td      
                     td  #{userLog.logentry.logType}
@@ -117,10 +122,15 @@ block content
                     td      
                     td  #{userLog.logentry.individGoalRemaining}
                     td
+                    td  
+                        a(href='editlog', class="editentry",, data-id=userLog.id) Edit
                     td 
-                        a(href='editlog', class="editentry", data-id="#{userLog.logentry.ObjectId}") Edit 
-                    td 
-                        a(href='deleteentry', class="deleteentry", data-id="#{userLog.logentry.ObjectId}") Delete                         
+                        a(href='deleteentry', class="deleteentry") Delete      
+                    //- td 
+                    //-     form(method="POST", action="/editlog", autocomplete="on")
+                    //-         input(type="hidden", name="_csrf", value=_csrf)  
+                    //-         input(type="hidden", name="logentryID", class ="editentryID", required="",  data-id = userLog.id) 
+
     br
     br
     h2.text-center My Image Gallery
@@ -147,4 +157,4 @@ block content
     br
     br
     br
-    a.btn.text-center(href='/delete') Delete Account
+    //- a.btn.text-center(href='/delete') Delete Account

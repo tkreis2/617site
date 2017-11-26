@@ -3,18 +3,19 @@ extends layout
 block content
     h1.text-center Edit Entry
     div.float-left-dash
-        h3.text-center New Log Entry
+        h3.text-center Update Log Entry
         br
         div.float-left-dash
-            form(method="POST", autocomplete="on")
+            form(method="POST", autocomplete="on", action="/editlog")
                 input(type="hidden", name="_csrf", value=_csrf)
+                input(type="hidden", name="logentryID", value = "")
                 |    Date*
                 br
-                input(type="date", name="LogDateTime", required="")
+                input(type="date", name="editedLogDateTime", required="")
                 br
                 | Log Entry Type*
                 br
-                select(required="", name="logtype")
+                select(required="", name="editedlogtype")
                     option(value="default", selected="", disabled="", hidden="") Select
                     option(value="Weight") Weight
                     option(value="Exercise") Exercise
@@ -22,11 +23,11 @@ block content
                 br
                 |     Entry Details* 
                 br
-                textarea(name="LogDetails", required="", rows="3", cols="35")
+                textarea(name="editedLogDetails", required="", rows="3", cols="35")
                 br
                 |     Current Progress*
                 br
-                input(type="number", name="LogProgress", required="")
+                input(type="number", name="editedLogProgress", required="")
                 //- br
                 //- |     Goal*
                 //- br
@@ -34,6 +35,6 @@ block content
                 br        
                 |     Picture Upload
                 br
-                input(type="file", name="LogImage", accept="image/*")
+                input(type="file", name="editedLogImage", accept="image/*")
                 br
-                input(type="submit", class="btn", value="Update Entry")
+                input(type="submit", class="btn editentry", value="Update Entry")
