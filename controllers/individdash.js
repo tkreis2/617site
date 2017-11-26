@@ -7,6 +7,7 @@ var userlog = require('../models/userlog');
 var user = require('../models/User');
 var multer = require('multer');
 var mongoresults = [];
+var reset = false;
 
 /**
  * GET /
@@ -14,7 +15,14 @@ var mongoresults = [];
  */
 exports.index = (req, res) => {
   var thisuser = req.user;
-  thisuser.progper = (thisuser.totalGoalProgress/thisuser.totalGoalValue) * 100;
+  if (reset === true){
+    thisuser.progper = 0;
+    reset = false;
+  }
+  else{
+    // thisuser.progper = (thisuser.totalGoalProgress/thisuser.totalGoalValue) * 100;
+    thisuser.progper = (thisuser.thisgoalprogress/thisuser.individGoal) * 100;    
+  }
   userlog.find({email: thisuser.email, groupID: thisuser.groupID}, function(err, userLogs){
     res.render('individdash', {
       userLogs: userLogs,  
@@ -28,13 +36,14 @@ exports.index = (req, res) => {
 exports.postresetGoal = (req, res) => {
   var thisuser = req.user;
 
-  user.findOneAndUpdate({email:thisuser.email, groupID: thisuser.groupID},{individGoal: req.body.goalupdate, '$inc': {totalGoalValue: req.body.goalupdate}, completions: thisuser.completions +1}, {new: true}, function (err, user){
-    // userlog.findOneAndUpdate({email: thisuser.email, groupID: thisuser.groupID}, {individGoalProgress: 0}, {new: true}, function(err, userlog){
+  user.findOneAndUpdate({email:thisuser.email, groupID: thisuser.groupID},{individGoal: req.body.goalupdate, 
+    '$inc': {totalGoalValue: req.body.goalupdate}, completions: thisuser.completions +1, thisgoalprogress: 0,
+  thisgoalremaining:req.body.goalupdate, progper: 0}, {new: true}, function (err, user){
       if(err)
         res.send(err);
+      reset = true;
       req.flash('success', { msg: 'Goal Reset.' });
-      res.redirect('/account');  
-    // })      
+      res.redirect('/account');       
   })
 };
 
@@ -51,14 +60,12 @@ exports.postresetCompletions = (req, res) => {
 
 exports.postlogentry = (req, res) => {
   var thisuser = req.user;
-
   var uploading = multer({
     dest: __dirname +'uploads',
     limits: {fileSize: 1000000, files:1},
   })
 
   const errors = req.validationErrors();
-
   if (errors) {
     req.flash('errors', errors);
     return res.redirect('/account');
@@ -75,7 +82,6 @@ exports.postlogentry = (req, res) => {
       res.send(err);
 
   });
-
   newUserLog.markModified('logentry');
   newUserLog.save(function(err, userlog){
     if(err)
