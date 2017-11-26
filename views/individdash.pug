@@ -62,9 +62,9 @@ block content
         h4 Goal Totals: #{thisuser.totalGoalValue}
         h4 Total Progress: #{thisuser.totalGoalProgress}  
         br      
-        br
+        br    
         p
-            b Linked Accounts
+        b Linked Accounts
         if user.google
           p: a.text-danger(href='/account/unlink/google') Unlink your Google account
         else
@@ -85,7 +85,7 @@ block content
     br  
     .progress
         .progress-bar.active(role="progressbar", style= 'width: '+ thisuser.progper + '%', aria-valuenow= "#{thisuser.totalGoalProgress}", aria-valuemin="0", aria-valuemax= "#{thisuser.totalGoalValue}")   
-    h3.text-center #{thisuser.progper}%
+    h4.text-center #{thisuser.progper}% (#{thisuser.thisgoalprogress}/#{thisuser.thisgoalprogress + thisuser.thisgoalremaining}) of Current Goal Complete
     br
     h2.text-center My Log
     br
@@ -102,6 +102,8 @@ block content
                 th Progress
                 th
                 th Remaining
+                th
+                th Edit Entry
         tbody   
             each userLog in userLogs
                 tr
@@ -114,6 +116,11 @@ block content
                     td  #{userLog.logentry.individGoalProgress}
                     td      
                     td  #{userLog.logentry.individGoalRemaining}
+                    td
+                    td 
+                        a(href='editlog', class="editentry", data-id="#{userLog.logentry.ObjectId}") Edit 
+                    td 
+                        a(href='deleteentry', class="deleteentry", data-id="#{userLog.logentry.ObjectId}") Delete                         
     br
     br
     h2.text-center My Image Gallery

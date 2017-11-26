@@ -90,8 +90,45 @@ exports.postlogentry = (req, res) => {
     res.redirect('/account');        
     // res.json(userlog);
   });
-
 };
+
+/**Get Edit an Entry Page*/
+exports.geteditentry = (req, res) => {
+  var thisuser = req.user;
+  res.render('editentry');
+};
+
+/**Post edit entry */
+exports.posteditentry = (req, res) => {
+  var thisuser = req.user;
+  var entryid = req.body.ObjectId || req.query.ObjectId;
+
+  userlog.findOneAndUpdate({ObjectId: entryid},{
+    logentry :{logDate: req.body.LogDateTime, logType: req.body.logtype, logDetails: req.body.LogDetails, 
+      individGoalProgress: req.body.LogProgress, picture: req.body.LogImage}}, {new: true}, function (err, user){
+      if(err)
+        res.send(err);
+      req.flash('success', { msg: 'Entry Updated.' });
+      res.redirect('/account');       
+  })
+};
+
+/**Delete entry */
+exports.postdeleteentry = (req, res) => {
+  var thisuser = req.user;
+  var entryid = req.body.ObjectId || req.query.ObjectId;
+
+  userlog.findOneAndRemove({ObjectId: entryid}, function (err, userlog){
+    if(err)
+      res.send(err);
+    req.flash('success', { msg: 'Entry Deleted.' });
+    res.redirect('/account');       
+  })
+};
+
+
+
+
 
 /**Change user's group */
 exports.postnewgroup = (req, res) => {

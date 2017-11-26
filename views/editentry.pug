@@ -1,0 +1,39 @@
+extends layout
+
+block content
+    h1.text-center Edit Entry
+    div.float-left-dash
+        h3.text-center New Log Entry
+        br
+        div.float-left-dash
+            form(method="POST", autocomplete="on")
+                input(type="hidden", name="_csrf", value=_csrf)
+                |    Date*
+                br
+                input(type="date", name="LogDateTime", required="")
+                br
+                | Log Entry Type*
+                br
+                select(required="", name="logtype")
+                    option(value="default", selected="", disabled="", hidden="") Select
+                    option(value="Weight") Weight
+                    option(value="Exercise") Exercise
+                    option(value="Food") Food
+                br
+                |     Entry Details* 
+                br
+                textarea(name="LogDetails", required="", rows="3", cols="35")
+                br
+                |     Current Progress*
+                br
+                input(type="number", name="LogProgress", required="")
+                //- br
+                //- |     Goal*
+                //- br
+                //- input(type="number", name="LogGoal", required="")
+                br        
+                |     Picture Upload
+                br
+                input(type="file", name="LogImage", accept="image/*")
+                br
+                input(type="submit", class="btn", value="Update Entry")
