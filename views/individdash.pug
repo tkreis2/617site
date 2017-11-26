@@ -60,8 +60,6 @@ block content
             input(type="submit", class="btn", value="Reset Completions")         
         br
         h4 Goal Totals: #{thisuser.totalGoalValue}
-        //- ul
-        //-     li This Round: #{latestlog.individGoalProgress}
         h4 Total Progress: #{thisuser.totalGoalProgress}  
         br      
         br
@@ -80,14 +78,15 @@ block content
         else
           p: a(href='/auth/github') Link your Github account          
 
-        //- a.btn(href='/resetgoal') Reset Your Goal
     br
     br
     div.cleared
     h2.text-center My Progress
+    br  
+    .progress
+        .progress-bar.active(role="progressbar", style= 'width: '+ thisuser.progper + '%', aria-valuenow= "#{thisuser.totalGoalProgress}", aria-valuemin="0", aria-valuemax= "#{thisuser.totalGoalValue}")   
+    h3.text-center #{thisuser.progper}%
     br
-    div.progress
-        .progress-bar(role="progressbar", style="width: 25%;", aria-valuenow="#{userLog.logentry.individGoalProgress}", aria-valuemin="0", aria-valuemax= "#{userLogs.individGoalValue}")   
     h2.text-center My Log
     br
     br
@@ -100,9 +99,9 @@ block content
                 th
                 th Details
                 th
-                th This Round's Progress
+                th Progress
                 th
-                th Remaining in This Round
+                th Remaining
         tbody   
             each userLog in userLogs
                 tr
@@ -115,7 +114,8 @@ block content
                     td  #{userLog.logentry.individGoalProgress}
                     td      
                     td  #{userLog.logentry.individGoalRemaining}
-
+    br
+    br
     h2.text-center My Image Gallery
         .container.width80
             .col-sm-12

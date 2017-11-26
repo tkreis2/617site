@@ -16,6 +16,7 @@ const userSchema = Schema({
   totalGoalProgress: {type: Number, default: 0},
   thisgoalprogress: {type: Number, default: 0},
   thisgoalremaining: {type: Number, default: 0},
+  progper: {type: Number, default: 0},
   individGoalType: String,
   individGoalDesc: String,
   passwordResetToken: String,

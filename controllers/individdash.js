@@ -14,12 +14,11 @@ var mongoresults = [];
  */
 exports.index = (req, res) => {
   var thisuser = req.user;
-
+  thisuser.progper = (thisuser.totalGoalProgress/thisuser.totalGoalValue) * 100;
   userlog.find({email: thisuser.email, groupID: thisuser.groupID}, function(err, userLogs){
     res.render('individdash', {
       userLogs: userLogs,  
       thisuser: thisuser,
-      // latestlog: latestlog,
     });
   }).sort({"logentry.logDate": -1});
 
@@ -64,7 +63,6 @@ exports.postlogentry = (req, res) => {
     req.flash('errors', errors);
     return res.redirect('/account');
   }
-
 
   var newUserLog = new userlog({email: thisuser.email, groupID: thisuser.groupID, 
     logentry :{logDate: req.body.LogDateTime, logType: req.body.logtype, logDetails: req.body.LogDetails, individGoalProgress: req.body.LogProgress, picture: req.body.LogImage}});

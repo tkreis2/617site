@@ -10,6 +10,10 @@ html(ng-app="forum")
     link(rel='stylesheet', href='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css') 
     link(rel='stylesheet' href='https://cdn.datatables.net/1.10.16/css/dataTables.bootstrap.min.css')    
     link(rel='stylesheet', href='/css/main.css')     
+    script(src='https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js')
+    script(src='/js/lib/bootstrap.min.js')
+    script(src="https://apis.google.com/js/platform.js" async defer)    
+      
 
   body(ng-controller='forumController')
     include partials/header
@@ -22,13 +26,12 @@ html(ng-app="forum")
 
     include partials/footer
 
-    script(src='/js/lib/jquery-3.1.1.min.js')
-    script(src='/js/lib/bootstrap.min.js')
-    script(src="https://apis.google.com/js/platform.js" async defer)    
-    script(src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.6/angular.min.js")
-    script(src="/javascripts/controller.js")
-    script(src='https://cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js')
-    script(src='https://cdn.datatables.net/1.10.16/js/dataTables.bootstrap.min.js')
+    //- script(src='https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js')
+    //- script(src='/js/lib/bootstrap.min.js')
+    //- script(src="https://apis.google.com/js/platform.js" async defer)    
+    //- script(src="/javascripts/controller.js")
+    //- script(src='https://cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js')
+    //- script(src='https://cdn.datatables.net/1.10.16/js/dataTables.bootstrap.min.js')
     script(src='/js/main.js')
 
 
@@ -40,3 +43,4 @@ html(ng-app="forum")
       })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
       ga('create', 'UA-XXXXX-X', 'auto');
       ga('send', 'pageview');
+    

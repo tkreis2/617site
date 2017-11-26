@@ -26,8 +26,13 @@ userlogSchema.methods.calcProg = function calcProg(thisuser){
     thisuser.totalGoalProgress = thisuser.totalGoalProgress + this.logentry.individGoalProgress;
     thisuser.thisgoalremaining = thisuser.individGoal - thisuser.thisgoalprogress;
     this.logentry.individGoalRemaining = thisuser.individGoal - thisuser.thisgoalprogress;
-
 }
+
+// userlogSchema.methods.findlatest = function findlatest(thisuser){
+//     user.findOne({email: thisuser.email, groupID: thisuser.groupID}.sort({'logDate': -1}), function(err, userlog){
+//     });
+
+// }
 
 userlogSchema.pre('save', function (next) {
     const userlog = this;
