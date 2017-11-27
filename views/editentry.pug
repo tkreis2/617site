@@ -6,9 +6,8 @@ block content
         h3.text-center Update Log Entry
         br
         div.float-left-dash
-            form(method="POST", autocomplete="on", action="/editlog")
+            form(method="POST", autocomplete="on")
                 input(type="hidden", name="_csrf", value=_csrf)
-                input(type="hidden", name="logentryID", value = "")
                 |    Date*
                 br
                 input(type="date", name="editedLogDateTime", required="")
@@ -33,8 +32,8 @@ block content
                 //- br
                 //- input(type="number", name="LogGoal", required="")
                 br        
-                |     Picture Upload
+                //- |     Picture Upload
+                //- br
+                //- input(type="file", name="editedLogImage", accept="image/*")
                 br
-                input(type="file", name="editedLogImage", accept="image/*")
-                br
-                input(type="submit", class="btn editentry", value="Update Entry")
+                input(type="submit", class="btn posteditentry", value="Update Entry", name="logentryid", data-id= logID)

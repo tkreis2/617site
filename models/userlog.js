@@ -5,6 +5,7 @@ var Schema = mongoose.Schema;
 var userlogSchema = Schema({
     email: String, 
     groupID: String,
+    logentryID: String,
     // individGoalType: String,
     // individGoalValue: Number,
     // individGoalProgress: Number,
@@ -28,11 +29,6 @@ userlogSchema.methods.calcProg = function calcProg(thisuser){
     this.logentry.individGoalRemaining = thisuser.individGoal - thisuser.thisgoalprogress;
 }
 
-// userlogSchema.methods.findlatest = function findlatest(thisuser){
-//     user.findOne({email: thisuser.email, groupID: thisuser.groupID}.sort({'logDate': -1}), function(err, userlog){
-//     });
-
-// }
 
 userlogSchema.pre('save', function (next) {
     const userlog = this;

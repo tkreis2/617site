@@ -94,9 +94,14 @@ exports.postlogentry = (req, res) => {
 };
 
 /**Get Edit an Entry Page*/
-exports.geteditentry = (req, res) => {
-  // var thisuser = req.user;
-  res.render('editentry');
+exports.geteditentry = (req, res, next) => {
+  var thisuser = req.user;
+  var logID = req.params.logID;
+  console.log(logID);
+  res.render('editentry',{
+    logID: logID,
+  });
+  return next();
 
   // userlog.find({email: thisuser.email, groupID: thisuser.groupID}, function(err, userLogs){
   //   res.render('editentry', {
@@ -109,29 +114,24 @@ exports.geteditentry = (req, res) => {
 /**Post edit entry */
 exports.posteditentry = (req, res) => {
   var thisuser = req.user;
-
-  userlog.findOneAndUpdate({email: thisuser.email, groupID: thisuser.groupID},{logentry :{logDate: req.body.editedLogDateTime, logType: req.body.editedlogtype, 
-    logDetails: req.body.editedLogDetails, individGoalProgress: req.body.editedLogProgress, picture: req.body.editedLogImage}}, {new: true}, function (err, userlog){
-    if(err)
-      res.send(err);
-    req.flash('success', { msg: 'Entry Updated.' });
-    res.redirect('/account');        
-  })
-  // userlog.findByIdAndUpdate(userlog.id, function(err, userlog){
-  //   logentry.logDate= req.body.editedLogDateTime,
-  //   logentry.logType= req.body.editedlogtype, 
-  //   logentry.logDetails= req.body.editedLogDetails, 
-  //   logentry.individGoalProgress=req.body.editedLogProgress,
-  //   logentry.picture= req.body.editedLogImage;
-
-  //   userlog.save(function(err, updatedlog){
-  //     if (err) return res.send(err);
-  //     req.flash('success', { msg: 'Success! Entry Added.' });
-  //     res.redirect('/account');  
-  //   });
+  var logID = req.params.logID;
+  // userlog.findOneAndUpdate({ObjectId: data},{logentry :{logDate: req.body.editedLogDateTime, logType: req.body.editedlogtype, 
+  //   logDetails: req.body.editedLogDetails, individGoalProgress: req.body.editedLogProgress, picture: req.body.editedLogImage}}, {new: true}, function (err, userlog){
+  //   if(err)
+  //     res.send(err);
+  //   req.flash('success', { msg: 'Entry Updated.' });
+  //   res.redirect('/account');        
   // });
-
-};
+  userlog.findByIdAndUpdate(logID, {logentry:{logDate: req.body.editedLogDateTime,
+    logType: req.body.editedlogtype, 
+    logDetails: req.body.editedLogDetails, 
+    individGoalProgress: req.body.editedLogProgress}}, {new: true}, function(err, userlog){
+      if(err)
+        res.send(err);
+      req.flash('success', {msg: 'Entry Updated.'});
+      res.redirect('/account')
+    }) 
+}; //end posteditentry
 
 
 /**Delete entry */

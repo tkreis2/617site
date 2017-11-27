@@ -203,8 +203,8 @@ app.post('/postforum', groupdashController.postforum);
 app.get('/groupdash', groupdashController.index);
 app.post('/newgroup', individdashController.postnewgroup);
 app.get('/newgroup', individdashController.getnewgroup);
-app.get('/editlog', individdashController.geteditentry);
-app.post('/editlog', individdashController.posteditentry);
+app.get('/editlog&logid=:logID', individdashController.geteditentry);
+app.post('/editlog&logid=:logID', individdashController.posteditentry);
 app.get('/deleteentry', individdashController.postdeleteentry);
 app.post('/deleteentry', individdashController.postdeleteentry);
 
