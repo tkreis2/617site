@@ -1,9 +1,10 @@
 extends layout
 block content
-    h1 Ready for the Challenge?
-    h2 Start Here.
+    img.heroimage(src="images/gettingstartedhero.jpg")
+    h2.text-center Ready for the Challenge?
+    h2.text-center Start Here.
     div.shadeblock
-        h4 Get Started with Just a Few Steps.
+        h4.smallheading Get Started with Just a Few Steps.
         p
             | You should be proud that you're ready to make a commitment to improving
             | your health. Follow the steps below for the best results.
@@ -45,4 +46,5 @@ block content
                     | progress will be updated automatically! The more faithful you are about
                     | tracking, the better. Don't forget to check in with your HealthWe group
                     | members so you can keep each other motivated and on track.
-        a.btn(href='/signup') Sign Up
+        div.text-center
+            a.btn(href='/signup') Sign Up
