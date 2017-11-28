@@ -1,8 +1,6 @@
 @import "themes/flatly/variables";
-
 @import "lib/bootstrap/bootstrap";
 @import "lib/font-awesome/font-awesome";
-
 @import "themes/flatly/flatly";
 
 // Scaffolding
@@ -170,4 +168,8 @@ textarea {
   // background-position: left;
   // background-size: cover;
   position: relative;
+}
+
+.nowrap{
+  white-space: nowrap;
 }

@@ -1,5 +1,5 @@
 .navbar.navbar-default.navbar-fixed-top
-  .container
+  .container.nowrap
     .navbar-header
       button.navbar-toggle(type='button', data-toggle='collapse', data-target='.navbar-collapse')
         span.sr-only Toggle navigation
@@ -24,8 +24,9 @@
           a(href='/help') Help                
         li(class=(title === 'Contact') ? 'active' : undefined)
           a(href='/contact') Contact
-        //- ul.nav.navbar-nav.navbar-right     
-        ul.nav.navbar-nav          
+          //- ul.nav.navbar-nav.navbar-right  
+        ul.nav.navbar-nav     
+             
             if !user
               li.dropdown(class=(title === 'Accounts') ? 'active' : undefined)
                 a.dropdown-toggle(href='#', data-toggle='dropdown') Accounts

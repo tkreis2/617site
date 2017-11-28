@@ -59,7 +59,7 @@ exports.index = (req, res, next) => {
 //   });
 // };
 
-
+/**Post entry */
 exports.postforum = (req, res) => {
     var thisuser = req.user;
   
@@ -81,3 +81,16 @@ exports.postforum = (req, res) => {
     });
   
   };
+
+  /**Delete entry */
+exports.postdeleteforumpost= (req, res) => {
+  var thisuser = req.user;
+  var forumpostid = req.body.ObjectId || req.query.ObjectId;
+  console.log(forumpostid);
+  forum.findOneAndRemove({ObjectId: forumpostid}, function (err, forum){
+    if(err)
+      res.send(err);
+    req.flash('success', { msg: 'Post Deleted.' });
+    res.redirect('/groupdash');       
+  })
+};

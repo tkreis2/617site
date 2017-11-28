@@ -165,6 +165,7 @@ app.get('/', homeController.index);
 app.get('/login', loginController.getlogin);
 app.post('/login', loginController.postLogin);
 app.get('/logout', loginController.logout);
+
 app.get('/signup', loginController.getSignup);
 app.post('/signup', loginController.postSignup);
 // app.get('/logout', userController.logout);
@@ -182,31 +183,44 @@ app.post('/contact', contactController.postContact);
 // app.post('/account/delete', passportConfig.isAuthenticated, loginController.postDeleteAccount);
 app.get('/delete', loginController.postDeleteAccount);
 app.post('/delete', passportConfig.isAuthenticated, loginController.postDeleteAccount);
+
 app.get('/account/unlink/:provider', passportConfig.isAuthenticated, loginController.getOauthUnlink);
 app.get('/about', aboutController.getAbout);
 app.get('/howitworks', howitworksController.gethowitworks);
 app.get('/getstarted', getstartedController.getgetstarted);
 app.get('/successstories', successstoriesController.getsuccessstories);
 app.get('/help', helpController.gethelp);
+
 app.get('/account', individdashController.index);
 app.post('/account', individdashController.postlogentry);
+
 app.get('/forgot', loginController.getForgot);
 app.post('/forgot', loginController.postForgot);
+
 app.get('/reset/:token', loginController.getReset);
 app.post('/reset/:token', loginController.postReset);
+
 app.get('/resetgoal', individdashController.postresetGoal);
 app.post('/resetgoal', individdashController.postresetGoal);
+
 app.get('/resetcompletions', individdashController.postresetCompletions);
 app.post('/resetcompletions', individdashController.postresetCompletions);
+
 // app.get('/forum', groupdashController.getforum);
 app.post('/postforum', groupdashController.postforum);
 app.get('/groupdash', groupdashController.index);
+
 app.post('/newgroup', individdashController.postnewgroup);
 app.get('/newgroup', individdashController.getnewgroup);
+
 app.get('/editlog&logid=:logID', individdashController.geteditentry);
 app.post('/editlog&logid=:logID', individdashController.posteditentry);
-app.get('/deleteentry', individdashController.postdeleteentry);
-app.post('/deleteentry', individdashController.postdeleteentry);
+
+app.get('/deleteentry&logid=:logID', individdashController.postdeleteentry);
+app.post('/deleteentry&logid=:logID', individdashController.postdeleteentry);
+
+app.get('/deleteforumpost', groupdashController.postdeleteforumpost);
+app.post('/deleteforumpost', groupdashController.postdeleteforumpost);
 
 
 

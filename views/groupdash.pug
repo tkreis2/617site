@@ -20,13 +20,13 @@ block content
                     td
                     td #{user.completions}
     
-    br
-    br
-    div.cleared
-    h2.text-center Our Progress
-    br
-    div.progress
-        .progress-bar(role="progressbar", style="width: 25%;", aria-valuenow="", aria-valuemin="0", aria-valuemax= "")   
+    //- br
+    //- br
+    //- div.cleared
+    //- h2.text-center Our Progress
+    //- br
+    //- div.progress
+    //-     .progress-bar(role="progressbar", style="width: 25%;", aria-valuenow="", aria-valuemin="0", aria-valuemax= "")   
 
     br
     br
@@ -35,8 +35,7 @@ block content
     hr
     div.float-left-dash
         h3 Have Something to Share? 
-        br
-        h3 Post Here!
+        | Post Here!
     div.float-right-dash
         form(method="POST", action="/postforum", autocomplete="on")
             input(type="hidden", name="_csrf", value=_csrf)  
@@ -56,8 +55,15 @@ block content
             th Group Member
             th
             th Message
+            th
+            th Edit
+            th
+            th Delete
         tbody   
             each forum in forums
+                -var datestring = forum.createdAt.toString();
+                -datestring= datestring.substring(0, 21);
+                -var forumpostid = forum.id;
                 //- -var displaydate = new Date (forum.createdAt);
                 //- -var d = displaydate.getDate();
                 //- -var m = displaydate.getMonth()+1;
@@ -73,11 +79,18 @@ block content
                 //- -var h = formathours(displaydate.getHours());
                 //- -var prettydate = m + ' ' + d + ' ' + y + ' ' + h + ':' + min;
                 tr
-                    td  #{forum.createdAt}                  
+                    //- td  #{forum.createdAt}     
+                    td  #{datestring}             
                     td      
                     td  #{forum.email}
                     td      
                     td  #{forum.message}
+                    td
+                    td  Edit
+                        //- a(href='editlog&logid=', class="editentry", data-id=userLog.id) Edit
+                    td
+                    td 
+                        a(href='deleteforumpost', class="deleteforumpost") Delete Post               
 
     br
     br

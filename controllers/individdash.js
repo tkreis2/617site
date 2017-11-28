@@ -134,12 +134,34 @@ exports.posteditentry = (req, res) => {
 }; //end posteditentry
 
 
-/**Delete entry */
+/**Get Delete an Entry */
+// exports.getdeleteentry = (req, res, next) => {
+//   var thisuser = req.user;
+//   var logID = req.params.logID;
+//   console.log(logID);
+//   // res.render('individdash',{
+//   //   thisuser: thisuser,
+//   //   userLogs: userLogs,
+//   //   logID: logID,
+//   // });
+//   // return next();
+//   res.redirect('/account');
+
+//   // userlog.find({email: thisuser.email, groupID: thisuser.groupID}, function(err, userLogs){
+//   //   res.render('editentry', {
+//   //     userLogs: userLogs,  
+//   //     thisuser: thisuser,
+//   //   });
+//   // });
+// };
+
+
+/**Post Delete entry */
 exports.postdeleteentry = (req, res) => {
   var thisuser = req.user;
-  var entryid = req.body.ObjectId || req.query.ObjectId;
+  var logID = req.params.logID;
 
-  userlog.findOneAndRemove({ObjectId: entryid}, function (err, userlog){
+  userlog.findByIdAndRemove(logID, function (err, userlog){
     if(err)
       res.send(err);
     req.flash('success', { msg: 'Entry Deleted.' });

@@ -26,7 +26,6 @@ $(document).ready(function() {
         }
     }
 
-
     $('.posteditentry').click(function(){
         var logID;
         var href;
@@ -35,6 +34,17 @@ $(document).ready(function() {
         _href= $(this).attr("href");
         $(this).attr("href", _href +logID );
     });
+
+    $('.deleteentry').click(function(){
+        var logID;
+        var href;
+        logID = $(this).data("id");
+        console.log(logID);
+        _href= $(this).attr("href");
+        $(this).attr("href", _href +logID );
+    });
+
+
 
 
 

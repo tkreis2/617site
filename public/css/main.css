@@ -1382,7 +1382,7 @@ dd {
 .dl-horizontal dd:after {
   clear: both; }
 
-@media (min-width: 768px) {
+@media (min-width: 1200px) {
   .dl-horizontal dt {
     float: left;
     width: 160px;
@@ -3256,7 +3256,7 @@ tbody.collapse.in {
   bottom: 100%;
   margin-bottom: 2px; }
 
-@media (min-width: 768px) {
+@media (min-width: 1200px) {
   .navbar-right .dropdown-menu {
     right: 0;
     left: auto; }
@@ -3658,14 +3658,14 @@ tbody.collapse.in {
 .navbar {
   position: relative;
   min-height: 60px;
-  margin-bottom: 15px;
+  margin-bottom: 10px;
   border: 1px solid transparent; }
   .navbar:before, .navbar:after {
     content: " ";
     display: table; }
   .navbar:after {
     clear: both; }
-  @media (min-width: 768px) {
+  @media (min-width: 1200px) {
     .navbar {
       border-radius: 4px; } }
 
@@ -3676,7 +3676,7 @@ tbody.collapse.in {
 .navbar-header:after {
   clear: both; }
 
-@media (min-width: 768px) {
+@media (min-width: 1200px) {
   .navbar-header {
     float: left; } }
 
@@ -3694,7 +3694,7 @@ tbody.collapse.in {
     clear: both; }
   .navbar-collapse.in {
     overflow-y: auto; }
-  @media (min-width: 768px) {
+  @media (min-width: 1200px) {
     .navbar-collapse {
       width: auto;
       border-top: 0;
@@ -3726,7 +3726,7 @@ tbody.collapse.in {
 .container-fluid > .navbar-collapse {
   margin-right: -15px;
   margin-left: -15px; }
-  @media (min-width: 768px) {
+  @media (min-width: 1200px) {
     .container > .navbar-header,
     .container > .navbar-collapse,
     .container-fluid > .navbar-header,
@@ -3737,7 +3737,7 @@ tbody.collapse.in {
 .navbar-static-top {
   z-index: 1000;
   border-width: 0 0 1px; }
-  @media (min-width: 768px) {
+  @media (min-width: 1200px) {
     .navbar-static-top {
       border-radius: 0; } }
 
@@ -3747,7 +3747,7 @@ tbody.collapse.in {
   right: 0;
   left: 0;
   z-index: 1030; }
-  @media (min-width: 768px) {
+  @media (min-width: 1200px) {
     .navbar-fixed-top,
     .navbar-fixed-bottom {
       border-radius: 0; } }
@@ -3771,7 +3771,7 @@ tbody.collapse.in {
     text-decoration: none; }
   .navbar-brand > img {
     display: block; }
-  @media (min-width: 768px) {
+  @media (min-width: 1200px) {
     .navbar > .container .navbar-brand,
     .navbar > .container-fluid .navbar-brand {
       margin-left: -15px; } }
@@ -3796,7 +3796,7 @@ tbody.collapse.in {
     border-radius: 1px; }
   .navbar-toggle .icon-bar + .icon-bar {
     margin-top: 4px; }
-  @media (min-width: 768px) {
+  @media (min-width: 1200px) {
     .navbar-toggle {
       display: none; } }
 
@@ -3806,7 +3806,7 @@ tbody.collapse.in {
     padding-top: 10px;
     padding-bottom: 10px;
     line-height: 25px; }
-  @media (max-width: 767px) {
+  @media (max-width: 1199px) {
     .navbar-nav .open .dropdown-menu {
       position: static;
       float: none;
@@ -3822,7 +3822,7 @@ tbody.collapse.in {
         line-height: 25px; }
         .navbar-nav .open .dropdown-menu > li > a:hover, .navbar-nav .open .dropdown-menu > li > a:focus {
           background-image: none; } }
-  @media (min-width: 768px) {
+  @media (min-width: 1200px) {
     .navbar-nav {
       float: left;
       margin: 0; }
@@ -3880,12 +3880,12 @@ tbody.collapse.in {
       margin-left: 0; }
     .navbar-form .has-feedback .form-control-feedback {
       top: 0; } }
-  @media (max-width: 767px) {
+  @media (max-width: 1199px) {
     .navbar-form .form-group {
       margin-bottom: 5px; }
       .navbar-form .form-group:last-child {
         margin-bottom: 0; } }
-  @media (min-width: 768px) {
+  @media (min-width: 1200px) {
     .navbar-form {
       width: auto;
       border: 0;
@@ -3921,13 +3921,13 @@ tbody.collapse.in {
 .navbar-text {
   margin-top: 17.5px;
   margin-bottom: 17.5px; }
-  @media (min-width: 768px) {
+  @media (min-width: 1200px) {
     .navbar-text {
       float: left;
       margin-left: 15px;
       margin-right: 15px; } }
 
-@media (min-width: 768px) {
+@media (min-width: 1200px) {
   .navbar-left {
     float: left !important; }
   .navbar-right {
@@ -3969,7 +3969,7 @@ tbody.collapse.in {
   .navbar-default .navbar-nav > .open > a, .navbar-default .navbar-nav > .open > a:hover, .navbar-default .navbar-nav > .open > a:focus {
     background-color: #d7d7d7;
     color: #68b0ab; }
-  @media (max-width: 767px) {
+  @media (max-width: 1199px) {
     .navbar-default .navbar-nav .open .dropdown-menu > li > a {
       color: #696d7d; }
       .navbar-default .navbar-nav .open .dropdown-menu > li > a:hover, .navbar-default .navbar-nav .open .dropdown-menu > li > a:focus {
@@ -4027,7 +4027,7 @@ tbody.collapse.in {
   .navbar-inverse .navbar-nav > .open > a, .navbar-inverse .navbar-nav > .open > a:hover, .navbar-inverse .navbar-nav > .open > a:focus {
     background-color: #15a589;
     color: #fff; }
-  @media (max-width: 767px) {
+  @media (max-width: 1199px) {
     .navbar-inverse .navbar-nav .open .dropdown-menu > .dropdown-header {
       border-color: transparent; }
     .navbar-inverse .navbar-nav .open .dropdown-menu .divider {
@@ -4346,7 +4346,7 @@ a.thumbnail.active {
   border-color: #18BC9C; }
 
 .alert {
-  padding: 15px;
+  padding: 10px;
   margin-bottom: 25px;
   border: 1px solid transparent;
   border-radius: 4px; }
@@ -4363,7 +4363,7 @@ a.thumbnail.active {
 
 .alert-dismissable,
 .alert-dismissible {
-  padding-right: 35px; }
+  padding-right: 30px; }
   .alert-dismissable .close,
   .alert-dismissible .close {
     position: relative;
@@ -9294,3 +9294,6 @@ textarea {
   overflow: visible;
   display: block;
   position: relative; }
+
+.nowrap {
+  white-space: nowrap; }

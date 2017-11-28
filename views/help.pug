@@ -1,7 +1,7 @@
 extends layout
 block content
-
-    h1 Have Questions or Need More Info?
+    img.heroimage(src="images/contacthero.png")
+    h2.text-center Have Questions or Need More Info?
     p
         | Our goal is to make your experience with HealthWe as simple and rewarding as
         | possible. If you have questions or concerns, please refer to the help topics on
@@ -30,6 +30,8 @@ block content
         p
             | We are in the process of developing a HealthWe app for both Android and iOS
             | devices. We hope to being beta testing soon!
+        br
+        hr
         h4.smallheading Profile &amp; Tracking
         p
             i How can I edit my profile?
@@ -49,4 +51,6 @@ block content
         p
             | Navigate to your individual dashboard and scroll down to your log. Click the
             | Edit Log button to see options for deleting or editing a log entry.
-        a.btn(href='/contact') Contact Us
+        br
+        div.text-center
+            a.btn(href='/contact') Contact Us
