@@ -9237,6 +9237,9 @@ textarea {
 .increasedmargin {
   margin-left: 15%; }
 
+.increasedmarginright {
+  margin-right: 15%; }
+
 .width80 {
   width: 80%; }
 
