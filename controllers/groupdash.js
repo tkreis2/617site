@@ -32,33 +32,6 @@ exports.index = (req, res, next) => {
   };
 
 
-
-
-// exports.index = (req, res) => {
-
-//   var thisuser = req.user;
-
-//   forum.find({groupID: thisuser.groupID}, function(err, forums){
-//     res.render('groupdash', {
-//         title: 'Group Dashboard - HealthWe',
-//         forums: forums,
-//         thisuser: thisuser  
-//     }); 
-//   });
-// };
-
-// exports.getusers = (req, res) => {
-//   var thisuser = req.user;
-
-//   user.find({groupID: thisuser.groupID}, function(err, users){
-//     res.render('groupdash', {
-//       title: 'Group Dashboard - HealthWe',
-//       users: users,
-//       thisuser: thisuser
-//     });
-//   });
-// };
-
 /**Post entry */
 exports.postforum = (req, res) => {
     var thisuser = req.user;
@@ -94,3 +67,43 @@ exports.postdeleteforumpost= (req, res) => {
     res.redirect('/groupdash');       
   })
 };
+
+
+/**Get Edit a Forum Post Page*/
+exports.geteditforumpost = (req, res, next) => {
+  var thisuser = req.user;
+  var postID = req.params.postID;
+  console.log(postID);
+
+  forum.findById(postID, function(err, forum){
+    res.render('editforumpost',{
+      forum: forum
+    });
+});
+
+  // userlog.find({email: thisuser.email, groupID: thisuser.groupID}, function(err, userLogs){
+  //   res.render('editentry', {
+  //     userLogs: userLogs,  
+  //     thisuser: thisuser,
+  //   });
+  // });
+};
+
+/**Post edit entry */
+exports.posteditforumpost = (req, res) => {
+  var thisuser = req.user;
+  var postID = req.params.postID;
+  // userlog.findOneAndUpdate({ObjectId: data},{logentry :{logDate: req.body.editedLogDateTime, logType: req.body.editedlogtype, 
+  //   logDetails: req.body.editedLogDetails, individGoalProgress: req.body.editedLogProgress, picture: req.body.editedLogImage}}, {new: true}, function (err, userlog){
+  //   if(err)
+  //     res.send(err);
+  //   req.flash('success', { msg: 'Entry Updated.' });
+  //   res.redirect('/account');        
+  // });
+  forum.findByIdAndUpdate(postID, {message:req.body.editedforumpost}, {new: true}, function(err, forum){
+      if(err)
+        res.send(err);
+      req.flash('success', {msg: 'Post Updated.'});
+      res.redirect('/groupdash')
+    }) 
+}; //end posteditentry

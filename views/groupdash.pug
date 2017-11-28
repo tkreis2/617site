@@ -86,8 +86,8 @@ block content
                     td      
                     td  #{forum.message}
                     td
-                    td  Edit
-                        //- a(href='editlog&logid=', class="editentry", data-id=userLog.id) Edit
+                    td  
+                        a(href='editforumpost&postid=', class="posteditforum", data-id=forum.id) Edit
                     td
                     td 
                         a(href='deleteforumpost', class="deleteforumpost") Delete Post               

@@ -222,6 +222,9 @@ app.post('/deleteentry&logid=:logID', individdashController.postdeleteentry);
 app.get('/deleteforumpost', groupdashController.postdeleteforumpost);
 app.post('/deleteforumpost', groupdashController.postdeleteforumpost);
 
+app.get('/editforumpost&postid=:postID', groupdashController.geteditforumpost);
+app.post('/editforumpost&postid=:postID', groupdashController.posteditforumpost);
+
 
 
 /**

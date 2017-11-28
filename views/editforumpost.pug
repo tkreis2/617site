@@ -1,0 +1,12 @@
+extends layout
+
+block content
+    div.shadedblock.text-center
+        h4.text-center Edit a Forum Post
+        form(method="POST",  autocomplete="on")
+            input(type="hidden", name="_csrf", value=_csrf)  
+            b| Message to Group:
+            br
+            textarea(name="editedforumpost", required="", rows="4", cols="50") #{forum.message} 
+            br        
+            input(type="submit", class="btn float-right", value="Update Post", data-id= forum.id)

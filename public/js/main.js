@@ -6,6 +6,7 @@
 
 $(document).ready(function() {
 
+    //Individ dash userlogs
     $('.editentry').click(function(){
         var logID;
         var href;
@@ -46,27 +47,27 @@ $(document).ready(function() {
 
 
 
+    //Group dash forum posts
+
+    $('.posteditforum').click(function(){
+        var forumID;
+        var href;
+        forumID = $(this).data("id");
+        console.log(forumID);
+        _href= $(this).attr("href");
+        $(this).attr("href", _href +forumID );
+    });
 
 
-    // var data;
-    // $('.editentry').click(function(element){
-    //     console.log('edit button clicked');
-    //     data = $(this).data("id");
-    //     // data = data.toString();
-    //     console.log(data);
-    //     // data = JSON.stringify(data);        
-    //     console.log(data);
-    //     $.ajax({
-    //         url: 'http://localhost:8080/editlog', 
-    //             type: 'POST',
-    //             contentType: 'application/json',
-    //             processData: false,
-    //             data: JSON.stringify(data),
-    //             success : function(data){
-    //                 data = data;                   
+    $('.deleteforumpost').click(function(){
+        var postID;
+        var href;
+        postID = $(this).data("id");
+        console.log(postID);
+        _href= $(this).attr("href");
+        $(this).attr("href", _href +postID );
+    });
 
-    //         }                
-    //     });
-    // });
+
   
 });
