@@ -8,6 +8,7 @@ var user = require('../models/User');
 var multer = require('multer');
 var mongoresults = [];
 var reset = false;
+var fs = require('fs'); /** */
 
 
 /**
@@ -64,7 +65,7 @@ exports.postlogentry = (req, res) => {
   var uploading = multer({
     dest: __dirname +'uploads',
     limits: {fileSize: 1000000, files:1},
-  })
+  }).single(req.body.LogImage);
 
   const errors = req.validationErrors();
   if (errors) {
@@ -73,7 +74,11 @@ exports.postlogentry = (req, res) => {
   }
 
   var newUserLog = new userlog({email: thisuser.email, groupID: thisuser.groupID, 
-    logentry :{logDate: req.body.LogDateTime, logType: req.body.logtype, logDetails: req.body.LogDetails, individGoalProgress: req.body.LogProgress, picture: req.body.LogImage}});
+    logentry :{logDate: req.body.LogDateTime, logType: req.body.logtype, 
+      logDetails: req.body.LogDetails, individGoalProgress: req.body.LogProgress,
+    picturecontentType: "image/png"}});
+
+    /**from above removed  picture: req.body.LogImage, */
 
   newUserLog.calcProg(thisuser);
 

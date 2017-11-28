@@ -114,17 +114,17 @@ app.use(session({
 // app.use(passport.initialize());
 // app.use(passport.session());
 app.use(flash());
-// app.use(express.static(path.join(__dirname, 'public'), { maxAge: 31557600000 })); /** */
+app.use(multer({ dest: path.join(__dirname, 'uploads') }).single('LogImage'));
 
-// app.use((req,res,next) => {
-  //formidable outputs to req.fields and req.files / req.file so we can get dirty here
-    // if(Object.keys(req.body).length == 0 && req.fields){
-      // Object.assign(req.body,req.fields);
-    //   req.body = req.fields;
-    //  }
+app.use((req,res,next) => {
+  //formidable outputs to req.fields and req.files / req.file 
+    if(Object.keys(req.body).length == 0 && req.fields){
+      Object.assign(req.body,req.fields);
+      req.body = req.fields;
+      }
      //tada req.body is here (and so would be our csrf token)
-  //   next();
-  // });
+    next();
+  });
 app.use((req, res, next) => {
   if (req.path === '/api/upload') {
     next();

@@ -8,6 +8,8 @@ block content
         thead
             th Group Member
             th
+            th Current Progress
+            th
             th Current Goal
             th
             th Completions
@@ -15,6 +17,8 @@ block content
             each user in users
                 tr
                     td #{user.email}
+                    td 
+                    td #{user.thisgoalprogress}                    
                     td 
                     td #{user.individGoal}
                     td
@@ -97,24 +101,24 @@ block content
     br
 
 
-    h2.text-center Image Gallery
-    br
-    br
-    .container.width80
-        .col-sm-12
-            .bs-example
-                #myCarousel.carousel.slide
-                    // Carousel indicators
-                    ol.carousel-indicators
-                        li.active(data-target="#myCarousel", data-slide-to="0")
-                        li(data-target="#myCarousel", data-slide-to="1")
-                        li(data-target="#myCarousel", data-slide-to="2")
-                    // Carousel items
-                    .carousel-inner
-                        .active.item Slide 1
-                        .item Slide 2
-                        .item Slide 3
-                    // Carousel nav
-                    a.carousel-control.left-flat(href="#myCarousel", data-slide="prev") ‹
-                    a.carousel-control.right-flat(href="#myCarousel", data-slide="next") ›
+    //- h2.text-center Image Gallery
+    //- br
+    //- br
+    //- .container.width80
+    //-     .col-sm-12
+    //-         .bs-example
+    //-             #myCarousel.carousel.slide
+    //-                 // Carousel indicators
+    //-                 ol.carousel-indicators
+    //-                     li.active(data-target="#myCarousel", data-slide-to="0")
+    //-                     li(data-target="#myCarousel", data-slide-to="1")
+    //-                     li(data-target="#myCarousel", data-slide-to="2")
+    //-                 // Carousel items
+    //-                 .carousel-inner
+    //-                     .active.item Slide 1
+    //-                     .item Slide 2
+    //-                     .item Slide 3
+    //-                 // Carousel nav
+    //-                 a.carousel-control.left-flat(href="#myCarousel", data-slide="prev") ‹
+    //-                 a.carousel-control.right-flat(href="#myCarousel", data-slide="next") ›
     
