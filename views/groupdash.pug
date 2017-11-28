@@ -33,17 +33,18 @@ block content
     h2.text-center #{thisuser.groupID} Forum   
     br
     hr
-    div.float-left-dash
-        h3 Have Something to Share? 
+    h3.text-center Have Something to Share? 
         | Post Here!
-    div.float-right-dash
+    br
+    div.text-center
         form(method="POST", action="/postforum", autocomplete="on")
             input(type="hidden", name="_csrf", value=_csrf)  
             b| Message to Group:
             br
-            textarea(name="forumpost", required="", rows="4", cols="50")    
+            textarea(name="forumpost", required="", rows="3", cols="70")    
             br        
-            input(type="submit", class="btn float-right", value="Post")
+            br
+            input(type="submit", class="btn text-center", value="Post")
     br
     br
     br
