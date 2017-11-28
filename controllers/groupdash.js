@@ -58,9 +58,9 @@ exports.postforum = (req, res) => {
   /**Delete entry */
 exports.postdeleteforumpost= (req, res) => {
   var thisuser = req.user;
-  var forumpostid = req.body.ObjectId || req.query.ObjectId;
+  var forumpostid = req.params.postID;
   console.log(forumpostid);
-  forum.findOneAndRemove({ObjectId: forumpostid}, function (err, forum){
+  forum.findByIdAndRemove(forumpostid, function (err, forum){
     if(err)
       res.send(err);
     req.flash('success', { msg: 'Post Deleted.' });
