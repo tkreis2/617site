@@ -45,7 +45,7 @@ textarea {
 .navbar-nav img {
   width: 30px;
   height: 30px;
-  margin: -15px 15px -15px;
+  margin: -15px 0px -15px;
 }
 
 // Alerts
@@ -76,7 +76,7 @@ textarea {
 // -------------------------
 .shadeblock{
   background-color:#f0f0f0;
-  padding: 10%;
+  padding: 5%;
 }
 
 .smallheading{
@@ -156,4 +156,14 @@ textarea {
 
 .hidden{
   display: none;
+}
+
+.heroimage{
+  height: 60%;
+  width: 100%;
+  overflow: visible;
+  display: block;
+  // background-position: left;
+  // background-size: cover;
+  position: relative;
 }

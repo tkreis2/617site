@@ -3658,7 +3658,7 @@ tbody.collapse.in {
 .navbar {
   position: relative;
   min-height: 60px;
-  margin-bottom: 30px;
+  margin-bottom: 15px;
   border: 1px solid transparent; }
   .navbar:before, .navbar:after {
     content: " ";
@@ -9206,7 +9206,7 @@ textarea {
 .navbar-nav img {
   width: 30px;
   height: 30px;
-  margin: -15px 15px -15px; }
+  margin: -15px 0px -15px; }
 
 .alert {
   margin-top: 60px; }
@@ -9221,7 +9221,7 @@ textarea {
 
 .shadeblock {
   background-color: #f0f0f0;
-  padding: 10%; }
+  padding: 5%; }
 
 .smallheading {
   font-size: 22px;
@@ -9284,3 +9284,10 @@ textarea {
 
 .hidden {
   display: none; }
+
+.heroimage {
+  height: 60%;
+  width: 100%;
+  overflow: visible;
+  display: block;
+  position: relative; }
