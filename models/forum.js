@@ -6,7 +6,7 @@ var Schema = mongoose.Schema;
 
 const forumSchema = Schema({
     groupID: String,
-    email: {type: String, unique: true},
+    email: String,
     message: String,
   }, { timestamps: true });
 

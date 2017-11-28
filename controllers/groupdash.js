@@ -63,18 +63,18 @@ exports.index = (req, res, next) => {
 exports.postforum = (req, res) => {
     var thisuser = req.user;
   
-    const errors = req.validationErrors();
+    // const errors = req.validationErrors();
   
-    if (errors) {
-      req.flash('errors', errors);
-      return res.redirect('/groupdash');
-    }
+    // if (errors) {
+    //   req.flash('errors', errors);
+    //   return res.redirect('/groupdash');
+    // }
   
     var newforumPost = new forum({email: thisuser.email, groupID: thisuser.groupID, message: req.body.forumpost});
 
     newforumPost.save(function(err, forum){
       if(err)
-        res.send(err);
+        return res.send(err);
       req.flash('success', { msg: 'Success! Post Added.' });
       res.redirect('/groupdash');        
       // res.json(userlog);
