@@ -1,10 +1,11 @@
 extends layout
 block content 
-
-    h1 Want to Know More?
-    h2 Find Out How HealthWe Works.
+    img.heroimage(src="images/howitworkshero.jpg")
+    h2.text-center Want to Know More?
+    h2.text-center Find Out How HealthWe Works.
     div.shadeblock
         h4.smallheading The Ideas Behind HealthWe are Simple.
+        br
         ol
             li
                 b Accountability Inspires Motivation and Leads to Success.
@@ -38,4 +39,6 @@ block content
                 p
                     | You can do this! By dedicating yourself to achieving your goal, making a
                     | commitment to others, and measuring your progress, you will succeed.
-        a.btn(href='/getstarted') Get Started Now
+        br
+        div.text-center
+            a.btn(href='/getstarted') Get Started Now
