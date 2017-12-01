@@ -45,7 +45,12 @@ $(document).ready(function() {
         $(this).attr("href", _href +logID );
     });
 
-
+    //Image carousel
+    // $(document).ready(function(){
+    //     $('.img-carousel').slick({
+    //         arrows: true
+    //     });
+    // });
 
     //Group dash forum posts
 

@@ -18,9 +18,8 @@ var userlogSchema = Schema({
         individGoalProgress: {type: Number, default: 0},
         // thisgoalprogress: {type: Number, default: 0},
         individGoalRemaining: Number,
-        // picture: String,
-        picture: Buffer,
-        picturecontentType: String
+        picture: String,
+        // picture: {data: Buffer, contentType: String}
     }
 });
 

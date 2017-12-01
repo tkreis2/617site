@@ -9293,7 +9293,37 @@ textarea {
   width: 100%;
   overflow: visible;
   display: block;
-  position: relative; }
+  background-size: contain;
+  position: relative !important; }
 
 .nowrap {
   white-space: nowrap; }
+
+.limitthumbnail {
+  display: block;
+  padding: 4px;
+  margin-bottom: 25px;
+  line-height: 1.42857;
+  background-color: #fff;
+  border: 1px solid #ecf0f1;
+  border-radius: 4px;
+  max-height: 300px;
+  width: 100%;
+  -webkit-transition: border 0.2s ease-in-out;
+  -o-transition: border 0.2s ease-in-out;
+  transition: border 0.2s ease-in-out; }
+  .limitthumbnail > img,
+  .limitthumbnail a > img {
+    display: block;
+    max-width: 100%;
+    height: auto;
+    margin-left: auto;
+    margin-right: auto; }
+  .limitthumbnail .caption {
+    padding: 9px;
+    color: #696d7d; }
+
+a.thumbnail:hover,
+a.thumbnail:focus,
+a.thumbnail.active {
+  border-color: #18BC9C; }

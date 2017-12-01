@@ -33,10 +33,14 @@ block content
                 //- |     Goal*
                 //- br
                 //- input(type="number", name="LogGoal", required="")
-                br        
-                |     Picture Upload
+                //- br        
+                //- |     Picture Upload
+                //- br
+                //- input(type="file", name="LogImage", accept="image/png")
                 br
-                input(type="file", name="LogImage", accept="image/*")
+                |     Picture URL
+                br
+                input(type="url", name="LogImageURL")                
                 br
                 input(type="submit", class="btn", value="Add Entry")
             br
@@ -95,8 +99,8 @@ block content
     table.datatable.table.table-striped.table-bordered
         thead.table-bordered
             tr
-                th Log #
-                th
+                //- th Log #
+                //- th
                 th Date
                 th
                 th Log Entry Type
@@ -108,13 +112,14 @@ block content
                 th Remaining
                 th
                 th Edit Entry
+                th Delete Entry                
         tbody   
             each userLog in userLogs
                 -var entryID = userLog.id
                 -logentryID = userLog.id
                 tr
-                    td  #{entryID}
-                    td
+                    //- td  #{entryID}
+                    //- td
                     td  #{userLog.logentry.logDate}
                     td      
                     td  #{userLog.logentry.logType}
@@ -124,7 +129,7 @@ block content
                     td  #{userLog.logentry.individGoalProgress}
                     td      
                     td  #{userLog.logentry.individGoalRemaining}
-                    td
+                    td 
                     td  
                         a(href='editlog&logid=', class="editentry", data-id=userLog.id) Edit
                     td 
@@ -132,6 +137,28 @@ block content
 
     br
     br
+
+    h2.text-center My Image Gallery
+        br
+        br
+        table
+            tbody.text-center   
+                -var counter = 0;
+                tr
+                    each userLog in userLogs                                 
+                            td                
+                                img.limitthumbnail(src= userLog.logentry.picture )
+                                -counter++;
+                            td 
+                       
+
+                
+
+
+    //- .img-carousel
+    //-     each userLog in userLogs
+    //-         if ((userLog.logentry.picture !== 'undefined') && (userLog.logentry.picture !== 'null'))
+    //-             img(src= "#{userLog.logentry.picture}" )
 
     //- #editing
     //-     h3.text-center Edit an Entry
@@ -167,7 +194,8 @@ block content
     //-         input(type="file", name="editedLogImage", accept="image/*")
     //-         br
     //-         input(type="submit", class="btn editentry", value="Update Entry")
-
+    br
+    br
     //- h2.text-center My Image Gallery
     //-     .container.width80
     //-         .col-sm-12
@@ -180,9 +208,12 @@ block content
     //-                         li(data-target="#myCarousel", data-slide-to="2")
     //-                     // Carousel items
     //-                     .carousel-inner
-    //-                         .active.item Slide 1
-    //-                         .item Slide 2
-    //-                         .item Slide 3
+    //-                         each userLog in userLogs
+    //-                             -var pic = userLog.logentry.picture
+    //-                             -console.log (pic)
+    //-                             if ((userLog.logentry.picture !== 'undefined') && (userLog.logentry.picture !== 'null'))                        
+    //-                             .active.item                 
+    //-                                 img(src= "http://78.media.tumblr.com/f1b452d1280cc3b44be9c9c2e7ee2b67/tumblr_mp12e5V0bB1qjm9bpo1_500.png" )
     //-                     // Carousel nav
     //-                     a.carousel-control.left-flat(href="#myCarousel", data-slide="prev") ‹
     //-                     a.carousel-control.right-flat(href="#myCarousel", data-slide="next") ›

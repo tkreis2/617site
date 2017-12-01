@@ -73,10 +73,20 @@ exports.postlogentry = (req, res) => {
     return res.redirect('/account');
   }
 
-  var newUserLog = new userlog({email: thisuser.email, groupID: thisuser.groupID, 
+  // var temp_path = req.files.thumbnail.path;
+  // var target_path = '/uploads/' + req.files.thumbnail.name;
+
+  // fs.rename(temp_path, target_path, function (err){
+  //   if (err) return err;
+  //   fs.unlink(tmp_path, function(){
+  //     if (err) return err;
+  //   })
+  // })
+
+   var newUserLog = new userlog({email: thisuser.email, groupID: thisuser.groupID, 
     logentry :{logDate: req.body.LogDateTime, logType: req.body.logtype, 
       logDetails: req.body.LogDetails, individGoalProgress: req.body.LogProgress,
-    picturecontentType: "image/png"}});
+    picture: req.body.LogImageURL}});
 
     /**from above removed  picture: req.body.LogImage, */
 
