@@ -76,7 +76,7 @@ exports.postlogentry = (req, res) => {
   // var temp_path = req.files.thumbnail.path;
   // var target_path = '/uploads/' + req.files.thumbnail.name;
 
-  // fs.rename(temp_path, target_path, function (err){
+  // fs.rename(temp_path, target_path, function (err){tiv
   //   if (err) return err;
   //   fs.unlink(tmp_path, function(){
   //     if (err) return err;

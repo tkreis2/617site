@@ -46,14 +46,14 @@ $(document).ready(function() {
     });
 
     //Individdash image gallery
-    $('.individgallery li:lt(3)').show();
-    $('#less').hide();
+    $('.individgallery li:lt(4)').show();
+    $('#less').hide()
     var items =  6;
-    var minshow = 3;
-    var shown =  3;
+    var minshow = 4;
+    var shown =  4;
     var nowshowing = 0;
     $('#more').click(function () {
-        shown = $('.individgallery li:visible').length +3;
+        shown = $('.individgallery li:visible').length +4;
         nowshowing = shown;
         if(shown < items) {
             $('.individgallery li:lt('+shown+')').show();
@@ -72,10 +72,10 @@ $(document).ready(function() {
         }
     });
     $('#less').click(function () {
-        $('.individgallery li').not(':lt(3)').hide();
-        nowshowing = shown -3;
+        $('.individgallery li').not(':lt(4)').hide();
+        nowshowing = shown -4;
         $('#more').show();        
-        if(nowshowing == minshow){
+        if((nowshowing < items) || (nowshowing == 0)){
             $('#less').hide();
         }
         return false;         
@@ -108,10 +108,10 @@ $(document).ready(function() {
         }
     });
     $('#groupless').click(function () {
-        $('.groupgallery li').not(':lt(3)').hide();
-        nowshowing = shown -3;
+        $('.groupgallery li').not(':lt(4)').hide();
+        nowshowing = shown -4;
         $('#groupmore').show();        
-        if(nowshowing == minshow){
+        if((nowshowing < items) || (nowshowing == 0)){
             $('#groupless').hide();
         }
         return false;         
