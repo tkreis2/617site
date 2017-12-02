@@ -31,11 +31,18 @@ userlogSchema.methods.calcProg = function calcProg(thisuser){
 }
 
 userlogSchema.methods.updateProg = function updateProg(thisuser, prevVal, editedLogProgress){
-    thisuser.thisgoalprogress = thisuser.thisgoalprogress - prevVal + thisuser.editedLogProgress;
-    thisuser.totalGoalProgress = thisuser.totalGoalProgress + this.logentry.individGoalProgress;
+    thisuser.thisgoalprogress = thisuser.thisgoalprogress - prevVal + this.logentry.editedLogProgress;
+    thisuser.totalGoalProgress = thisuser.totalGoalProgress + thisuser.thisgoalprogress;
     thisuser.thisgoalremaining = thisuser.individGoal - thisuser.thisgoalprogress;
     this.logentry.individGoalRemaining = thisuser.individGoal - thisuser.thisgoalprogress;
 }
+
+// userlogSchema.statics.deleteProg = function deleteProg(thisuser){
+//     console.log("in userlog schema delete");
+//     thisuser.thisgoalprogress = thisuser.thisgoalprogress - this.logentry.individGoalProgress;
+//     thisuser.totalGoalProgress = thisuser.totalGoalProgress - this.logentry.individGoalProgress;
+//     thisuser.thisgoalremaining = thisuser.individGoal + this.logentry.individGoalProgress;
+// }
 
 userlogSchema.pre('save', function (next) {
     const userlog = this;

@@ -111,7 +111,7 @@ exports.postlogentry = (req, res) => {
 exports.geteditentry = (req, res, next) => {
   var thisuser = req.user;
   var logID = req.params.logID;
-  console.log(logID);
+  // console.log(logID);
   res.render('editentry',{
     logID: logID,
   });
@@ -136,10 +136,12 @@ exports.posteditentry = (req, res) => {
   //   req.flash('success', { msg: 'Entry Updated.' });
   //   res.redirect('/account');        
   // });
+//   var prevVal = 0;
+//  userlog.findById(logID, function(err, userlog){
+//     prevVal = userlog.logentry.individGoalProgress;
+//   });
 
-  var prevVal = findById(logID);
-  prevVal = prevVal.individGoalProgress;
-  console.log(prevVal);
+//   console.log(prevVal);
   userlog.findByIdAndUpdate(logID, {logentry:{logDate: req.body.editedLogDateTime,
     logType: req.body.editedlogtype, 
     logDetails: req.body.editedLogDetails, 
@@ -152,6 +154,26 @@ exports.posteditentry = (req, res) => {
     }) 
 }; //end posteditentry
 
+/**Recalculate progress */
+// exports.deleteProg = (req, res) =>{
+//   var thisuser = req.user;
+//   var logID = req.params.logID;
+
+//   user.findOneAndUpdate({email:thisuser.email, groupID: thisuser.groupID},{thisgoalprogress: thisgoalprogress - this.logentry.individGoalProgress,
+//   thisgoalremaining: thisgoalremaining + this.logentry.individGoalProgress, progper: thisgoalprogress/ (thisgoalprogress + thisgoalremaining)}, {new: true}, function (err, user){
+//       if(err)
+//         res.send(err);  
+//   })
+
+//   // console.log("in prog delete");
+//   // thisuser.thisgoalprogress = thisuser.thisgoalprogress - this.logentry.individGoalProgress;
+//   // thisuser.totalGoalProgress = thisuser.totalGoalProgress - this.logentry.individGoalProgress;
+//   // thisuser.thisgoalremaining = thisuser.individGoal + this.logentry.individGoalProgress;
+
+
+
+// };
+
 
 /**Post Delete entry */
 exports.postdeleteentry = (req, res) => {
@@ -159,6 +181,13 @@ exports.postdeleteentry = (req, res) => {
   var logID = req.params.logID;
 
   userlog.findByIdAndRemove(logID, function (err, userlog){
+    user.findOneAndUpdate({email:thisuser.email, groupID: thisuser.groupID},{totalGoalProgress: thisuser.totalGoalProgress - userlog.logentry.individGoalProgress, 
+      thisgoalprogress: thisuser.thisgoalprogress - userlog.logentry.individGoalProgress,
+      thisgoalremaining: thisuser.thisgoalremaining + userlog.logentry.individGoalProgress, progper: thisuser.thisgoalprogress/ (thisuser.thisgoalprogress + thisuser.thisgoalremaining)}, 
+      {new: true}, function (err, user){
+          if(err)
+            res.send(err);  
+      })    
     if(err)
       res.send(err);
     req.flash('success', { msg: 'Entry Deleted.' });
