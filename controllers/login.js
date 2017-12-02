@@ -4,6 +4,7 @@ const nodemailer = require('nodemailer');
 const passport = require('passport');
 var mongoose = require('mongoose');
 var user = require('../models/User');
+var userlogs = require('../models/userlog');
 var isNew = false;
 
 /**
@@ -168,6 +169,10 @@ exports.getSignup = (req, res) => {
  * Delete user account.
  */
 exports.postDeleteAccount = (req, res, next) => {
+  var thisuser = req.user;
+  userlogs.remove({email: thisuser.email}, (err) =>{
+    if (err) { return next(err); }
+  })
   user.remove({ _id: req.user.id }, (err) => {
     if (err) { return next(err); }
     req.logout();

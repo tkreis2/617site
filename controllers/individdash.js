@@ -88,7 +88,6 @@ exports.postlogentry = (req, res) => {
       logDetails: req.body.LogDetails, individGoalProgress: req.body.LogProgress,
     picture: req.body.LogImageURL}});
 
-    /**from above removed  picture: req.body.LogImage, */
 
   newUserLog.calcProg(thisuser);
 
@@ -137,10 +136,15 @@ exports.posteditentry = (req, res) => {
   //   req.flash('success', { msg: 'Entry Updated.' });
   //   res.redirect('/account');        
   // });
+
+  var prevVal = findById(logID);
+  prevVal = prevVal.individGoalProgress;
+  console.log(prevVal);
   userlog.findByIdAndUpdate(logID, {logentry:{logDate: req.body.editedLogDateTime,
     logType: req.body.editedlogtype, 
     logDetails: req.body.editedLogDetails, 
     individGoalProgress: req.body.editedLogProgress}}, {new: true}, function(err, userlog){
+      userlog.updateProg(thisuser, prevVal, req.body.editedLogProgress);      
       if(err)
         res.send(err);
       req.flash('success', {msg: 'Entry Updated.'});

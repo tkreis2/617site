@@ -30,6 +30,12 @@ userlogSchema.methods.calcProg = function calcProg(thisuser){
     this.logentry.individGoalRemaining = thisuser.individGoal - thisuser.thisgoalprogress;
 }
 
+userlogSchema.methods.updateProg = function updateProg(thisuser, prevVal, editedLogProgress){
+    thisuser.thisgoalprogress = thisuser.thisgoalprogress - prevVal + thisuser.editedLogProgress;
+    thisuser.totalGoalProgress = thisuser.totalGoalProgress + this.logentry.individGoalProgress;
+    thisuser.thisgoalremaining = thisuser.individGoal - thisuser.thisgoalprogress;
+    this.logentry.individGoalRemaining = thisuser.individGoal - thisuser.thisgoalprogress;
+}
 
 userlogSchema.pre('save', function (next) {
     const userlog = this;
