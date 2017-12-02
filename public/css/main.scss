@@ -208,3 +208,9 @@ a.thumbnail:focus,
 a.thumbnail.active {
   border-color: $link-color;
 }
+
+.pic-flex-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}

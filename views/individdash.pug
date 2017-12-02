@@ -141,15 +141,20 @@ block content
     h2.text-center My Image Gallery
         br
         br
-        table
-            tbody.text-center   
-                -var counter = 0;
-                tr
-                    each userLog in userLogs                                 
-                            td                
-                                img.limitthumbnail(src= userLog.logentry.picture )
-                                -counter++;
-                            td 
+    div.pic-flex-container
+        each userLog in userLogs  
+            div                                           
+                img.limitthumbnail(src= userLog.logentry.picture )
+                -counter++;        
+        //- table
+        //-     tbody.text-center   
+        //-         -var counter = 0;
+        //-         tr
+                    //- each userLog in userLogs                                 
+                    //-         td                
+                    //-             img.limitthumbnail(src= userLog.logentry.picture )
+                    //-             -counter++;
+                    //-         td 
                        
 
                 
