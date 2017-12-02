@@ -5,7 +5,7 @@ var formentrySchema = Schema({
     fullname: String, 
     email: String, 
     reasoncontact: String,
-    message: String
+    message: String 
 });
 
 var formentry = mongoose.model('formentry', formentrySchema);

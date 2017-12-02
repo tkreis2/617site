@@ -45,8 +45,7 @@ $(document).ready(function() {
         $(this).attr("href", _href +logID );
     });
 
-
-
+    //Individdash image gallery
     $('.individgallery li:lt(3)').show();
     $('#less').hide();
     var items =  6;
@@ -82,6 +81,41 @@ $(document).ready(function() {
         return false;         
     });
 
+    //Groupdash image gallery
+    $('.groupgallery li:lt(3)').show();
+    $('#groupless').hide();
+    var items =  6;
+    var minshow = 3;
+    var shown =  3;
+    var nowshowing = 0;
+    $('#groupmore').click(function () {
+        shown = $('.groupgallery li:visible').length +3;
+        nowshowing = shown;
+        if(shown < items) {
+            $('.groupgallery li:lt('+shown+')').show();
+            $('#groupmore').show();
+            // $('#less').removeClass('hidden');
+            $('#groupless').show();
+            return false;
+        }
+        else {
+            $('.groupgallery li:lt('+items+')').show();
+            // $('#less').removeClass('hidden');
+            $('#groupless').show();
+            $('#groupmore').hide();  
+            return false; 
+
+        }
+    });
+    $('#groupless').click(function () {
+        $('.groupgallery li').not(':lt(3)').hide();
+        nowshowing = shown -3;
+        $('#groupmore').show();        
+        if(nowshowing == minshow){
+            $('#groupless').hide();
+        }
+        return false;         
+    });
 
     // $('#pagination-individ').twbsPagination({
     //     totalPages: 2,

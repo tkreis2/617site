@@ -8,6 +8,7 @@ const forumSchema = Schema({
     groupID: String,
     email: String,
     message: String,
+    picture: String
   }, { timestamps: true });
 
 

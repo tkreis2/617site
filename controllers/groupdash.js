@@ -43,7 +43,7 @@ exports.postforum = (req, res) => {
     //   return res.redirect('/groupdash');
     // }
   
-    var newforumPost = new forum({email: thisuser.email, groupID: thisuser.groupID, message: req.body.forumpost});
+    var newforumPost = new forum({email: thisuser.email, groupID: thisuser.groupID, message: req.body.forumpost, picture: req.body.ForumImageURL});
 
     newforumPost.save(function(err, forum){
       if(err)

@@ -241,6 +241,13 @@ a.thumbnail.active {
   margin-right: 10px;
 }
 
+.groupgallery li { 
+  display:none;
+  float: left;
+  list-style: none;
+  margin-right: 10px;
+}
+
 .more, .less {
   clear: both;
   display: block;

@@ -46,6 +46,10 @@ block content
             b| Message to Group:
             br
             textarea(name="forumpost", required="", rows="3", cols="70")    
+            br
+            br
+            b| Picture URL   
+            input(type="url", name="ForumImageURL")             
             br        
             br
             input(type="submit", class="btn text-center", value="Post")
@@ -99,26 +103,22 @@ block content
 
     br
     br
+    br
 
-
-    //- h2.text-center Image Gallery
-    //- br
-    //- br
-    //- .container.width80
-    //-     .col-sm-12
-    //-         .bs-example
-    //-             #myCarousel.carousel.slide
-    //-                 // Carousel indicators
-    //-                 ol.carousel-indicators
-    //-                     li.active(data-target="#myCarousel", data-slide-to="0")
-    //-                     li(data-target="#myCarousel", data-slide-to="1")
-    //-                     li(data-target="#myCarousel", data-slide-to="2")
-    //-                 // Carousel items
-    //-                 .carousel-inner
-    //-                     .active.item Slide 1
-    //-                     .item Slide 2
-    //-                     .item Slide 3
-    //-                 // Carousel nav
-    //-                 a.carousel-control.left-flat(href="#myCarousel", data-slide="prev") ‹
-    //-                 a.carousel-control.right-flat(href="#myCarousel", data-slide="next") ›
-    
+    h2.text-center #{thisuser.groupID} Image Gallery
+    #groupmore.float-right
+        a(href='') Show More
+    #groupless.float-right
+        a(href='') Show Less
+    br
+    br
+    ul.groupgallery
+        -var counter = 0;
+        each forum in forums   
+            if (forum.picture !== '')
+                li
+                    div  
+                        -counter++;                                         
+                        img.limitthumbnail(src= forum.picture, data-imgnum = counter ) 
+    br
+    br
