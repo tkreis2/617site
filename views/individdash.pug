@@ -139,93 +139,36 @@ block content
     br
 
     h2.text-center My Image Gallery
-        br
-        br
-    div.pic-flex-container
-        each userLog in userLogs  
-            div                                           
-                img.limitthumbnail(src= userLog.logentry.picture )
-                -counter++;        
-        //- table
-        //-     tbody.text-center   
-        //-         -var counter = 0;
-        //-         tr
-                    //- each userLog in userLogs                                 
-                    //-         td                
-                    //-             img.limitthumbnail(src= userLog.logentry.picture )
-                    //-             -counter++;
-                    //-         td 
-                       
-
-                
-
-
-    //- .img-carousel
-    //-     each userLog in userLogs
-    //-         if ((userLog.logentry.picture !== 'undefined') && (userLog.logentry.picture !== 'null'))
-    //-             img(src= "#{userLog.logentry.picture}" )
-
-    //- #editing
-    //-     h3.text-center Edit an Entry
-    //-     form(method="POST", autocomplete="on", action="/editlog")
-    //-         input(type="hidden", name="_csrf", value=_csrf)
-    //-         input(type="hidden", name="logentryID", id= "logentryID", value = "#{logentryID}")
-    //-         |    Date*
-    //-         br
-    //-         input(type="date", name="editedLogDateTime", required="")
-    //-         br
-    //-         | Log Entry Type*
-    //-         br
-    //-         select(required="", name="editedlogtype")
-    //-             option(value="default", selected="", disabled="", hidden="") Select
-    //-             option(value="Weight") Weight
-    //-             option(value="Exercise") Exercise
-    //-             option(value="Food") Food
-    //-         br
-    //-         |     Entry Details* 
-    //-         br
-    //-         textarea(name="editedLogDetails", required="", rows="3", cols="35")
-    //-         br
-    //-         |     Current Progress*
-    //-         br
-    //-         input(type="number", name="editedLogProgress", required="")
-    //-         //- br
-    //-         //- |     Goal*
-    //-         //- br
-    //-         //- input(type="number", name="LogGoal", required="")
-    //-         br        
-    //-         |     Picture Upload
-    //-         br
-    //-         input(type="file", name="editedLogImage", accept="image/*")
-    //-         br
-    //-         input(type="submit", class="btn editentry", value="Update Entry")
+    #more.float-right
+        a(href='') Show More
+    #less.float-right
+        a(href='') Show Less
     br
     br
-    //- h2.text-center My Image Gallery
-    //-     .container.width80
-    //-         .col-sm-12
-    //-             .bs-example
-    //-                 #myCarousel.carousel.slide
-    //-                     // Carousel indicators
-    //-                     ol.carousel-indicators
-    //-                         li.active(data-target="#myCarousel", data-slide-to="0")
-    //-                         li(data-target="#myCarousel", data-slide-to="1")
-    //-                         li(data-target="#myCarousel", data-slide-to="2")
-    //-                     // Carousel items
-    //-                     .carousel-inner
-    //-                         each userLog in userLogs
-    //-                             -var pic = userLog.logentry.picture
-    //-                             -console.log (pic)
-    //-                             if ((userLog.logentry.picture !== 'undefined') && (userLog.logentry.picture !== 'null'))                        
-    //-                             .active.item                 
-    //-                                 img(src= "http://78.media.tumblr.com/f1b452d1280cc3b44be9c9c2e7ee2b67/tumblr_mp12e5V0bB1qjm9bpo1_500.png" )
-    //-                     // Carousel nav
-    //-                     a.carousel-control.left-flat(href="#myCarousel", data-slide="prev") ‹
-    //-                     a.carousel-control.right-flat(href="#myCarousel", data-slide="next") ›
-    
-
-
+    ul.individgallery
+        -var counter = 0;
+        each userLog in userLogs   
+            if (userLog.logentry.picture !== '')
+                li
+                    div  
+                        -counter++;                                         
+                        img.limitthumbnail(src= userLog.logentry.picture, data-imgnum = counter ) 
+    br
+    br
+    //- div.pic-flex-container
+    //-     ul.individgallery
+    //-         -var counter = 0;
+    //-         each userLog in userLogs 
+    //-             div   
+    //-                 li  
+    //-                     -counter++;                                         
+    //-                     img.limitthumbnail(src= userLog.logentry.picture, data-imgnum = counter ) 
+    //- .more
+    //-     a(href='') Show More
+    //- .less
+    //-     a(href='') Show Less
     br
     br
     br
-    //- a.btn.text-center(href='/delete') Delete Account
+    br
+    br
