@@ -32,8 +32,8 @@ $(document).ready(function() {
         var href;
         logID = $(this).data("id");
         console.log(logID);
-        _href= $(this).attr("href");
-        $(this).attr("href", _href +logID );
+        // _href= $(this).attr("href");
+        // $(this).attr("href", _href +logID );
     });
 
     $('.deleteentry').click(function(){
@@ -45,10 +45,12 @@ $(document).ready(function() {
         $(this).attr("href", _href +logID );
     });
 
+
+
     //Individdash image gallery
     $('.individgallery li:lt(4)').show();
     $('#less').hide()
-    var items =  6;
+    var items =  10;
     var minshow = 4;
     var shown =  4;
     var nowshowing = 0;
@@ -84,7 +86,7 @@ $(document).ready(function() {
     //Groupdash image gallery
     $('.groupgallery li:lt(3)').show();
     $('#groupless').hide();
-    var items =  6;
+    var items =  10;
     var minshow = 3;
     var shown =  3;
     var nowshowing = 0;

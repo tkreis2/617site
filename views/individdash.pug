@@ -83,7 +83,8 @@ block content
     br  
     .progress
         .progress-bar.active(role="progressbar", style= 'width: '+ thisuser.progper + '%', aria-valuenow= "#{thisuser.totalGoalProgress}", aria-valuemin="0", aria-valuemax= "#{thisuser.totalGoalValue}")   
-    h4.text-center #{thisuser.progper}% (#{thisuser.thisgoalprogress}/#{thisuser.thisgoalprogress + thisuser.thisgoalremaining}) of Current Goal Complete
+    //- h4.text-center #{thisuser.progper}% (#{thisuser.thisgoalprogress}/#{thisuser.thisgoalprogress + thisuser.thisgoalremaining}) of Current Goal Complete
+    h4.text-center #{thisuser.progper}% of Current Goal Complete    
     br
     h2.text-center My Log
     br

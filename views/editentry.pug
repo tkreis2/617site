@@ -8,9 +8,10 @@ block content
         div.float-left-dash
             form(method="POST", autocomplete="on")
                 input(type="hidden", name="_csrf", value=_csrf)
+                input(type="hidden", id="logtoedit", name="logtoedit", value = logID)
                 |    Date*
                 br
-                input(type="date", name="editedLogDateTime", required="")
+                input(type="date", name="editedLogDateTime", required="") 
                 br
                 | Log Entry Type*
                 br
@@ -22,11 +23,14 @@ block content
                 br
                 |     Entry Details* 
                 br
-                textarea(name="editedLogDetails", required="", rows="3", cols="35")
+                textarea(name="editedLogDetails", required="", rows="3", cols="35") 
                 br
                 |     Current Progress*
                 br
-                input(type="number", name="editedLogProgress", required="")
+                input(type="number", name="editedLogProgress", required="") 
+                |     Picture URL
+                br
+                input(type="url", name="editedLogImageURL")              
                 //- br
                 //- |     Goal*
                 //- br
@@ -36,4 +40,5 @@ block content
                 //- br
                 //- input(type="file", name="editedLogImage", accept="image/*")
                 br
-                input(type="submit", class="btn posteditentry", value="Update Entry", name="logentryid", data-id= logID)
+                //- input(type="submit", class="btn posteditentry", value="Update Entry", name="logentryid", data-id= logID)
+                input(type="submit", class="btn posteditentry", value="Update Entry", name="logentryid", data-id= logID)                

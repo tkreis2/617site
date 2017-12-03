@@ -73,16 +73,6 @@ exports.postlogentry = (req, res) => {
     return res.redirect('/account');
   }
 
-  // var temp_path = req.files.thumbnail.path;
-  // var target_path = '/uploads/' + req.files.thumbnail.name;
-
-  // fs.rename(temp_path, target_path, function (err){tiv
-  //   if (err) return err;
-  //   fs.unlink(tmp_path, function(){
-  //     if (err) return err;
-  //   })
-  // })
-
    var newUserLog = new userlog({email: thisuser.email, groupID: thisuser.groupID, 
     logentry :{logDate: req.body.LogDateTime, logType: req.body.logtype, 
       logDetails: req.body.LogDetails, individGoalProgress: req.body.LogProgress,
@@ -111,67 +101,87 @@ exports.postlogentry = (req, res) => {
 exports.geteditentry = (req, res, next) => {
   var thisuser = req.user;
   var logID = req.params.logID;
-  // console.log(logID);
+
+  // userlog.findById(logID, function(err, userlog){
+  //   res.render('editentry', {
+  //     logID: userlog.id, 
+  //     thisuser: thisuser,
+  //   });
+  // });
   res.render('editentry',{
     logID: logID,
   });
   return next();
-
-  // userlog.find({email: thisuser.email, groupID: thisuser.groupID}, function(err, userLogs){
-  //   res.render('editentry', {
-  //     userLogs: userLogs,  
-  //     thisuser: thisuser,
-  //   });
-  // });
 };
+
 
 /**Post edit entry */
 exports.posteditentry = (req, res) => {
   var thisuser = req.user;
   var logID = req.params.logID;
-  // userlog.findOneAndUpdate({ObjectId: data},{logentry :{logDate: req.body.editedLogDateTime, logType: req.body.editedlogtype, 
-  //   logDetails: req.body.editedLogDetails, individGoalProgress: req.body.editedLogProgress, picture: req.body.editedLogImage}}, {new: true}, function (err, userlog){
-  //   if(err)
-  //     res.send(err);
-  //   req.flash('success', { msg: 'Entry Updated.' });
-  //   res.redirect('/account');        
-  // });
-//   var prevVal = 0;
-//  userlog.findById(logID, function(err, userlog){
-//     prevVal = userlog.logentry.individGoalProgress;
-//   });
 
-//   console.log(prevVal);
-  userlog.findByIdAndUpdate(logID, {logentry:{logDate: req.body.editedLogDateTime,
-    logType: req.body.editedlogtype, 
-    logDetails: req.body.editedLogDetails, 
-    individGoalProgress: req.body.editedLogProgress}}, {new: true}, function(err, userlog){
-      userlog.updateProg(thisuser, prevVal, req.body.editedLogProgress);      
-      if(err)
-        res.send(err);
-      req.flash('success', {msg: 'Entry Updated.'});
-      res.redirect('/account')
-    }) 
+  console.log('logID in posteditentry: ' +logID);
+  userlog.findById(logID, function (err, userlog){
+    user.findOneAndUpdate({email:thisuser.email, groupID: thisuser.groupID},{totalGoalProgress: thisuser.totalGoalProgress - userlog.logentry.individGoalProgress, 
+      thisgoalprogress: thisuser.thisgoalprogress - userlog.logentry.individGoalProgress,
+      thisgoalremaining: thisuser.thisgoalremaining + userlog.logentry.individGoalProgress, progper: (thisuser.thisgoalprogress - userlog.logentry.individGoalProgress)/ (thisuser.thisgoalprogress + thisuser.thisgoalremaining)}, 
+      {new: true}, function (err, user){
+          if(err)
+            res.send(err); 
+      });  
+    if(err)
+      res.send(err);       
+   });
+   userlog.findByIdAndUpdate(logID, {logentry:{logDate: req.body.editedLogDateTime, logType: req.body.editedlogtype, logDetails: req.body.editedLogDetails, 
+    individGoalProgress: req.body.editedLogProgress, individGoalRemaining: thisuser.individGoal - req.body.editedLogProgress}}, {new: true}, function(err, userlog){
+      user.findOneAndUpdate({email:thisuser.email, groupID: thisuser.groupID}, {'$inc': {totalGoalProgress:  (req.body.editedLogProgress)}, 
+        '$inc': {thisgoalprogress: (req.body.editedLogProgress)},
+        '$dec': {thisgoalremaining: (req.body.editedLogProgress)}, progper: (thisuser.thisgoalprogress/ (thisuser.thisgoalprogress + thisuser.thisgoalremaining))}, 
+        {new: true}, function (err, user){
+            if(err)
+              return (err);                           
+        }); 
+      if (err)
+        return (err);
+  }) ;    
+
+   res.redirect('/account');
+
+
+  // userlog.findById(logID, function (err, userlog){
+  //   user.findOneAndUpdate({email:thisuser.email, groupID: thisuser.groupID},{ '$dec': {totalGoalProgress: userlog.logentry.individGoalProgress}, 
+  //     '$dec': {thisgoalprogress: userlog.logentry.individGoalProgress}, '$inc' : {thisgoalremaining: userlog.logentry.individGoalProgress, 
+  //     progper: (thisuser.thisgoalprogress -userlog.logentry.individGoalProgress)/ ((thisuser.thisgoalprogress - userlog.logentry.individGoalProgress) + (thisuser.thisgoalremaining + userlog.logentry.individGoalProgress))}, 
+  //     },{new: true}, function (err, user){
+  //       if(err)
+  //         return (err);
+  //     });  
+  //     if(err)
+  //       res.send(err);
+  //     req.flash('success', {msg: 'Entry Updated.'});          
+  //     res.redirect('/account');      
+  // });
+    
 }; //end posteditentry
 
-/**Recalculate progress */
-// exports.deleteProg = (req, res) =>{
+// exports.updateentry = (req, res) => {
 //   var thisuser = req.user;
 //   var logID = req.params.logID;
+//   console.log('reached updateentry');
+//   console.log('editedProgress: '+ req.body.editedLogProgress);
 
-//   user.findOneAndUpdate({email:thisuser.email, groupID: thisuser.groupID},{thisgoalprogress: thisgoalprogress - this.logentry.individGoalProgress,
-//   thisgoalremaining: thisgoalremaining + this.logentry.individGoalProgress, progper: thisgoalprogress/ (thisgoalprogress + thisgoalremaining)}, {new: true}, function (err, user){
-//       if(err)
-//         res.send(err);  
-//   })
-
-//   // console.log("in prog delete");
-//   // thisuser.thisgoalprogress = thisuser.thisgoalprogress - this.logentry.individGoalProgress;
-//   // thisuser.totalGoalProgress = thisuser.totalGoalProgress - this.logentry.individGoalProgress;
-//   // thisuser.thisgoalremaining = thisuser.individGoal + this.logentry.individGoalProgress;
-
-
-
+//     // userlog.findByIdAndUpdate(logID, {logentry:{logDate: req.body.editedLogDateTime, logType: req.body.editedlogtype, logDetails: req.body.editedLogDetails, 
+//     // individGoalProgress: req.body.editedLogProgress, individGoalRemaining: thisuser.individGoal - thisuser.thisgoalprogress}}, {new: true}, function(err, userlog){
+//     //   user.findOneAndUpdate({email:thisuser.email, groupID: thisuser.groupID}, {'$inc': {totalGoalProgress:  (req.body.editedLogProgress - thisuser.totalGoalProgress)}, 
+//     //     '$inc': {thisgoalprogress: (req.body.editedLogProgress - thisuser.thisgoalprogress)},
+//     //     '$dec': {thisgoalremaining: (req.body.editedLogProgress - thisuser.thisgoalremaining)}, progper: (thisuser.thisgoalprogress/ (thisuser.thisgoalprogress + thisuser.thisgoalremaining))}, 
+//     //     {new: true}, function (err, user){
+//     //         if(err)
+//     //           return (err);                           
+//     //     })  
+//     // }) 
+//     req.flash('success', {msg: 'Entry Updated.'});
+//     res.redirect('/account');       
 // };
 
 

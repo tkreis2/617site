@@ -216,6 +216,9 @@ app.get('/newgroup', individdashController.getnewgroup);
 app.get('/editlog&logid=:logID', individdashController.geteditentry);
 app.post('/editlog&logid=:logID', individdashController.posteditentry);
 
+// app.get('/updatelog&logid=:logID', individdashController.updateentry);
+// app.post('/updatelog&logid=:logID', individdashController.updateentry);
+
 app.get('/deleteentry&logid=:logID', individdashController.postdeleteentry);
 app.post('/deleteentry&logid=:logID', individdashController.postdeleteentry);
 

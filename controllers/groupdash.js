@@ -73,13 +73,13 @@ exports.postdeleteforumpost= (req, res) => {
 exports.geteditforumpost = (req, res, next) => {
   var thisuser = req.user;
   var postID = req.params.postID;
-  console.log(postID);
+  // console.log(postID);
 
   forum.findById(postID, function(err, forum){
     res.render('editforumpost',{
       forum: forum
     });
-});
+  });
 
   // userlog.find({email: thisuser.email, groupID: thisuser.groupID}, function(err, userLogs){
   //   res.render('editentry', {
@@ -104,6 +104,6 @@ exports.posteditforumpost = (req, res) => {
       if(err)
         res.send(err);
       req.flash('success', {msg: 'Post Updated.'});
-      res.redirect('/groupdash')
+      res.redirect('/groupdash');
     }) 
 }; //end posteditentry

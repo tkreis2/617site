@@ -6,10 +6,7 @@ var userlogSchema = Schema({
     email: String, 
     groupID: String,
     logentryID: String,
-    // individGoalType: String,
-    // individGoalValue: Number,
-    // individGoalProgress: Number,
-    // totalGoalProgress: Number,
+
 
     logentry: {
         logDate: String,
