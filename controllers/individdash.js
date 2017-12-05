@@ -177,20 +177,32 @@ exports.updateentry = (req, res) => {
 exports.postdeleteentry = (req, res) => {
   var thisuser = req.user;
   var logID = req.params.logID;
+  var amount;
+
 
   userlog.findByIdAndRemove(logID, function (err, userlog){
+    // amount = userlog.logentry.individGoalProgress;
+    console.log('in delete amount: ' +amount);
     user.findOneAndUpdate({email:thisuser.email, groupID: thisuser.groupID},{totalGoalProgress: thisuser.totalGoalProgress - userlog.logentry.individGoalProgress, 
       thisgoalprogress: thisuser.thisgoalprogress - userlog.logentry.individGoalProgress,
       thisgoalremaining: thisuser.thisgoalremaining + userlog.logentry.individGoalProgress, progper: thisuser.thisgoalprogress/ (thisuser.thisgoalprogress + thisuser.thisgoalremaining)}, 
       {new: true}, function (err, user){
           if(err)
             res.send(err);  
-      })    
+      });
+               
     if(err)
-      res.send(err);
-    req.flash('success', { msg: 'Entry Deleted.' });
-    res.redirect('/account');       
-  })
+      res.send(err);    
+  });
+  // userlog.findOneAndUpdate({_id:{$gt: logID}}, 
+  //   {logentry:{individGoalRemaining: thisuser.thisgoalremaining}},
+  //   {new: true}, function (err, userlog){
+  //     if(err)
+  //     res.send(err);    
+  //   });
+
+  req.flash('success', { msg: 'Entry Deleted.' });
+  res.redirect('/account');  
 };
 
 

@@ -2,7 +2,7 @@
 
 // const passport = require('passport');
 // var mongoose = require('mongoose');
-// var user = require('../models/User');$
+// var user = require('../models/User');
 
 $(document).ready(function() {
 
@@ -119,16 +119,6 @@ $(document).ready(function() {
         return false;         
     });
 
-    // $('#pagination-individ').twbsPagination({
-    //     totalPages: 2,
-    //     visiblePages: 2,
-    //     next: 'Next',
-    //     prev: 'Prev',
-    //     onPageClick: function (event, page) {
-    //         //fetch content and render here
-    //         $('#page-content').text('Page ' + page) + ' content here';
-    //     }
-    // });
 
     //Group dash forum posts
 
@@ -150,6 +140,27 @@ $(document).ready(function() {
         _href= $(this).attr("href");
         $(this).attr("href", _href +postID );
     });
+
+    // $(function(){
+    //     $('#chartContainer').CanvasJSChart({
+    //         title:{
+    //             text: "Group Progress"             
+    //         },
+    //         data: [
+    //         {
+    //             type: "column",   
+    //             dataPoints: [
+    //                 {"label": $('#user0').text(), "y": 18 },
+    //                 {"label": $('#user1').text(), "y": 18 },
+    //                 {"label": $('#user2').text(), "y": 18 },
+    //             ]
+    //         }
+    //         ]
+    //         });
+    // });
+  
+
+
 
 
   

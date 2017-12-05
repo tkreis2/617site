@@ -29,7 +29,8 @@ exports.index = (req, res, next) => {
         });
       });
       }).sort({"createdAt": -1}); 
-  };
+       
+};
 
 
 /**Post entry */

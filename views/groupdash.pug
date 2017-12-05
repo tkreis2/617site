@@ -14,23 +14,29 @@ block content
             th
             th Completions
         tbody
+            -var counter = 0;
             each user in users
                 tr
-                    td #{user.email}
+                    td(id="user"+counter) #{user.email}
                     td 
-                    td #{user.thisgoalprogress}                    
+                    td(id="num"+counter) #{user.thisgoalprogress}                    
                     td 
                     td #{user.individGoal}
                     td
                     td #{user.completions}
+                -counter++;
+
     
-    //- br
-    //- br
-    //- div.cleared
-    //- h2.text-center Our Progress
-    //- br
-    //- div.progress
-    //-     .progress-bar(role="progressbar", style="width: 25%;", aria-valuenow="", aria-valuemin="0", aria-valuemax= "")   
+    br
+    br
+    each user in users
+        -var percentage = (user.thisgoalprogress   / user.individGoal) * 100;
+        -var printpercentage = percentage.toFixed(2);
+        p #{user.email} Has Completed #{printpercentage}% of Their Current Goal
+        .progress
+            .progress-bar.active(role="progressbar", style= 'width: '+ percentage + '%', aria-valuenow= "#{user.thisgoalprogress}", aria-valuemin="0", aria-valuemax= "#{user.individGoal}")
+        br
+    //- #chartContainer
 
     br
     br
