@@ -26,9 +26,8 @@ block content
                     td #{user.completions}
                 -counter++;
 
-    
     br
-    br
+    h3.text-center How Do You Stack Up?
     each user in users
         -var percentage = (user.thisgoalprogress   / user.individGoal) * 100;
         -var printpercentage = percentage.toFixed(2);

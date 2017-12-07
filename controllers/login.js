@@ -80,59 +80,47 @@ exports.getSignup = (req, res) => {
   }
 };
   /**
-   * POST /signup
-   * Create a new local account.
+   * POST /signup. Create a new local account.
    */
   exports.postSignup = (req, res) => {
+    //Form validation.
     req.assert('emailaddr', 'Email is not valid').isEmail();
     req.assert('password', 'Password must be at least 4 characters long').len(4);
-    // req.assert('confirmPassword', 'Passwords do not match').equals(req.body.password);
     req.sanitize('emailaddr').normalizeEmail({ gmail_remove_dots: false });
   
     const errors = req.validationErrors();
-  
+    //Display any errors and redirect to signup page.
     if (errors) {
       req.flash('errors', errors);
-      return res.redirect('/login');
+      return res.redirect('/signup');
     }
-  
-    // const user = new User({
-    //   email: req.body.emailaddr,
-    //   fullname: req.body.fullname,
-    //   joinstart: req.body.joinstart,
-    //   groupID: req.body.groupname,
-    //   password: req.body.password,
-    // });
-
-
+    //Otherwise, create new user based on form data.
     var newUser = new user({fullname: req.body.fullname, email: req.body.emailaddr, joinstart: req.body.joinstart, groupID: req.body.groupname, 
-      individGoal: req.body.goalvalue, password: req.body.password, completions: 0, individGoalType: req.body.goaltype, individGoalDesc: req.body.goaldesc, totalGoalValue: req.body.goalvalue,
-    totalGoalProgress: 0});
-    
-    // newUser.setPassword(req.body.password);
-
+      individGoal: req.body.goalvalue, password: req.body.password, completions: 0, individGoalType: req.body.goaltype, individGoalDesc: req.body.goaldesc, 
+      totalGoalValue: req.body.goalvalue, totalGoalProgress: 0});
+    //Check if there is already a group with the name provided.
     user.findOne({groupID: req.body.groupname}, (err, existingGroup) => {
       if(err) {return next(err);}
       if(existingGroup){
         isNew = true;
+        //If the user is new and tries to start a group with a name that already exists, show error message saying they must join the existing
+        //group or start a new one and redirect.
         if(req.body.joinstart === 'StartGroup'){
           req.flash('errors', {msg: 'Group with that name already exists. You must either join the group or select a different group name.'});
           return res.redirect('/signup');
         }
       }
+    //Check if user with provided email address already exists. If so, direct to login page.
     user.findOne({ email: req.body.emailaddr }, (err, existingUser) => {
       if (err) { return next(err); }
       if (existingUser) {
         req.flash('errors', { msg: 'Account with that email address already exists.' });
         return res.redirect('/login');
       }
+      //Otherwise, save new user.
       newUser.save(function(err, user){
-        // var token;
         if(err)
             res.send(err);
-        /*res.json(entry);*/     
-        // token = user.generatejwt();
-        // sendJSONresponse(res, 200, {"token": token});
         req.logIn(user, (err) => {
           if (err) { return next(err); }
           req.flash('success', { msg: 'Success! You are logged in.' });
@@ -141,6 +129,7 @@ exports.getSignup = (req, res) => {
       });
     });
   });
+};
 
   //   user.findOne({ email: req.body.emailaddr }, (err, existingUser) => {
   //     if (err) { return next(err); }
@@ -162,7 +151,7 @@ exports.getSignup = (req, res) => {
   //     });
   //   });
   //  });
-  };
+
 
   /**
  * POST /account/delete
@@ -231,6 +220,7 @@ exports.postForgot = (req, res, next) => {
   const sendForgotPasswordEmail = (user) => {
     if (!user) { return; }
     const token = user.passwordResetToken;
+    //Set up email service/send from email account.
     const transporter = nodemailer.createTransport({
       service: 'Gmail',
       auth: {
@@ -238,6 +228,7 @@ exports.postForgot = (req, res, next) => {
         pass: 'towsontigers'
       }
     });
+    //Template for password reset email to send to user.
     const mailOptions = {
       to: user.email,
       from: 'memberservices@healthwe.com',
@@ -248,6 +239,7 @@ exports.postForgot = (req, res, next) => {
         If you did not request this, please ignore this email and your password will remain unchanged.\n`
     };
     return transporter.sendMail(mailOptions)
+    //Flash message after user requests a password reset link be sent to their email address.
       .then(() => {
         req.flash('info', { msg: `An e-mail has been sent to ${user.email} with further instructions.` });
       });

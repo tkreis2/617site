@@ -12,24 +12,27 @@ var fs = require('fs'); /** */
 
 
 /**
- * GET /
- * Individ Dash page.
+ * GET Individual Dashboard page.
  */
 exports.index = (req, res) => {
   var thisuser = req.user;
+  //If user reset their goal, change progress percentage to 0.
   if (reset === true){
     thisuser.progper = 0;
     reset = false;
   }
+  //Otherwise, calculate user's progress toward their goal.
   else{
-    // thisuser.progper = (thisuser.totalGoalProgress/thisuser.totalGoalValue) * 100;
     thisuser.progper = (thisuser.thisgoalprogress/thisuser.individGoal) * 100;    
   }
+  //Find all user logs associated with this user when they are part of this group.
+  //Pass user logs and user information to view so they can be looped through and displayed.
   userlog.find({email: thisuser.email, groupID: thisuser.groupID}, function(err, userLogs){
     res.render('individdash', {
       userLogs: userLogs,  
       thisuser: thisuser,
     });
+  //Sort logs from most recent to least recent by log entry date
   }).sort({"logentry.logDate": -1});
 
 };
@@ -105,6 +108,7 @@ exports.geteditentry = (req, res, next) => {
   // userlog.findById(logID, function(err, userlog){
   //   res.render('editentry', {
   //     logID: userlog.id, 
+  //     userLog: userlog,
   //     thisuser: thisuser,
   //   });
   // });
@@ -120,7 +124,7 @@ exports.posteditentry = (req, res) => {
   var thisuser = req.user;
   var logID = req.params.logID;
 
-  // console.log('logID in posteditentry: ' +logID);
+  console.log('logID in posteditentry: ' +logID);
   userlog.findById(logID, function (err, userlog){
     user.findOneAndUpdate({email:thisuser.email, groupID: thisuser.groupID},{totalGoalProgress: thisuser.totalGoalProgress - userlog.logentry.individGoalProgress, 
       thisgoalprogress: thisuser.thisgoalprogress - userlog.logentry.individGoalProgress,
@@ -132,9 +136,12 @@ exports.posteditentry = (req, res) => {
     if(err)
       res.send(err);       
    });
-   userlog.findByIdAndUpdate(logID, {logentry:{logDate: req.body.editedLogDateTime, logType: req.body.editedlogtype, logDetails: req.body.editedLogDetails, 
-    individGoalProgress: req.body.editedLogProgress, individGoalRemaining: thisuser.individGoal - req.body.editedLogProgress}}, {new: true}, function(err, userlog){
-      // user.findOneAndUpdate({email:thisuser.email, groupID: thisuser.groupID}, {totalGoalProgress: thisuser.totalGoalProgress + userlog.logentry.individGoalProgress, 
+  //  userlog.findByIdAndUpdate(logID, {logentry:{logDate: req.body.editedLogDateTime, logType: req.body.editedlogtype, logDetails: req.body.editedLogDetails, 
+  //   individGoalProgress: req.body.editedLogProgress, individGoalRemaining: thisuser.individGoal - req.body.editedLogProgress}}, {new: true}, function(err, userlog){
+    userlog.findByIdAndUpdate(logID, {logentry:{logDate: req.body.editedLogDateTime, logType: req.body.editedlogtype, logDetails: req.body.editedLogDetails, 
+      individGoalProgress: req.body.editedLogProgress, $inc: {individGoalRemaining: (-1*req.body.editedLogProgress)}}}, {new: true}, function(err, userlog){
+
+  // user.findOneAndUpdate({email:thisuser.email, groupID: thisuser.groupID}, {totalGoalProgress: thisuser.totalGoalProgress + userlog.logentry.individGoalProgress, 
       //   thisgoalprogress: thisuser.thisgoalprogress + userlog.logentry.individGoalProgress,
       //   thisgoalremaining: thisuser.thisgoalremaining - userlog.logentry.individGoalProgress, progper: (thisuser.thisgoalprogress/ (thisuser.thisgoalprogress + thisuser.thisgoalremaining))}, 
       //   {new: true}, function (err, user){
@@ -156,7 +163,7 @@ exports.updateentry = (req, res) => {
   var thisuser = req.user;
   var logID = req.params.logID;
   console.log('reached updateentry');
-  console.log('editedProgress: '+ req.body.editedLogProgress);
+  console.log('editedProgress: '+ logID);
 
     userlog.findById(logID, function(err, userlog){
       user.findOneAndUpdate({email:thisuser.email, groupID: thisuser.groupID}, 

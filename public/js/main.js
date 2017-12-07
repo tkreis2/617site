@@ -48,14 +48,14 @@ $(document).ready(function() {
 
 
     //Individdash image gallery
-    $('.individgallery li:lt(4)').show();
+    $('.individgallery li:lt(3)').show();
     $('#less').hide()
-    var items =  10;
-    var minshow = 4;
-    var shown =  4;
+    var items =  4;
+    var minshow = 3;
+    var shown =  3;
     var nowshowing = 0;
     $('#more').click(function () {
-        shown = $('.individgallery li:visible').length +4;
+        shown = $('.individgallery li:visible').length +3;
         nowshowing = shown;
         if(shown < items) {
             $('.individgallery li:lt('+shown+')').show();
@@ -74,8 +74,8 @@ $(document).ready(function() {
         }
     });
     $('#less').click(function () {
-        $('.individgallery li').not(':lt(4)').hide();
-        nowshowing = shown -4;
+        $('.individgallery li').not(':lt(3)').hide();
+        nowshowing = shown -3;
         $('#more').show();        
         if((nowshowing < items) || (nowshowing == 0)){
             $('#less').hide();

@@ -81,19 +81,20 @@ block content
     div.cleared
     h2.text-center My Progress
     br  
+    -var percentage = (thisuser.totalGoalProgress   / thisuser.totalGoalValue) * 100;
+    -var printpercentage = percentage.toFixed(2);
     .progress
-        .progress-bar.active(role="progressbar", style= 'width: '+ thisuser.progper + '%', aria-valuenow= "#{thisuser.totalGoalProgress}", aria-valuemin="0", aria-valuemax= "#{thisuser.totalGoalValue}")   
+        .progress-bar.active(role="progressbar", style= 'width: '+ printpercentage + '%', aria-valuenow= "#{thisuser.totalGoalProgress}", aria-valuemin="0", aria-valuemax= "#{thisuser.totalGoalValue}")   
     //- h4.text-center #{thisuser.progper}% (#{thisuser.thisgoalprogress}/#{thisuser.thisgoalprogress + thisuser.thisgoalremaining}) of Current Goal Complete
-    h4.text-center #{thisuser.progper}% of Current Goal Complete    
+    h4.text-center #{printpercentage} % of Goal Complete    
     br
     h2.text-center My Log
     br
     br
+    //Create table for log entries
     table.datatable.table.table-striped.table-bordered
         thead.table-bordered
             tr
-                //- th Log #
-                //- th
                 th Date
                 th
                 th Log Entry Type
@@ -102,17 +103,15 @@ block content
                 th
                 th Progress
                 th
-                th Now Remaining
-                th
                 th Edit Entry
                 th Delete Entry                
         tbody   
+            -var left = 0;
+            -var leftprint = 0;
+            //For each user log associated with this user, pull and display the following information.
             each userLog in userLogs
-                -var entryID = userLog.id
-                -logentryID = userLog.id
                 tr
-                    //- td  #{entryID}
-                    //- td
+                    -left += userLog.logentry.individGoalProgress; 
                     td  #{userLog.logentry.logDate}
                     td      
                     td  #{userLog.logentry.logType}
@@ -121,11 +120,11 @@ block content
                     td      
                     td  #{userLog.logentry.individGoalProgress}
                     td      
-                    td  #{userLog.logentry.individGoalRemaining}
-                    td 
                     td  
+                        //Link for user to click to edit an entry, pass the log ID so the correct entry is found.
                         a(href='editlog&logid=', class="editentry", data-id=userLog.id) Edit
                     td 
+                        //Link for user to click to delete an entry, pass the log ID so the correct entry is found.                    
                         a(href='deleteentry&logid=', class="deleteentry", data-id=userLog.id) Delete      
 
     br
